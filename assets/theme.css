@@ -1,0 +1,214 @@
+/* =========================================================
+   YTF 工具箱 · 全局主题 theme.css
+   单一风格源：所有页面共用，便于统一维护。
+   设计基调：深色 / 活泼 / 科技感
+   通过 body.theme-* 做分类变体（work 更庄重）。
+   ========================================================= */
+
+:root{
+  /* 基础色板 */
+  --bg:#0b1120;
+  --text:#e8ecf4;
+  --muted:#9aa6bf;
+  --card-bg:rgba(255,255,255,0.05);
+  --card-border:rgba(255,255,255,0.09);
+  --card-border-strong:rgba(255,255,255,0.16);
+
+  /* 形状 / 排版 */
+  --radius:18px;
+  --radius-sm:12px;
+  --maxw:1080px;
+  --nav-w:64px;
+  --nav-expand-w:190px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:"Fira Code","Roboto Mono",Consolas,monospace;
+
+  /* 默认强调色（home / 通用：靛蓝+天蓝+翠绿，活泼科技） */
+  --accent1:#818cf8;
+  --accent2:#38bdf8;
+  --accent3:#34d399;
+
+  /* 背景光晕（科技感来源） */
+  --glow1:rgba(56,189,248,0.13);
+  --glow2:rgba(129,140,248,0.15);
+  --glow3:rgba(52,211,153,0.10);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:var(--font);
+  color:var(--text);
+  line-height:1.8;
+  min-height:100vh;
+  background:
+    radial-gradient(1200px 620px at 12% -8%, var(--glow1), transparent 60%),
+    radial-gradient(1000px 540px at 100% 0%,  var(--glow2), transparent 55%),
+    radial-gradient(900px 520px at 50% 118%,  var(--glow3), transparent 60%),
+    var(--bg);
+  background-attachment:fixed;
+  padding-right:var(--nav-w);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ 右侧全局导航（桌面 slim + hover 展开，移动端抽屉） ============ */
+.site-nav{
+  position:fixed; top:0; right:0; bottom:0; z-index:100;
+  width:var(--nav-w);
+  display:flex; flex-direction:column;
+  background:rgba(11,17,32,0.86);
+  backdrop-filter:blur(16px);
+  border-left:1px solid var(--card-border);
+  transition:width .25s ease, transform .25s ease;
+  overflow:hidden;
+}
+.site-nav:hover{width:var(--nav-expand-w);}
+.site-nav .brand{
+  display:flex; align-items:center; gap:10px;
+  height:64px; padding:0 18px;
+  font-weight:700; font-size:1rem; color:#fff; text-decoration:none; white-space:nowrap;
+  border-bottom:1px solid var(--card-border);
+}
+.site-nav .brand .logo{
+  flex-shrink:0;
+  width:28px; height:28px; border-radius:8px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  display:inline-flex; align-items:center; justify-content:center; font-size:.9rem;
+  box-shadow:0 4px 14px rgba(56,189,248,0.35);
+}
+.site-nav .brand-text{opacity:0; transition:opacity .2s;}
+.site-nav:hover .brand-text{opacity:1;}
+.site-nav .links{
+  display:flex; flex-direction:column; gap:4px;
+  padding:14px 10px;
+}
+.site-nav .links a{
+  display:flex; align-items:center; gap:12px;
+  color:var(--muted); text-decoration:none; font-size:.9rem;
+  padding:11px 12px; border-radius:10px; transition:.2s; white-space:nowrap;
+}
+.site-nav .links a .nav-icon{
+  flex-shrink:0; width:22px; height:22px; border-radius:6px;
+  display:inline-flex; align-items:center; justify-content:center; font-size:.85rem;
+  background:rgba(255,255,255,0.08);
+}
+.site-nav .links a .nav-label{opacity:0; transition:opacity .2s;}
+.site-nav:hover .links a .nav-label{opacity:1;}
+.site-nav .links a:hover{color:#fff; background:rgba(255,255,255,0.07);}
+.site-nav .links a.active{color:#fff; background:rgba(129,140,248,0.16);}
+
+/* 移动端抽屉触发按钮 */
+.site-nav .nav-toggle{
+  display:none;
+  position:fixed; top:14px; right:14px; z-index:101;
+  background:rgba(11,17,32,0.92); border:1px solid var(--card-border);
+  color:#fff; width:46px; height:46px; border-radius:12px; font-size:1.3rem; cursor:pointer;
+  backdrop-filter:blur(12px);
+  align-items:center; justify-content:center;
+}
+
+/* ============ 页脚 ============ */
+.site-footer{
+  margin-top:60px; padding:26px 22px 36px; text-align:center;
+  color:var(--muted); font-size:.86rem;
+  border-top:1px solid var(--card-border);
+}
+
+/* ============ 通用内容容器（我生成的页面 / 落地页） ============ */
+.ytf-page{max-width:var(--maxw); margin:0 auto; padding:34px 22px 10px;}
+.brand-pill{
+  display:inline-block; font-size:.78rem; letter-spacing:1px; color:var(--muted);
+  background:var(--card-bg); border:1px solid var(--card-border);
+  padding:5px 12px; border-radius:999px; margin-bottom:14px;
+}
+.ytf-page h1{
+  font-size:2.1rem; font-weight:800; letter-spacing:.5px; line-height:1.3; margin:0 0 6px;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2) 50%,var(--accent3));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.ytf-page .lead{color:var(--muted); margin:0 0 22px;}
+.ytf-page h2{
+  font-size:1.45rem; font-weight:700; margin:32px 0 14px; padding-left:13px;
+  border-left:5px solid transparent;
+  border-image:linear-gradient(180deg,var(--accent1),var(--accent2)) 1;
+}
+.ytf-page a:not(.btn){color:var(--accent2); text-decoration:none; border-bottom:1px dashed rgba(56,189,248,.4);}
+.ytf-page a:not(.btn):hover{color:#7dd3fc;}
+
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:12px 22px; border-radius:12px; font-weight:600; text-decoration:none; color:#06121f;
+  background:linear-gradient(135deg,var(--accent2),var(--accent3));
+  box-shadow:0 10px 26px rgba(52,211,153,.28); transition:.2s;
+}
+.btn:hover{transform:translateY(-2px); filter:brightness(1.05);}
+.btn.ghost{background:var(--card-bg); color:var(--text); border:1px solid var(--card-border); box-shadow:none;}
+
+/* 卡片网格（落地页用） */
+.ytf-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin-top:20px;}
+.ytf-card{
+  display:block; text-decoration:none; color:var(--text);
+  background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--radius);
+  padding:20px; transition:.2s; backdrop-filter:blur(8px);
+}
+.ytf-card:hover{border-color:var(--card-border-strong); transform:translateY(-3px); box-shadow:0 14px 34px rgba(0,0,0,.3);}
+.ytf-card .ic{font-size:1.6rem;}
+.ytf-card h3{margin:10px 0 6px; font-size:1.1rem;}
+.ytf-card p{margin:0; color:var(--muted); font-size:.9rem;}
+
+/* ============ 分类主题变体 ============ */
+body.theme-home { --accent1:#818cf8; --accent2:#38bdf8; --accent3:#34d399; }
+body.theme-city { --accent1:#60a5fa; --accent2:#22d3ee; --accent3:#818cf8; }
+body.theme-study{ --accent1:#34d399; --accent2:#2dd4bf; --accent3:#38bdf8; }
+body.theme-life { --accent1:#fbbf24; --accent2:#fb7185; --accent3:#f472b6; }
+body.theme-game { --accent1:#f472b6; --accent2:#a855f7; --accent3:#38bdf8; }
+/* work：更庄重——钢蓝/靛蓝，光晕收敛，标题不用彩色渐变 */
+body.theme-work{
+  --accent1:#64748b; --accent2:#38bdf8; --accent3:#818cf8;
+  --glow1:rgba(56,189,248,0.07); --glow2:rgba(100,116,139,0.10); --glow3:rgba(99,102,241,0.07);
+}
+body.theme-work .ytf-page h1{ background:none; -webkit-text-fill-color:#e8ecf4; color:#fff; }
+
+/* ============ 移动端 ============ */
+@media (max-width:760px){
+  body{padding-right:0;}
+  .site-nav{
+    width:220px; transform:translateX(100%);
+    background:rgba(11,17,32,0.97);
+  }
+  .site-nav.open{transform:translateX(0);}
+  .site-nav:hover{width:220px;}
+  .site-nav .brand-text,
+  .site-nav .links a .nav-label{opacity:1;}
+  .site-nav .nav-toggle{display:inline-flex;}
+  .site-nav .links a{padding:13px 14px; font-size:1rem;}
+  .ytf-page{padding:24px 16px 10px;}
+  .ytf-page h1{font-size:1.7rem;}
+}
+
+
+/* =========================================================
+   全局强制统一层（大统一，保留各页内部组件自身的微调）
+   - 所有页面共用同一深色极光画布 + 全局字体 + 链接色 + 暗色方案
+   - 用 !important 覆盖各页面自带的 body 背景/字体，保证“前后一致”
+   ========================================================= */
+:root{
+  color-scheme: dark;
+}
+body{
+  background:
+    radial-gradient(1200px 600px at 12% -8%, rgba(56,189,248,.12), transparent 60%),
+    radial-gradient(1000px 520px at 100% 0%, rgba(129,140,248,.14), transparent 55%),
+    radial-gradient(900px 500px at 50% 120%, rgba(52,211,153,.10), transparent 60%),
+    #0b1120 !important;
+  background-attachment: fixed !important;
+  color: #e8ecf4 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif !important;
+}
+/* 链接统一为科技蓝，全站一致 */
+a{ color:#7dd3fc !important; }
+a:hover{ color:#a5e8ff !important; }
+/* 隐藏各页面自带的顶部导航（与全局导航重复），保留页面左侧快速导航 */
+.topnav{ display:none !important; }

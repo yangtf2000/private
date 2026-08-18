@@ -1,0 +1,561 @@
+/* =========================================================
+   全站强制深色兜底 CSS
+   目标：覆盖所有页面残留的内联浅色背景 / 亮白卡片 / 灰色文字
+   规则全部使用 !important，确保优先级最高。
+   ========================================================= */
+
+/* ---------- 1. 兜底：浏览器暗色模式 ---------- */
+* {
+  color-scheme: dark;
+}
+
+/* ---------- 2. 内联浅色背景统一翻暗（最常见的情况） ---------- */
+/* 白色系 */
+[style*="background:#fff" i],
+[style*="background: #fff" i],
+[style*="background:#ffffff" i],
+[style*="background: #ffffff" i],
+[style*="background:white" i],
+[style*="background: white" i],
+[style*="background-color:#fff" i],
+[style*="background-color: #fff" i],
+[style*="background-color:#ffffff" i],
+[style*="background-color: #ffffff" i],
+[style*="background-color:white" i],
+[style*="background-color: white" i],
+[style*="background:rgba(255,255,255,1" i],
+[style*="background: rgba(255,255,255,1" i],
+[style*="background-color:rgba(255,255,255,1" i],
+[style*="background-color: rgba(255,255,255,1" i],
+
+/* 浅蓝/浅紫 */
+[style*="background:#f8f9ff" i],
+[style*="background: #f8f9ff" i],
+[style*="background:#f9f9ff" i],
+[style*="background: #f9f9ff" i],
+[style*="background:#fafbff" i],
+[style*="background: #fafbff" i],
+[style*="background:#f5f7ff" i],
+[style*="background: #f5f7ff" i],
+[style*="background:#f0f1ff" i],
+[style*="background: #f0f1ff" i],
+[style*="background:#f0f2ff" i],
+[style*="background: #f0f2ff" i],
+[style*="background:#eff6ff" i],
+[style*="background: #eff6ff" i],
+[style*="background:#e0f2fe" i],
+[style*="background: #e0f2fe" i],
+[style*="background:#dbeafe" i],
+[style*="background: #dbeafe" i],
+[style*="background:#e6f1fb" i],
+[style*="background: #e6f1fb" i],
+[style*="background:#e3f2fd" i],
+[style*="background: #e3f2fd" i],
+[style*="background:#f0f9ff" i],
+[style*="background: #f0f9ff" i],
+
+/* 浅灰 */
+[style*="background:#f9fafb" i],
+[style*="background: #f9fafb" i],
+[style*="background:#f3f4f6" i],
+[style*="background: #f3f4f6" i],
+[style*="background:#f5f5f5" i],
+[style*="background: #f5f5f5" i],
+[style*="background:#e5e7eb" i],
+[style*="background: #e5e7eb" i],
+[style*="background:#d1d5db" i],
+[style*="background: #d1d5db" i],
+
+/* 浅绿 */
+[style*="background:#f0fdf4" i],
+[style*="background: #f0fdf4" i],
+[style*="background:#ecfdf5" i],
+[style*="background: #ecfdf5" i],
+[style*="background:#dcfce7" i],
+[style*="background: #dcfce7" i],
+[style*="background:#d1fae5" i],
+[style*="background: #d1fae5" i],
+[style*="background:#e8f5e9" i],
+[style*="background: #e8f5e9" i],
+[style*="background:#c8e6c9" i],
+[style*="background: #c8e6c9" i],
+
+/* 浅黄/橙 */
+[style*="background:#fffbeb" i],
+[style*="background: #fffbeb" i],
+[style*="background:#fef3c7" i],
+[style*="background: #fef3c7" i],
+[style*="background:#fde68a" i],
+[style*="background: #fde68a" i],
+[style*="background:#fff8e6" i],
+[style*="background: #fff8e6" i],
+[style*="background:#fff8e1" i],
+[style*="background: #fff8e1" i],
+[style*="background:#fff7ed" i],
+[style*="background: #fff7ed" i],
+[style*="background:#ffedd5" i],
+[style*="background: #ffedd5" i],
+[style*="background:#fed7aa" i],
+[style*="background: #fed7aa" i],
+[style*="background:#fff3e0" i],
+[style*="background: #fff3e0" i],
+
+/* 浅红/粉 */
+[style*="background:#fef2f2" i],
+[style*="background: #fef2f2" i],
+[style*="background:#fee2e2" i],
+[style*="background: #fee2e2" i],
+[style*="background:#fecaca" i],
+[style*="background: #fecaca" i],
+[style*="background:#fff0f0" i],
+[style*="background: #fff0f0" i],
+[style*="background:#fdf2f8" i],
+[style*="background: #fdf2f8" i],
+[style*="background:#fce7f3" i],
+[style*="background: #fce7f3" i],
+[style*="background:#fbcfe8" i],
+[style*="background: #fbcfe8" i],
+
+/* 浅青/靛 */
+[style*="background:#ecfeff" i],
+[style*="background: #ecfeff" i],
+[style*="background:#cffafe" i],
+[style*="background: #cffafe" i],
+[style*="background:#f0fdfa" i],
+[style*="background: #f0fdfa" i],
+[style*="background:#ccfbf1" i],
+[style*="background: #ccfbf1" i],
+[style*="background:#f5f3ff" i],
+[style*="background: #f5f3ff" i],
+[style*="background:#ede9fe" i],
+[style*="background: #ede9fe" i],
+[style*="background:#ddd6fe" i],
+[style*="background: #ddd6fe" i] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 针对渐变浅色背景：包含 #f... 的渐变，强制覆盖为暗色渐变 */
+[style*="linear-gradient" i][style*="#f" i],
+[style*="linear-gradient" i][style*="#e" i] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #e8ecf4 !important;
+}
+
+/* ---------- 3. 内联灰色文字强制改浅色 ---------- */
+[style*="color:#333" i],
+[style*="color: #333" i],
+[style*="color:#444" i],
+[style*="color: #444" i],
+[style*="color:#555" i],
+[style*="color: #555" i],
+[style*="color:#666" i],
+[style*="color: #666" i],
+[style*="color:#777" i],
+[style*="color: #777" i],
+[style*="color:#888" i],
+[style*="color: #888" i],
+[style*="color:#999" i],
+[style*="color: #999" i],
+[style*="color:#6b7280" i],
+[style*="color: #6b7280" i],
+[style*="color:#9ca3af" i],
+[style*="color: #9ca3af" i] {
+  color: #e8ecf4 !important;
+}
+
+/* ---------- 4. 通用类：所有容器/卡片强制暗色玻璃 ---------- */
+html body .container,
+html body .wrapper,
+html body .main,
+html body .content,
+html body .page-content,
+html body .inner,
+html body .section,
+html body .section-box,
+html body .card,
+html body .main-card,
+html body .card-section,
+html body .tool-card,
+html body .agent-card,
+html body .category-card,
+html body .category-card-body,
+html body .advantage-box,
+html body .advantage-item,
+html body .advantage-grid > *,
+html body .prerequisite-box,
+html body .prerequisite-item,
+html body .info-box,
+html body .tip-box,
+html body .warning-box,
+html body .note-box,
+html body .alert-box,
+html body .alert-info,
+html body .alert-warning,
+html body .alert-danger,
+html body .alert-success,
+html body .highlight-box,
+html body .summary-box,
+html body .prompt-box,
+html body .example-box,
+html body .feature-box,
+html body .method-box,
+html body .output-box,
+html body .case-box,
+html body .check-item,
+html body .timeline-item,
+html body .quiz-card,
+html body .form-card,
+html body .modal-content,
+html body .box,
+html body .panel,
+html body .module,
+html body .block,
+html body .widget,
+html body .frame,
+html body .well,
+html body .item,
+html body .list-item,
+html body .grid-item,
+html body .flex-item,
+html body .intro,
+html body .summary,
+html body .detail,
+html body .desc,
+html body .description,
+html body .step-item,
+html body .step-card,
+html body .flow-step,
+html body .process-card,
+html body .process-step,
+html body .phase,
+html body .stat-box,
+html body .course-card,
+html body .book-card,
+html body .result-item,
+html body .skill-module,
+html body .skill-card,
+html body .data-card,
+html body .metric-card,
+html body .feature-card,
+html body .example-card,
+html body .case-card,
+html body .method-card,
+html body .output-card,
+html body .input-card,
+html body .check-card,
+html body .tips-card,
+html body .callout,
+html body .callout-box,
+html body .info-card,
+html body .search-section,
+html body .legend,
+html body .outline-col,
+html body .two-col-grid > div,
+html body .tab-content,
+html body .nav-tabs,
+html body .nav-tab {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 所有容器内的段落/列表文字 */
+html body .container p,
+html body .container li,
+html body .container span,
+html body .container div,
+html body .card p,
+html body .card li,
+html body .card span,
+html body .card div,
+html body .box p,
+html body .box li,
+html body .box span,
+html body .box div,
+html body .section p,
+html body .section li,
+html body .section span,
+html body .section div,
+html body .main-card p,
+html body .main-card li,
+html body .main-card span,
+html body .main-card div,
+html body .info-box p,
+html body .info-box li,
+html body .tip-box p,
+html body .tip-box li,
+html body .warning-box p,
+html body .warning-box li,
+html body .note-box p,
+html body .note-box li,
+html body .step-item p,
+html body .step-item li,
+html body .skill-module p,
+html body .skill-module li,
+html body .advantage-box p,
+html body .advantage-box li,
+html body .prerequisite-box p,
+html body .prerequisite-box li {
+  color: #e8ecf4 !important;
+}
+
+/* 所有标题强制白色 */
+html body h1,
+html body h2,
+html body h3,
+html body h4,
+html body h5,
+html body h6,
+html body .container h1,
+html body .container h2,
+html body .container h3,
+html body .container h4,
+html body .container h5,
+html body .container h6,
+html body .card h1,
+html body .card h2,
+html body .card h3,
+html body .card h4,
+html body .card h5,
+html body .card h6,
+html body .box h1,
+html body .box h2,
+html body .box h3,
+html body .box h4,
+html body .box h5,
+html body .box h6,
+html body .section h1,
+html body .section h2,
+html body .section h3,
+html body .section h4,
+html body .section h5,
+html body .section h6,
+html body .main-card h1,
+html body .main-card h2,
+html body .main-card h3,
+html body .main-card h4,
+html body .main-card h5,
+html body .main-card h6 {
+  color: #ffffff !important;
+}
+
+/* strong / b 强制白色 */
+html body strong,
+html body b,
+html body .container strong,
+html body .container b,
+html body .card strong,
+html body .card b,
+html body .box strong,
+html body .box b,
+html body .section strong,
+html body .section b {
+  color: #ffffff !important;
+}
+
+/* ---------- 5. 彩色提示框：保留语义色但用暗底 ---------- */
+html body .warning-box,
+html body .alert-warning,
+html body .callout-warn,
+html body .prerequisite-box {
+  background: rgba(245, 158, 11, 0.12) !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+  color: #fbbf24 !important;
+}
+html body .warning-box *,
+html body .alert-warning *,
+html body .callout-warn *,
+html body .prerequisite-box * {
+  color: #fbbf24 !important;
+}
+
+html body .tip-box,
+html body .alert-info,
+html body .callout-tip,
+html body .advantage-box,
+html body .info-box {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  color: #34d399 !important;
+}
+html body .tip-box *,
+html body .alert-info *,
+html body .callout-tip *,
+html body .advantage-box *,
+html body .info-box * {
+  color: #34d399 !important;
+}
+
+html body .alert-danger,
+html body .callout-danger,
+html body .note-box.danger {
+  background: rgba(220, 38, 38, 0.12) !important;
+  border-color: rgba(220, 38, 38, 0.3) !important;
+  color: #f87171 !important;
+}
+html body .alert-danger *,
+html body .callout-danger *,
+html body .note-box.danger * {
+  color: #f87171 !important;
+}
+
+html body .alert-success,
+html body .callout-success {
+  background: rgba(34, 197, 94, 0.12) !important;
+  border-color: rgba(34, 197, 94, 0.3) !important;
+  color: #4ade80 !important;
+}
+
+/* ---------- 6. 列表项标签（如“上位规划类”）统一可见 ---------- */
+html body li,
+html body .container li,
+html body .section li,
+html body .card li,
+html body .box li {
+  color: #e8ecf4 !important;
+}
+
+html body li > strong,
+html body li > b,
+html body .container li > strong,
+html body .section li > strong,
+html body .card li > strong,
+html body .box li > strong {
+  color: #ffffff !important;
+}
+
+/* ---------- 7. 表格强制深色 ---------- */
+html body table,
+html body .table,
+html body .indicator-table,
+html body .compare-table,
+html body .overview-table {
+  background: transparent !important;
+}
+html body table th,
+html body .table th,
+html body .indicator-table th,
+html body .compare-table th,
+html body .overview-table th {
+  background: rgba(56, 189, 248, 0.2) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+html body table td,
+html body .table td,
+html body .indicator-table td,
+html body .compare-table td,
+html body .overview-table td {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html body table tr:hover td,
+html body table tr:hover,
+html body .table tr:hover td,
+html body .indicator-table tr:hover td,
+html body .compare-table tr:hover td,
+html body .overview-table tr:hover td {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ---------- 8. 步骤序号 / 徽章 / 标签 ---------- */
+html body .step-number,
+html body .step-num,
+html body .phase-num,
+html body .number-badge {
+  background: linear-gradient(135deg, #38bdf8, #818cf8) !important;
+  color: #06121f !important;
+}
+
+html body .badge,
+html body .tag,
+html body .label,
+html body .pill,
+html body .chip,
+html body .category-tag {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ---------- 9. hover 态：绝不变浅 ---------- */
+html body .card:hover,
+html body .box:hover,
+html body .section:hover,
+html body .main-card:hover,
+html body .tool-card:hover,
+html body .agent-card:hover,
+html body .category-card:hover,
+html body .step-item:hover,
+html body .skill-module:hover,
+html body .advantage-item:hover,
+html body .info-box:hover,
+html body .tip-box:hover,
+html body .warning-box:hover,
+html body .note-box:hover,
+html body tr:hover,
+html body .list-item:hover,
+html body .grid-item:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ---------- 10. 特殊修复：杨子禺暑假课程彩色卡片 ---------- */
+html body .c-calig,
+html body .c-chinese,
+html body .c-eng,
+html body .c-math,
+html body .cal-cell.calig,
+html body .cal-cell.chinese,
+html body .cal-cell.eng,
+html body .cal-cell.math,
+html body .cal-cell.calig-chinese,
+html body .cal-cell.eng-math,
+html body .cal-cell.free,
+html body .cal-cell.travel,
+html body .cal-cell.rest-day {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+html body .c-calig .time,
+html body .c-chinese .time,
+html body .c-eng .time,
+html body .c-math .time,
+html body .cal-cell .time {
+  color: #e8ecf4 !important;
+}
+
+/* ---------- 11. 输入框 / 按钮 ---------- */
+html body input,
+html body textarea,
+html body select,
+html body .search-box input,
+html body .search-box textarea,
+html body .search-box select {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html body input::placeholder,
+html body textarea::placeholder {
+  color: #9aa6bf !important;
+}
+
+/* ---------- 12. 代码块 / 预格式化 ---------- */
+html body pre,
+html body code,
+html body .code-block,
+html body .code-box,
+html body .prompt-box {
+  background: #0a0d18 !important;
+  color: #d5dcf5 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ---------- 13. 保留真正的白色闪光元素 ---------- */
+html body .white-flash,
+html body [class*="white-flash"] {
+  background: white !important;
+}

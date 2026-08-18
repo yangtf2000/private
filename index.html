@@ -1,0 +1,32 @@
+---
+layout: default
+title: 私人手记
+---
+<section class="blog-intro">
+  <h1>私人手记</h1>
+  <p>给孩子 · 私人手记 · 微信公众号 —— 仅对内，不对外链出。最新在前。</p>
+</section>
+
+{% assign cats = "kids,private,wechat" | split: "," %}
+{% for c in cats %}
+  {% assign items = site.posts | where: "category", c %}
+  {% if items.size > 0 %}
+    <hr class="divider" id="{{ c }}">
+    <p class="sec-label">
+      {% if c == "kids" %}给孩子
+      {% elsif c == "private" %}私人手记
+      {% else %}微信公众号{% endif %}
+    </p>
+    {% for post in items %}
+      <article class="entry">
+        <div class="entry-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+          <span class="cat cat-{{ post.category }}">{{ post.category }}</span>
+        </div>
+        <h2 class="entry-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.excerpt %}<p class="entry-excerpt">{{ post.excerpt }}</p>{% endif %}
+        {% if post.tags %}<div class="entry-tags">{% for t in post.tags %}<span>#{{ t }}</span>{% endfor %}</div>{% endif %}
+      </article>
+    {% endfor %}
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncate: 160 }}">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+</head>
+<body>
+  <header class="site-head">
+    <a class="brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+    <nav class="site-nav">
+      <a href="{{ site.baseurl }}/">目录</a>
+      <a href="{{ site.baseurl }}/#kids">给孩子</a>
+      <a href="{{ site.baseurl }}/#private">私人手记</a>
+      <a href="{{ site.baseurl }}/#wechat">微信公众号</a>
+    </nav>
+  </header>
+  <main class="site-main">
+    {{ content }}
+  </main>
+  <footer class="site-foot">
+    <span>© {{ site.time | date: '%Y' }} {{ site.title }} · 纯静态博客 · GitHub Pages</span>
+  </footer>
+</body>
+</html>

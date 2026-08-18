@@ -1,0 +1,3881 @@
+---
+layout: post
+title: "每日TODO清单"
+date: 2026-08-13
+category: kids
+tags: [清单, 日常]
+title: ""
+---
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/theme.css"><link rel="stylesheet" href="{{ site.baseurl }}/assets/force-dark.css">
+<style>
+
+:root {
+  --cell-h: 110px;
+  --label-w: 72px;
+  --bar-h: 50px;
+  --bar-top: 8px;
+  --row-gap: 44px;
+  --bg: #0d1117;
+  --panel: #161b22;
+  --panel-2: #1c2333;
+  --cell-bg: #1a1f2e;
+  --cell-bg-alt: #1e2436;
+  --cell-border: #2d3548;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --text-faint: #6e7681;
+  --past: rgba(80, 80, 95, 0.45);
+  --current: #ff6b6b;
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+  --danger: #f85149;
+  --success: #3fb950;
+  --warning: #d29922;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(88,166,255,0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(253,121,168,0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(253,203,110,0.03) 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  min-height: 100vh;
+  padding: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* === Header === */
+header {
+  margin-bottom: 14px;
+  padding: 20px 24px;
+  background: var(--panel);
+  border-radius: 16px;
+  border: 1px solid var(--cell-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.main-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 14px;
+  letter-spacing: 4px;
+  background: rgba(129,140,248,0.08);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+}
+
+.header-right { display: flex; align-items: center; gap: 10px; }
+
+.date { font-size: 12px; color: var(--text-dim); }
+
+.clock-center {
+  font-size: 40px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 24px rgba(88, 166, 255, 0.35);
+}
+
+/* Star counter - centered below clock */
+.star-counter-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.star-counter-center .star-emoji {
+  font-size: 24px;
+  animation: starWiggle 2s ease-in-out infinite;
+}
+
+.star-counter-center .star-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fdcb6e;
+  text-shadow: 0 0 12px rgba(253, 203, 110, 0.4);
+}
+
+@keyframes starWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg) scale(1.1); }
+  75% { transform: rotate(10deg) scale(1.1); }
+}
+
+/* === Sections === */
+.section {
+  background: var(--panel);
+  border-radius: 16px;
+  border: 1px solid var(--cell-border);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.section h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hint { font-size: 12px; font-weight: 400; color: var(--text-faint); }
+.stats { display: flex; gap: 14px; font-size: 12px; }
+.stats strong { color: var(--text); }
+
+/* === Time Grid Section (prominent) === */
+.time-grid-section {
+  background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%);
+  border: 2px solid #3d4660;
+  padding: 22px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+/* === Time Grid === */
+.time-grid {
+  overflow: visible;
+  padding-bottom: 8px;
+}
+
+.time-row {
+  display: flex;
+  margin-bottom: var(--row-gap);
+}
+.time-row:last-child { margin-bottom: 4px; }
+
+.row-label {
+  width: var(--label-w);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--cell-border);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.label-period {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.label-range {
+  font-size: 10px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+.row-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Time labels above cells */
+.time-labels {
+  display: flex;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.time-labels span {
+  flex: 1;
+  position: relative;
+  font-size: 12px;
+  color: var(--text-faint);
+  padding-left: 4px;
+  padding-top: 3px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.time-labels span::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 5px;
+  background: var(--text-faint);
+  opacity: 0.5;
+}
+
+.time-labels span.hour-mark {
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.time-labels span.hour-mark::before {
+  height: 10px;
+  opacity: 0.9;
+  width: 2px;
+}
+
+/* Cells */
+.row-cells {
+  position: relative;
+  display: flex;
+  height: var(--cell-h);
+  flex: 1;
+  overflow: visible;
+}
+
+.cell {
+  flex: 1;
+  height: 100%;
+  border: 1px solid var(--cell-border);
+  border-left: none;
+  background: var(--cell-bg);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+/* Mid-cell 15-min divider */
+.cell::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 1px dashed rgba(100, 110, 130, 0.25);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cell.alt { background: var(--cell-bg-alt); }
+.cell:last-child { border-radius: 0 10px 10px 0; }
+
+.cell.drop-preview {
+  background: rgba(88, 166, 255, 0.1) !important;
+}
+
+/* Ghost preview bar - shows exact 15-min snap position */
+.drop-preview-bar {
+  position: absolute;
+  height: var(--bar-h);
+  top: var(--bar-top);
+  border-radius: 10px;
+  border: 2px dashed var(--accent);
+  background: rgba(88, 166, 255, 0.15);
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 4px rgba(0,0,0,0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: previewPulse 0.8s ease-in-out infinite;
+  transition: left 0.08s ease-out, width 0.08s ease-out;
+}
+
+@keyframes previewPulse {
+  0%, 100% { opacity: 0.65; border-color: var(--accent); }
+  50% { opacity: 1; border-color: var(--accent-hover); }
+}
+
+/* Snap indicator line at 15-min boundary */
+.snap-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  z-index: 5;
+  pointer-events: none;
+  box-shadow: 0 0 8px var(--accent);
+  opacity: 0.7;
+}
+
+/* Past overlay */
+.past-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--past);
+  pointer-events: none;
+  z-index: 1;
+  transition: width 0.5s ease;
+}
+
+/* Current time indicator - hand pulling right */
+.time-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 2px dashed var(--current);
+  z-index: 5;
+  pointer-events: none;
+  transition: left 0.5s ease;
+  opacity: 0.7;
+}
+
+.time-indicator::before {
+  content: '👉';
+  position: absolute;
+  top: 50%;
+  left: -32px;
+  font-size: 24px;
+  animation: handPull 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5));
+  z-index: 6;
+  line-height: 1;
+  margin-top: -12px;
+}
+
+@keyframes handPull {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+/* Note alarm marker on grid */
+.note-alarm-marker {
+  position: absolute;
+  top: -10px;
+  width: 22px;
+  height: 22px;
+  background: rgba(129,140,248,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  z-index: 6;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+  transform: translateX(-50%);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.note-alarm-marker::after {
+  content: attr(data-time);
+  position: absolute;
+  top: -16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ff8fab;
+  white-space: nowrap;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+}
+
+/* Drag-over highlight */
+.row-cells.drag-over::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px dashed var(--accent);
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* === Task Bar (on grid) === */
+.task-bar {
+  position: absolute;
+  height: var(--bar-h);
+  top: var(--bar-top);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 3;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  touch-action: none;
+  -webkit-touch-callout: none;
+  transition: filter 0.3s, opacity 0.3s;
+  cursor: grab;
+}
+
+.task-bar.snap-in {
+  animation: snapIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes snapIn {
+  0% { transform: scale(1.2) translateY(-8px); opacity: 0.5; }
+  40% { transform: scale(0.9) translateY(0); }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.task-bar.past {
+  filter: grayscale(0.8) brightness(0.5);
+  opacity: 0.45;
+}
+
+.task-bar.in-progress {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 6px rgba(255,255,255,0.15), 0 3px 12px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 22px rgba(255,255,255,0.45), 0 3px 12px rgba(0,0,0,0.4); }
+}
+
+.task-bar.tapped {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255,255,255,0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.bar-content {
+  flex: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  padding: 0 4px;
+}
+
+.bar-time-start {
+  font-size: 10px;
+  opacity: 0.8;
+  flex-shrink: 0;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-time-end {
+  font-size: 10px;
+  opacity: 0.8;
+  flex-shrink: 0;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Resize handle */
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  cursor: ew-resize;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.resize-handle::after {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+
+.resize-handle:hover::after,
+.resize-handle.active::after {
+  background: rgba(255,255,255,0.8);
+}
+
+/* === Task Pool === */
+.task-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 56px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px dashed var(--cell-border);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.task-pool.drag-over {
+  border-color: var(--accent);
+  background: rgba(88, 166, 255, 0.06);
+}
+
+.pool-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--panel-2);
+  border-radius: 12px;
+  border: 1px solid var(--cell-border);
+  border-left: 5px solid;
+  font-size: 14px;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  max-width: 280px;
+  cursor: grab;
+}
+
+.pool-card.bounce-in {
+  animation: bounceIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.pool-card.editing {
+  border-color: var(--accent);
+  background: var(--bg);
+  max-width: 440px;
+}
+
+.pc-content { font-weight: 700; pointer-events: none; }
+
+.pc-duration {
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Add card (+ button) */
+.add-card {
+  border: 2px dashed var(--cell-border);
+  border-left: 5px solid var(--cell-border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-card:hover, .add-card:active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(88, 166, 255, 0.06);
+}
+
+.add-card.editing {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--bg);
+  cursor: default;
+}
+
+.add-icon {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.add-text { font-size: 14px; }
+
+/* Inline edit form */
+.edit-input, .edit-select {
+  padding: 6px 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--cell-border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  touch-action: manipulation;
+}
+
+.edit-input { width: 110px; }
+.edit-select { width: 90px; }
+.edit-input:focus, .edit-select:focus { outline: none; border-color: var(--accent); }
+
+.edit-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+.edit-btn.save { background: var(--success); color: #fff; }
+.edit-btn.cancel { background: var(--cell-border); color: var(--text-dim); }
+.edit-btn.delete { background: rgba(248,81,73,0.2); color: var(--danger); }
+
+/* === Sticky Notes Section === */
+.notes-section {
+  background: linear-gradient(135deg, #1a1f2e 0%, #1e2436 100%);
+  border: 2px solid #3d4660;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.notes-title {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notes-count {
+  font-size: 13px;
+  color: var(--text-dim);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.note-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: rgba(129,140,248,0.08);
+  border: none;
+  border-radius: 22px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(253,121,168,0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+  touch-action: manipulation;
+}
+
+.note-add-btn:hover, .note-add-btn:active {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(253,121,168,0.4);
+}
+
+.notes-area {
+  position: relative;
+  min-height: 360px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,217,61,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(116,192,252,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(253,143,171,0.04) 0%, transparent 50%);
+  border-radius: 14px;
+  border: 1px dashed #3d4660;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* === Sticky Note === */
+.sticky-note {
+  position: absolute;
+  width: 180px;
+  min-height: 130px;
+  border-radius: 14px 14px 14px 3px;
+  padding: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 1px 4px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: grab;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: rotate(var(--rot, 0deg));
+  z-index: 1;
+}
+
+.sticky-note:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 100;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+}
+
+.sticky-note.dragging {
+  transform: scale(1.08) rotate(0deg);
+  z-index: 200;
+  cursor: grabbing;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+  transition: none;
+}
+
+.sticky-note.new-note {
+  animation: noteAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes noteAppear {
+  0% { opacity: 0; transform: scale(0.3) rotate(var(--rot, 0deg)); }
+  60% { opacity: 1; transform: scale(1.12) rotate(var(--rot, 0deg)); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--rot, 0deg)); }
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.note-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.note-alarm-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.2s, background 0.2s, transform 0.15s;
+  touch-action: manipulation;
+  padding: 0;
+  line-height: 1;
+}
+
+.sticky-note:hover .note-alarm-btn { opacity: 0.8; }
+.note-alarm-btn:hover { opacity: 1; transform: scale(1.15); }
+
+.note-alarm-btn.active {
+  opacity: 1;
+  background: rgba(255, 100, 100, 0.35);
+  animation: alarmPulse 2s ease-in-out infinite;
+}
+
+@keyframes alarmPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(255, 100, 100, 0); }
+}
+
+.note-delete {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  color: inherit;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s;
+  touch-action: manipulation;
+  line-height: 1;
+  padding: 0;
+}
+
+.sticky-note:hover .note-delete,
+.sticky-note:focus-within .note-delete,
+.sticky-note:active .note-delete {
+  opacity: 1;
+}
+
+.note-delete:hover {
+  background: rgba(0,0,0,0.3);
+}
+
+.note-alarm-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+.note-alarm-time {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.6);
+  color: #e8ecf4;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 700;
+  touch-action: manipulation;
+}
+
+.note-alarm-time:focus {
+  outline: none;
+  background: rgba(255,255,255,0.85);
+}
+
+.note-text {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #e8ecf4;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+  min-height: 60px;
+  touch-action: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.note-text::placeholder {
+  color: rgba(0,0,0,0.3);
+}
+
+/* === Drag Clone === */
+.drag-clone {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  transform: scale(1.1) rotate(-2deg);
+  opacity: 0.92;
+  filter: brightness(1.12);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,255,255,0.12);
+  transition: transform 0.12s ease;
+}
+
+/* === Toolbar === */
+.toolbar { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.btn-sm {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--cell-border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.btn-sm:hover, .btn-sm:active { border-color: var(--accent); color: var(--accent); }
+.btn-sm.danger:hover, .btn-sm.danger:active { border-color: var(--danger); color: var(--danger); }
+.btn-sm.success:hover, .btn-sm.success:active { border-color: var(--success); color: var(--success); }
+
+/* === Toast === */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--panel-2);
+  border: 1px solid var(--cell-border);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px 18px;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+  transform: translateX(420px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.toast.show { transform: translateX(0); opacity: 1; }
+.toast.toast-start { border-left-color: var(--success); }
+.toast.toast-end { border-left-color: var(--warning); }
+.toast.toast-info { border-left-color: var(--accent); }
+.toast.toast-star { border-left-color: #fdcb6e; }
+
+.toast strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.toast-msg { font-size: 13px; color: var(--text-dim); }
+
+/* === Help === */
+.help {
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.9;
+  padding: 8px 0 0;
+}
+
+.help kbd {
+  background: var(--bg);
+  border: 1px solid var(--cell-border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Compatibility / loading message */
+.compat-msg {
+  text-align: center;
+  padding: 12px 16px;
+  background: rgba(253, 121, 168, 0.15);
+  border: 1px dashed rgba(253, 121, 168, 0.4);
+  border-radius: 12px;
+  color: #fd79a8;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.compat-msg.hidden { display: none; }
+
+::-webkit-scrollbar { height: 8px; width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--cell-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+/* === Gap fallback for older mobile browsers === */
+@supports not (gap: 1px) {
+  .header-left > * + * { margin-left: 14px; }
+  .header-right > * + * { margin-left: 10px; }
+  .toolbar > * + * { margin-left: 6px; }
+  .pool-card > * + * { margin-left: 8px; }
+  .add-card > * + * { margin-left: 8px; }
+  .section h2 > * + * { margin-left: 8px; }
+  .notes-header > * + * { margin-left: 10px; }
+  .note-actions > * + * { margin-left: 4px; }
+  .star-counter-center > * + * { margin-left: 6px; }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  body { padding: 8px; }
+  .container { max-width: 100%; }
+  header { padding: 14px 12px; margin-bottom: 10px; }
+  .main-title { font-size: 24px; letter-spacing: 2px; margin-bottom: 8px; }
+  .clock-center { font-size: 30px; letter-spacing: 2px; margin-bottom: 6px; }
+  .star-counter-center { margin-bottom: 10px; }
+  .star-counter-center .star-emoji { font-size: 20px; }
+  .star-counter-center .star-num { font-size: 18px; }
+  .header-bar { justify-content: center; gap: 8px; }
+  .header-left { justify-content: center; gap: 10px; font-size: 11px; }
+  .header-right { justify-content: center; }
+  .toolbar { gap: 4px; justify-content: center; }
+  .toolbar .btn-sm { padding: 8px 12px; font-size: 12px; }
+  .stats { gap: 8px; font-size: 11px; }
+
+  :root { --cell-h: 80px; --label-w: 48px; --bar-h: 36px; --bar-top: 6px; --row-gap: 24px; }
+
+  .section { padding: 12px; margin-bottom: 10px; }
+  .time-grid-section { padding: 14px 10px; }
+  .section h2 { font-size: 14px; margin-bottom: 10px; }
+  .hint { font-size: 10px; }
+
+  .label-period { font-size: 13px; }
+  .label-range { font-size: 9px; }
+  .time-labels { height: 18px; }
+  .time-labels span { font-size: 10px; padding-left: 2px; padding-top: 2px; }
+
+  .task-bar { font-size: 11px; padding: 0 4px; }
+  .bar-time-start, .bar-time-end { font-size: 8px; }
+  .bar-content { padding: 0 2px; }
+
+  .task-pool { padding: 8px; gap: 8px; }
+  .pool-card { padding: 10px 12px; font-size: 13px; max-width: 200px; }
+  .pc-duration { font-size: 10px; padding: 3px 6px; }
+
+  .notes-section { padding: 14px 10px; }
+  .notes-area { min-height: 240px; }
+  .sticky-note { width: 140px; min-height: 100px; padding: 10px; }
+  .note-emoji { font-size: 18px; }
+
+  .time-indicator::before { font-size: 18px; left: -24px; }
+  .toast { min-width: 240px; max-width: 320px; padding: 10px 14px; }
+  .help { font-size: 10px; line-height: 1.7; }
+  .help kbd { padding: 1px 5px; font-size: 10px; }
+}
+
+@media (max-width: 400px) {
+  body { padding: 6px; }
+  .main-title { font-size: 20px; letter-spacing: 1px; }
+  .clock-center { font-size: 24px; }
+  :root { --cell-h: 70px; --label-w: 40px; --bar-h: 32px; --bar-top: 5px; --row-gap: 18px; }
+  .label-period { font-size: 11px; }
+  .label-range { font-size: 8px; }
+  .time-labels span { font-size: 9px; }
+  .task-bar { font-size: 10px; }
+  .bar-time-start, .bar-time-end { font-size: 7px; }
+  .pool-card { padding: 8px 10px; font-size: 12px; max-width: 160px; }
+  .toolbar .btn-sm { padding: 6px 10px; font-size: 11px; }
+  .sticky-note { width: 120px; min-height: 90px; }
+}
+
+    </style><style>
+
+:root {
+  --cell-h: 110px;
+  --label-w: 72px;
+  --bar-h: 50px;
+  --bar-top: 8px;
+  --row-gap: 44px;
+  --bg: #0d1117;
+  --panel: #161b22;
+  --panel-2: #1c2333;
+  --cell-bg: #1a1f2e;
+  --cell-bg-alt: #1e2436;
+  --cell-border: #2d3548;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --text-faint: #6e7681;
+  --past: rgba(80, 80, 95, 0.45);
+  --current: #ff6b6b;
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+  --danger: #f85149;
+  --success: #3fb950;
+  --warning: #d29922;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(88,166,255,0.05) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(253,121,168,0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(253,203,110,0.03) 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  min-height: 100vh;
+  padding: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* === Header === */
+header {
+  margin-bottom: 14px;
+  padding: 20px 24px;
+  background: var(--panel);
+  border-radius: 16px;
+  border: 1px solid var(--cell-border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.main-title {
+  font-size: 36px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 14px;
+  letter-spacing: 4px;
+  background: rgba(129,140,248,0.08);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.header-left {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-wrap: wrap;
+}
+
+.header-right { display: flex; align-items: center; gap: 10px; }
+
+.date { font-size: 12px; color: var(--text-dim); }
+
+.clock-center {
+  font-size: 40px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 4px;
+  text-shadow: 0 0 24px rgba(88, 166, 255, 0.35);
+}
+
+/* Star counter - centered below clock */
+.star-counter-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.star-counter-center .star-emoji {
+  font-size: 24px;
+  animation: starWiggle 2s ease-in-out infinite;
+}
+
+.star-counter-center .star-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fdcb6e;
+  text-shadow: 0 0 12px rgba(253, 203, 110, 0.4);
+}
+
+@keyframes starWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg) scale(1.1); }
+  75% { transform: rotate(10deg) scale(1.1); }
+}
+
+/* === Sections === */
+.section {
+  background: var(--panel);
+  border-radius: 16px;
+  border: 1px solid var(--cell-border);
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.section h2 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hint { font-size: 12px; font-weight: 400; color: var(--text-faint); }
+.stats { display: flex; gap: 14px; font-size: 12px; }
+.stats strong { color: var(--text); }
+
+/* === Time Grid Section (prominent) === */
+.time-grid-section {
+  background: linear-gradient(135deg, var(--panel) 0%, var(--panel-2) 100%);
+  border: 2px solid #3d4660;
+  padding: 22px;
+  border-radius: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+}
+
+/* === Time Grid === */
+.time-grid {
+  overflow: visible;
+  padding-bottom: 8px;
+}
+
+.time-row {
+  display: flex;
+  margin-bottom: var(--row-gap);
+}
+.time-row:last-child { margin-bottom: 4px; }
+
+.row-label {
+  width: var(--label-w);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--cell-border);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+}
+
+.label-period {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.label-range {
+  font-size: 10px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+
+.row-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Time labels above cells */
+.time-labels {
+  display: flex;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.time-labels span {
+  flex: 1;
+  position: relative;
+  font-size: 12px;
+  color: var(--text-faint);
+  padding-left: 4px;
+  padding-top: 3px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.time-labels span::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 5px;
+  background: var(--text-faint);
+  opacity: 0.5;
+}
+
+.time-labels span.hour-mark {
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.time-labels span.hour-mark::before {
+  height: 10px;
+  opacity: 0.9;
+  width: 2px;
+}
+
+/* Cells */
+.row-cells {
+  position: relative;
+  display: flex;
+  height: var(--cell-h);
+  flex: 1;
+  overflow: visible;
+}
+
+.cell {
+  flex: 1;
+  height: 100%;
+  border: 1px solid var(--cell-border);
+  border-left: none;
+  background: var(--cell-bg);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+/* Mid-cell 15-min divider */
+.cell::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  border-left: 1px dashed rgba(100, 110, 130, 0.25);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cell.alt { background: var(--cell-bg-alt); }
+.cell:last-child { border-radius: 0 10px 10px 0; }
+
+.cell.drop-preview {
+  background: rgba(88, 166, 255, 0.1) !important;
+}
+
+/* Ghost preview bar - shows exact 15-min snap position */
+.drop-preview-bar {
+  position: absolute;
+  height: var(--bar-h);
+  top: var(--bar-top);
+  border-radius: 10px;
+  border: 2px dashed var(--accent);
+  background: rgba(88, 166, 255, 0.15);
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 0 4px rgba(0,0,0,0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  animation: previewPulse 0.8s ease-in-out infinite;
+  transition: left 0.08s ease-out, width 0.08s ease-out;
+}
+
+@keyframes previewPulse {
+  0%, 100% { opacity: 0.65; border-color: var(--accent); }
+  50% { opacity: 1; border-color: var(--accent-hover); }
+}
+
+/* Snap indicator line at 15-min boundary */
+.snap-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--accent);
+  z-index: 5;
+  pointer-events: none;
+  box-shadow: 0 0 8px var(--accent);
+  opacity: 0.7;
+}
+
+/* Past overlay */
+.past-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--past);
+  pointer-events: none;
+  z-index: 1;
+  transition: width 0.5s ease;
+}
+
+/* Current time indicator - hand pulling right */
+.time-indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 2px dashed var(--current);
+  z-index: 5;
+  pointer-events: none;
+  transition: left 0.5s ease;
+  opacity: 0.7;
+}
+
+.time-indicator::before {
+  content: '👉';
+  position: absolute;
+  top: 50%;
+  left: -32px;
+  font-size: 24px;
+  animation: handPull 1.2s ease-in-out infinite;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5));
+  z-index: 6;
+  line-height: 1;
+  margin-top: -12px;
+}
+
+@keyframes handPull {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+/* Note alarm marker on grid */
+.note-alarm-marker {
+  position: absolute;
+  top: -10px;
+  width: 22px;
+  height: 22px;
+  background: rgba(129,140,248,0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  z-index: 6;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+  transform: translateX(-50%);
+  border: 2px solid rgba(255,255,255,0.3);
+}
+
+.note-alarm-marker::after {
+  content: attr(data-time);
+  position: absolute;
+  top: -16px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ff8fab;
+  white-space: nowrap;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
+}
+
+/* Drag-over highlight */
+.row-cells.drag-over::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 2px dashed var(--accent);
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* === Task Bar (on grid) === */
+.task-bar {
+  position: absolute;
+  height: var(--bar-h);
+  top: var(--bar-top);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 3;
+  overflow: hidden;
+  white-space: nowrap;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.15);
+  touch-action: none;
+  -webkit-touch-callout: none;
+  transition: filter 0.3s, opacity 0.3s;
+  cursor: grab;
+}
+
+.task-bar.snap-in {
+  animation: snapIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes snapIn {
+  0% { transform: scale(1.2) translateY(-8px); opacity: 0.5; }
+  40% { transform: scale(0.9) translateY(0); }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.task-bar.past {
+  filter: grayscale(0.8) brightness(0.5);
+  opacity: 0.45;
+}
+
+.task-bar.in-progress {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 6px rgba(255,255,255,0.15), 0 3px 12px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 22px rgba(255,255,255,0.45), 0 3px 12px rgba(0,0,0,0.4); }
+}
+
+.task-bar.tapped {
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(255,255,255,0.4);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.bar-content {
+  flex: 1;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  padding: 0 4px;
+}
+
+.bar-time-start {
+  font-size: 10px;
+  opacity: 0.8;
+  flex-shrink: 0;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-time-end {
+  font-size: 10px;
+  opacity: 0.8;
+  flex-shrink: 0;
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Resize handle */
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  cursor: ew-resize;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+}
+
+.resize-handle::after {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 2px;
+  transition: background 0.15s;
+}
+
+.resize-handle:hover::after,
+.resize-handle.active::after {
+  background: rgba(255,255,255,0.8);
+}
+
+/* === Task Pool === */
+.task-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 56px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px dashed var(--cell-border);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.task-pool.drag-over {
+  border-color: var(--accent);
+  background: rgba(88, 166, 255, 0.06);
+}
+
+.pool-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--panel-2);
+  border-radius: 12px;
+  border: 1px solid var(--cell-border);
+  border-left: 5px solid;
+  font-size: 14px;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  max-width: 280px;
+  cursor: grab;
+}
+
+.pool-card.bounce-in {
+  animation: bounceIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.4); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.pool-card.editing {
+  border-color: var(--accent);
+  background: var(--bg);
+  max-width: 440px;
+}
+
+.pc-content { font-weight: 700; pointer-events: none; }
+
+.pc-duration {
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+/* Add card (+ button) */
+.add-card {
+  border: 2px dashed var(--cell-border);
+  border-left: 5px solid var(--cell-border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-card:hover, .add-card:active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(88, 166, 255, 0.06);
+}
+
+.add-card.editing {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--bg);
+  cursor: default;
+}
+
+.add-icon {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.add-text { font-size: 14px; }
+
+/* Inline edit form */
+.edit-input, .edit-select {
+  padding: 6px 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--cell-border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  touch-action: manipulation;
+}
+
+.edit-input { width: 110px; }
+.edit-select { width: 90px; }
+.edit-input:focus, .edit-select:focus { outline: none; border-color: var(--accent); }
+
+.edit-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  touch-action: manipulation;
+}
+
+.edit-btn.save { background: var(--success); color: #fff; }
+.edit-btn.cancel { background: var(--cell-border); color: var(--text-dim); }
+.edit-btn.delete { background: rgba(248,81,73,0.2); color: var(--danger); }
+
+/* === Sticky Notes Section === */
+.notes-section {
+  background: linear-gradient(135deg, #1a1f2e 0%, #1e2436 100%);
+  border: 2px solid #3d4660;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.notes-title {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notes-count {
+  font-size: 13px;
+  color: var(--text-dim);
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.note-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: rgba(129,140,248,0.08);
+  border: none;
+  border-radius: 22px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(253,121,168,0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+  touch-action: manipulation;
+}
+
+.note-add-btn:hover, .note-add-btn:active {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(253,121,168,0.4);
+}
+
+.notes-area {
+  position: relative;
+  min-height: 360px;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,217,61,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(116,192,252,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(253,143,171,0.04) 0%, transparent 50%);
+  border-radius: 14px;
+  border: 1px dashed #3d4660;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* === Sticky Note === */
+.sticky-note {
+  position: absolute;
+  width: 180px;
+  min-height: 130px;
+  border-radius: 14px 14px 14px 3px;
+  padding: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 1px 4px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: grab;
+  touch-action: none;
+  -webkit-touch-callout: none;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: rotate(var(--rot, 0deg));
+  z-index: 1;
+}
+
+.sticky-note:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 100;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+}
+
+.sticky-note.dragging {
+  transform: scale(1.08) rotate(0deg);
+  z-index: 200;
+  cursor: grabbing;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+  transition: none;
+}
+
+.sticky-note.new-note {
+  animation: noteAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes noteAppear {
+  0% { opacity: 0; transform: scale(0.3) rotate(var(--rot, 0deg)); }
+  60% { opacity: 1; transform: scale(1.12) rotate(var(--rot, 0deg)); }
+  100% { opacity: 1; transform: scale(1) rotate(var(--rot, 0deg)); }
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-emoji {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.note-actions {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.note-alarm-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity 0.2s, background 0.2s, transform 0.15s;
+  touch-action: manipulation;
+  padding: 0;
+  line-height: 1;
+}
+
+.sticky-note:hover .note-alarm-btn { opacity: 0.8; }
+.note-alarm-btn:hover { opacity: 1; transform: scale(1.15); }
+
+.note-alarm-btn.active {
+  opacity: 1;
+  background: rgba(255, 100, 100, 0.35);
+  animation: alarmPulse 2s ease-in-out infinite;
+}
+
+@keyframes alarmPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 100, 100, 0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(255, 100, 100, 0); }
+}
+
+.note-delete {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.15);
+  color: inherit;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s;
+  touch-action: manipulation;
+  line-height: 1;
+  padding: 0;
+}
+
+.sticky-note:hover .note-delete,
+.sticky-note:focus-within .note-delete,
+.sticky-note:active .note-delete {
+  opacity: 1;
+}
+
+.note-delete:hover {
+  background: rgba(0,0,0,0.3);
+}
+
+.note-alarm-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+.note-alarm-time {
+  width: 100%;
+  padding: 4px 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.6);
+  color: #e8ecf4;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 700;
+  touch-action: manipulation;
+}
+
+.note-alarm-time:focus {
+  outline: none;
+  background: rgba(255,255,255,0.85);
+}
+
+.note-text {
+  flex: 1;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #e8ecf4;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 500;
+  resize: none;
+  outline: none;
+  line-height: 1.6;
+  min-height: 60px;
+  touch-action: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.note-text::placeholder {
+  color: rgba(0,0,0,0.3);
+}
+
+/* === Drag Clone === */
+.drag-clone {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  transform: scale(1.1) rotate(-2deg);
+  opacity: 0.92;
+  filter: brightness(1.12);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 2px rgba(255,255,255,0.12);
+  transition: transform 0.12s ease;
+}
+
+/* === Toolbar === */
+.toolbar { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.btn-sm {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--cell-border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  touch-action: manipulation;
+  white-space: nowrap;
+}
+
+.btn-sm:hover, .btn-sm:active { border-color: var(--accent); color: var(--accent); }
+.btn-sm.danger:hover, .btn-sm.danger:active { border-color: var(--danger); color: var(--danger); }
+.btn-sm.success:hover, .btn-sm.success:active { border-color: var(--success); color: var(--success); }
+
+/* === Toast === */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--panel-2);
+  border: 1px solid var(--cell-border);
+  border-left: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px 18px;
+  min-width: 280px;
+  max-width: 380px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+  transform: translateX(420px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+.toast.show { transform: translateX(0); opacity: 1; }
+.toast.toast-start { border-left-color: var(--success); }
+.toast.toast-end { border-left-color: var(--warning); }
+.toast.toast-info { border-left-color: var(--accent); }
+.toast.toast-star { border-left-color: #fdcb6e; }
+
+.toast strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.toast-msg { font-size: 13px; color: var(--text-dim); }
+
+/* === Help === */
+.help {
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.9;
+  padding: 8px 0 0;
+}
+
+.help kbd {
+  background: var(--bg);
+  border: 1px solid var(--cell-border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+/* Compatibility / loading message */
+.compat-msg {
+  text-align: center;
+  padding: 12px 16px;
+  background: rgba(253, 121, 168, 0.15);
+  border: 1px dashed rgba(253, 121, 168, 0.4);
+  border-radius: 12px;
+  color: #fd79a8;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+.compat-msg.hidden { display: none; }
+
+::-webkit-scrollbar { height: 8px; width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--cell-border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+/* === Gap fallback for older mobile browsers === */
+@supports not (gap: 1px) {
+  .header-left > * + * { margin-left: 14px; }
+  .header-right > * + * { margin-left: 10px; }
+  .toolbar > * + * { margin-left: 6px; }
+  .pool-card > * + * { margin-left: 8px; }
+  .add-card > * + * { margin-left: 8px; }
+  .section h2 > * + * { margin-left: 8px; }
+  .notes-header > * + * { margin-left: 10px; }
+  .note-actions > * + * { margin-left: 4px; }
+  .star-counter-center > * + * { margin-left: 6px; }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  body { padding: 8px; }
+  .container { max-width: 100%; }
+  header { padding: 14px 12px; margin-bottom: 10px; }
+  .main-title { font-size: 24px; letter-spacing: 2px; margin-bottom: 8px; }
+  .clock-center { font-size: 30px; letter-spacing: 2px; margin-bottom: 6px; }
+  .star-counter-center { margin-bottom: 10px; }
+  .star-counter-center .star-emoji { font-size: 20px; }
+  .star-counter-center .star-num { font-size: 18px; }
+  .header-bar { justify-content: center; gap: 8px; }
+  .header-left { justify-content: center; gap: 10px; font-size: 11px; }
+  .header-right { justify-content: center; }
+  .toolbar { gap: 4px; justify-content: center; }
+  .toolbar .btn-sm { padding: 8px 12px; font-size: 12px; }
+  .stats { gap: 8px; font-size: 11px; }
+
+  :root { --cell-h: 80px; --label-w: 48px; --bar-h: 36px; --bar-top: 6px; --row-gap: 24px; }
+
+  .section { padding: 12px; margin-bottom: 10px; }
+  .time-grid-section { padding: 14px 10px; }
+  .section h2 { font-size: 14px; margin-bottom: 10px; }
+  .hint { font-size: 10px; }
+
+  .label-period { font-size: 13px; }
+  .label-range { font-size: 9px; }
+  .time-labels { height: 18px; }
+  .time-labels span { font-size: 10px; padding-left: 2px; padding-top: 2px; }
+
+  .task-bar { font-size: 11px; padding: 0 4px; }
+  .bar-time-start, .bar-time-end { font-size: 8px; }
+  .bar-content { padding: 0 2px; }
+
+  .task-pool { padding: 8px; gap: 8px; }
+  .pool-card { padding: 10px 12px; font-size: 13px; max-width: 200px; }
+  .pc-duration { font-size: 10px; padding: 3px 6px; }
+
+  .notes-section { padding: 14px 10px; }
+  .notes-area { min-height: 240px; }
+  .sticky-note { width: 140px; min-height: 100px; padding: 10px; }
+  .note-emoji { font-size: 18px; }
+
+  .time-indicator::before { font-size: 18px; left: -24px; }
+  .toast { min-width: 240px; max-width: 320px; padding: 10px 14px; }
+  .help { font-size: 10px; line-height: 1.7; }
+  .help kbd { padding: 1px 5px; font-size: 10px; }
+}
+
+@media (max-width: 400px) {
+  body { padding: 6px; }
+  .main-title { font-size: 20px; letter-spacing: 1px; }
+  .clock-center { font-size: 24px; }
+  :root { --cell-h: 70px; --label-w: 40px; --bar-h: 32px; --bar-top: 5px; --row-gap: 18px; }
+  .label-period { font-size: 11px; }
+  .label-range { font-size: 8px; }
+  .time-labels span { font-size: 9px; }
+  .task-bar { font-size: 10px; }
+  .bar-time-start, .bar-time-end { font-size: 7px; }
+  .pool-card { padding: 8px 10px; font-size: 12px; max-width: 160px; }
+  .toolbar .btn-sm { padding: 6px 10px; font-size: 11px; }
+  .sticky-note { width: 120px; min-height: 90px; }
+}
+
+    </style>
+
+<div class="container">
+  <div class="compat-msg" id="compatMsg">⏳ 正在加载每日TODO清单...</div>
+  <header>
+    <h1 class="main-title">📋 每日TODO清单</h1>
+    <div class="clock-center" id="clock">--:--:--</div>
+    <div class="star-counter-center">
+      <span class="star-emoji">⭐</span>
+      <span class="star-num" id="starCount">0</span>
+    </div>
+    <div class="header-bar">
+      <div class="header-left">
+        <span class="date" id="dateDisplay"></span>
+        <span class="stats" id="stats"></span>
+      </div>
+      <div class="header-right">
+        <div class="toolbar">
+          <button class="btn-sm" onclick="testAlarm()">🔔 测试</button>
+          <button class="btn-sm success" onclick="saveTemplate()">💾 存模板</button>
+          <button class="btn-sm" onclick="loadTemplate()">📂 用模板</button>
+          <button class="btn-sm danger" onclick="clearSchedule()">🧹 清空表</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="section time-grid-section">
+    <h2>🌅 时间表 <span class="hint">— 像搭积木一样拖动任务到格子上！双击或拖回池子取消安排。虚线 = 15分钟吸附点</span></h2>
+    <div class="time-grid" id="timeGrid"></div>
+  </div>
+
+  <div class="section">
+    <h2>📦 任务池 <span class="hint">— 拖到上方安排 / 点击标签编辑或删除 / 点 + 添加新任务</span></h2>
+    <div class="task-pool" id="taskPool"></div>
+    <div class="help">
+      💡 <strong>操作指南：</strong>
+      <kbd>拖动</kbd> 安排或移动 · <kbd>点击池中标签</kbd> 编辑或删除 · <kbd>+</kbd> 添加任务 ·
+      <kbd>双击</kbd> 时间表任务移回池 · <kbd>拖右边缘</kbd> 调时长 ·
+      灰色 = 已过 · 发光 = 进行中 · <kbd>存模板</kbd> 每天复用 ·
+      📌 便签可设闹铃提醒 · 🎉 完成任务每5分钟获得1颗⭐！
+    </div>
+  </div>
+
+  <div class="section notes-section">
+    <div class="notes-header">
+      <div class="notes-title">📌 记一点什么 <span class="notes-count" id="notesCount">0 张便签</span></div>
+      <button class="note-add-btn" onclick="addNote()">
+        <span style="font-size:18px;">＋</span> 贴一张便签
+      </button>
+    </div>
+    <div class="notes-area" id="notesArea"></div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ==================== Polyfills ====================
+if (!String.prototype.padStart) {
+  String.prototype.padStart = function(targetLength, padString) {
+    targetLength = targetLength >> 0;
+    padString = String(padString || ' ');
+    if (this.length >= targetLength) return String(this);
+    var pad = '';
+    while (pad.length + this.length < targetLength) {
+      pad += padString;
+    }
+    return pad.slice(0, targetLength - this.length) + String(this);
+  };
+}
+if (!Array.prototype.forEach) {
+  Array.prototype.forEach = function(fn, ctx) {
+    for (var i = 0; i < this.length; i++) fn.call(ctx, this[i], i, this);
+  };
+}
+if (!Array.prototype.filter) {
+  Array.prototype.filter = function(fn, ctx) {
+    var r = [];
+    for (var i = 0; i < this.length; i++) if (fn.call(ctx, this[i], i, this)) r.push(this[i]);
+    return r;
+  };
+}
+if (!Array.prototype.find) {
+  Array.prototype.find = function(fn, ctx) {
+    for (var i = 0; i < this.length; i++) if (fn.call(ctx, this[i], i, this)) return this[i];
+    return undefined;
+  };
+}
+if (!Object.assign) {
+  Object.assign = function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var src = arguments[i];
+      if (src) for (var k in src) if (src.hasOwnProperty(k)) target[k] = src[k];
+    }
+    return target;
+  };
+}
+if (!Element.prototype.closest) {
+  Element.prototype.closest = function(s) {
+    var el = this;
+    while (el && el.nodeType === 1) {
+      if (el.matches(s)) return el;
+      el = el.parentElement;
+    }
+    return null;
+  };
+}
+if (!Element.prototype.matches) {
+  Element.prototype.matches =
+    Element.prototype.webkitMatchesSelector ||
+    Element.prototype.msMatchesSelector ||
+    function(s) {
+      var el = this;
+      var matches = (el.document || el.ownerDocument).querySelectorAll(s);
+      var i = matches.length;
+      while (--i >= 0 && matches[i] !== el) {}
+      return i > -1;
+    };
+}
+if (!Element.prototype.remove) {
+  Element.prototype.remove = function() {
+    if (this.parentNode) this.parentNode.removeChild(this);
+  };
+}
+if (!NodeList.prototype.forEach) {
+  NodeList.prototype.forEach = Array.prototype.forEach;
+}
+if (!String.prototype.trim) {
+  String.prototype.trim = function() {
+    return this.replace(/^\s+|\s+$/g, '');
+  };
+}
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function(searchElement, fromIndex) {
+    fromIndex = fromIndex || 0;
+    for (var i = fromIndex; i < this.length; i++) {
+      if (this[i] === searchElement) return i;
+    }
+    return -1;
+  };
+}
+
+// Helper: add an event listener that runs once
+function onceEvent(target, event, handler) {
+  var wrapped = function(e) {
+    target.removeEventListener(event, wrapped);
+    handler(e);
+  };
+  target.addEventListener(event, wrapped);
+}
+
+// ==================== Config ====================
+var SLOT_MIN = 15;           // 15-minute slots
+var HALF_HOUR = 30;
+var CELLS_PER_ROW = 9;       // visual cells (30-min each)
+var SLOTS_PER_ROW = CELLS_PER_ROW * 2; // 18 slots per row (15-min each)
+
+var TIME_RANGES = [
+  { startMin: 510,  label: '🌅 上午' },   // 8:30
+  { startMin: 780,  label: '☀️ 下午' },   // 13:00
+  { startMin: 1050, label: '🌙 晚上' },   // 17:30
+];
+
+var TASK_COLORS = [
+  '#6c5ce7', '#00b894', '#e17055', '#0984e3',
+  '#fd79a8', '#fdcb6e', '#55efc4', '#a29bfe',
+  '#fab1a0', '#74b9ff', '#81ecec', '#e84393',
+];
+var LIGHT_COLORS = ['#fdcb6e', '#55efc4', '#81ecec', '#fab1a0'];
+var DURATION_OPTIONS = [30, 45, 60, 90, 120, 180];
+
+var NOTE_COLORS = [
+  { bg: '#ffd93d', emoji: '⭐' },
+  { bg: '#ff8fab', emoji: '🌸' },
+  { bg: '#6bcf7f', emoji: '🌿' },
+  { bg: '#74c0fc', emoji: '💎' },
+  { bg: '#ffa94d', emoji: '🍭' },
+  { bg: '#b197fc', emoji: '🦋' },
+  { bg: '#ff6b6b', emoji: '🎈' },
+  { bg: '#81ecec', emoji: '🌊' },
+];
+
+// ==================== State ====================
+var tasks = [];
+var nextId = 1;
+var firedAlarms = {};
+var audioCtx = null;
+var isResizing = false;
+var drag = null;
+var justScheduledId = null;
+var justUnscheduledId = null;
+var lastGridTap = { id: null, time: 0 };
+
+var stickyNotes = [];
+var noteNextId = 1;
+var noteDrag = null;
+var justAddedNoteId = null;
+
+var stars = 0;
+var lastCheckDate = '';
+var renderErrors = false;
+
+// ==================== Persistence ====================
+function saveState() {
+  try {
+    localStorage.setItem('todolist-tasks', JSON.stringify(tasks));
+    localStorage.setItem('todolist-nextid', String(nextId));
+  } catch(e) {}
+}
+
+function migrateTask(t) {
+  // Migrate old startCell (30-min) to startSlot (15-min)
+  if (t.startCell !== undefined && t.startSlot === undefined) {
+    t.startSlot = t.startCell * 2;
+  }
+  if (t.startSlot === undefined) t.startSlot = -1;
+  delete t.startCell;
+  return t;
+}
+
+function loadState() {
+  try {
+    var saved = localStorage.getItem('todolist-tasks');
+    if (saved) {
+      tasks = JSON.parse(saved);
+      tasks.forEach(migrateTask);
+      nextId = parseInt(localStorage.getItem('todolist-nextid') || '1');
+      return;
+    }
+  } catch(e) {}
+  tasks = [
+    { id: nextId++, content: '🍔 午餐',     duration: 60, colorIdx: 0, scheduled: false, rowIndex: -1, startSlot: -1 },
+    { id: nextId++, content: '📖 英语学习', duration: 45, colorIdx: 1, scheduled: false, rowIndex: -1, startSlot: -1 },
+    { id: nextId++, content: '🎯 兴趣班',   duration: 90, colorIdx: 2, scheduled: false, rowIndex: -1, startSlot: -1 },
+    { id: nextId++, content: '⚽ 运动',     duration: 60, colorIdx: 3, scheduled: false, rowIndex: -1, startSlot: -1 },
+    { id: nextId++, content: '📚 阅读',     duration: 30, colorIdx: 4, scheduled: false, rowIndex: -1, startSlot: -1 },
+  ];
+  saveState();
+}
+
+function saveNotes() {
+  try {
+    localStorage.setItem('todolist-notes', JSON.stringify(stickyNotes));
+    localStorage.setItem('todolist-note-nextid', String(noteNextId));
+  } catch(e) {}
+}
+
+function loadNotes() {
+  try {
+    var saved = localStorage.getItem('todolist-notes');
+    if (saved) {
+      stickyNotes = JSON.parse(saved);
+      noteNextId = parseInt(localStorage.getItem('todolist-note-nextid') || '1');
+    }
+  } catch(e) {
+    stickyNotes = [];
+  }
+}
+
+function saveStars() {
+  try {
+    localStorage.setItem('todolist-stars', String(stars));
+    localStorage.setItem('todolist-stars-date', new Date().toDateString());
+  } catch(e) {}
+}
+
+function loadStars() {
+  try {
+    var lastDate = localStorage.getItem('todolist-stars-date') || '';
+    var today = new Date().toDateString();
+    if (lastDate === today) {
+      stars = parseInt(localStorage.getItem('todolist-stars') || '0');
+    } else {
+      stars = 0;
+    }
+  } catch(e) {
+    stars = 0;
+  }
+}
+
+// Recalculate stars from all completed tasks today (prevents double-counting on reload)
+function recalculateStars() {
+  var now = new Date();
+  var currentMinutes = now.getHours() * 60 + now.getMinutes();
+  var totalStars = 0;
+
+  tasks.forEach(function(task) {
+    if (!task.scheduled) return;
+    var endMin = getTaskEndMinutes(task);
+    if (currentMinutes >= endMin) {
+      totalStars += Math.floor(task.duration / 5);
+    }
+  });
+
+  stars = totalStars;
+  saveStars();
+  updateStarDisplay();
+}
+
+// Pre-fire alarms for tasks that already started/ended (prevents spurious alerts on page reload)
+function preFirePastAlarms() {
+  var now = new Date();
+  var currentMinutes = now.getHours() * 60 + now.getMinutes();
+  var dateKey = now.toDateString();
+
+  tasks.forEach(function(task) {
+    if (!task.scheduled) return;
+    var startMin = getTaskStartMinutes(task);
+    var endMin = getTaskEndMinutes(task);
+
+    // If task already started, mark start alarm as fired (no sound on reload)
+    if (currentMinutes > startMin) {
+      firedAlarms[task.id + '-start-' + dateKey] = true;
+    }
+    // If task already ended, mark end alarm and complete star as fired
+    if (currentMinutes > endMin) {
+      firedAlarms[task.id + '-end-' + dateKey] = true;
+      firedAlarms[task.id + '-complete-' + dateKey] = true;
+    }
+  });
+
+  // Also pre-fire note alarms that already passed
+  stickyNotes.forEach(function(note) {
+    if (!note.alarmEnabled || !note.alarmTime) return;
+    var noteAlarmMin = parseTimeToMinutes(note.alarmTime);
+    if (noteAlarmMin < 0) return;
+    if (currentMinutes > noteAlarmMin) {
+      firedAlarms['note-' + note.id + '-' + dateKey] = true;
+    }
+  });
+}
+
+function saveTemplate() {
+  try {
+    localStorage.setItem('todolist-template', JSON.stringify(tasks));
+    playSound('snap');
+    showToast('💾 模板已保存', '当前任务安排已保存，每天可用"用模板"恢复', 'info');
+  } catch(e) {
+    showToast('错误', '保存失败', 'info');
+  }
+}
+
+function loadTemplate() {
+  try {
+    var saved = localStorage.getItem('todolist-template');
+    if (!saved) {
+      showToast('提示', '暂无保存的模板，请先"存模板"', 'info');
+      return;
+    }
+    var template = JSON.parse(saved);
+    tasks = template.map(function(t) {
+      var copy = Object.assign({}, t, { id: nextId++ });
+      migrateTask(copy);
+      return copy;
+    });
+    firedAlarms = {};
+    justScheduledId = null;
+    justUnscheduledId = null;
+    saveState();
+    recalculateStars();
+    preFirePastAlarms();
+    renderAll();
+    playSound('snap');
+    showToast('📂 模板已加载', '已恢复保存的任务安排', 'info');
+  } catch(e) {
+    showToast('错误', '模板加载失败', 'info');
+  }
+}
+
+// ==================== Utilities ====================
+function formatTime(totalMinutes) {
+  var h = Math.floor(totalMinutes / 60) % 24;
+  var m = Math.floor(totalMinutes % 60);
+  if (totalMinutes < 0) { h = 0; m = 0; }
+  return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+}
+
+function parseTimeToMinutes(timeStr) {
+  if (!timeStr) return -1;
+  var parts = timeStr.split(':');
+  return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+}
+
+function getRowEndMin(range) {
+  return range.startMin + CELLS_PER_ROW * HALF_HOUR;
+}
+
+function getTaskStartMinutes(task) {
+  if (!task.scheduled || task.rowIndex < 0) return -1;
+  return TIME_RANGES[task.rowIndex].startMin + task.startSlot * SLOT_MIN;
+}
+
+function getTaskEndMinutes(task) {
+  return getTaskStartMinutes(task) + task.duration;
+}
+
+function getColor(idx) {
+  return TASK_COLORS[((idx % TASK_COLORS.length) + TASK_COLORS.length) % TASK_COLORS.length];
+}
+
+function isLightColor(color) {
+  return LIGHT_COLORS.indexOf(color) >= 0;
+}
+
+// ==================== Audio ====================
+function initAudio() {
+  if (!audioCtx) {
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e) {}
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playTone(freq, duration, startTime, gainPeak) {
+  if (!audioCtx) return;
+  var osc = audioCtx.createOscillator();
+  var gain = audioCtx.createGain();
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.frequency.value = freq;
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(0, startTime);
+  gain.gain.linearRampToValueAtTime(gainPeak, startTime + 0.02);
+  gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+  osc.start(startTime);
+  osc.stop(startTime + duration);
+}
+
+function playSound(type) {
+  initAudio();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+  switch(type) {
+    case 'pickup':
+      playTone(523, 0.06, now, 0.12);
+      playTone(784, 0.06, now + 0.04, 0.12);
+      break;
+    case 'drop':
+      playTone(220, 0.12, now, 0.15);
+      playTone(165, 0.10, now + 0.03, 0.10);
+      break;
+    case 'snap':
+      playTone(659, 0.08, now, 0.15);
+      playTone(988, 0.10, now + 0.06, 0.15);
+      break;
+    case 'delete':
+      playTone(800, 0.03, now, 0.10);
+      playTone(300, 0.06, now + 0.03, 0.08);
+      break;
+  }
+}
+
+// Play alarm: short chime + sustained tone, total duration = seconds, NO repeating pattern
+function playAlarm(seconds, type) {
+  initAudio();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+
+  if (type === 'start') {
+    // Start: ascending chime (C-E-G) then sustained C
+    playTone(523, 0.25, now, 0.22);
+    playTone(659, 0.25, now + 0.12, 0.22);
+    playTone(784, 0.25, now + 0.24, 0.22);
+    playTone(1047, seconds - 0.45, now + 0.36, 0.16);
+  } else {
+    // End: descending chime (G-E-C) then sustained A
+    playTone(784, 0.25, now, 0.22);
+    playTone(659, 0.25, now + 0.12, 0.22);
+    playTone(523, 0.25, now + 0.24, 0.22);
+    playTone(440, seconds - 0.45, now + 0.36, 0.16);
+  }
+}
+
+function testAlarm() {
+  initAudio();
+  playAlarm(3, 'start');
+  showToast('🔔 闹铃测试', '开始闹铃会响10秒，这是3秒缩短版', 'info');
+}
+
+// ==================== Render: Grid ====================
+function renderGrid() {
+  var grid = document.getElementById('timeGrid');
+  grid.innerHTML = '';
+
+  TIME_RANGES.forEach(function(range, r) {
+    var row = document.createElement('div');
+    row.className = 'time-row';
+
+    var label = document.createElement('div');
+    label.className = 'row-label';
+    label.innerHTML = '<span class="label-period">' + range.label + '</span>' +
+                      '<span class="label-range">' + formatTime(range.startMin) + '-' + formatTime(getRowEndMin(range)) + '</span>';
+    row.appendChild(label);
+
+    var content = document.createElement('div');
+    content.className = 'row-content';
+
+    var labels = document.createElement('div');
+    labels.className = 'time-labels';
+    for (var c = 0; c < CELLS_PER_ROW; c++) {
+      var cellMin = range.startMin + c * HALF_HOUR;
+      var span = document.createElement('span');
+      span.textContent = formatTime(cellMin);
+      if (cellMin % 60 === 0) span.className = 'hour-mark';
+      labels.appendChild(span);
+    }
+    content.appendChild(labels);
+
+    var cellsContainer = document.createElement('div');
+    cellsContainer.className = 'row-cells';
+    cellsContainer.dataset.row = r;
+    cellsContainer.id = 'row-cells-' + r;
+
+    for (var c2 = 0; c2 < CELLS_PER_ROW; c2++) {
+      var cell = document.createElement('div');
+      cell.className = 'cell' + (c2 % 2 === 1 ? ' alt' : '');
+      cellsContainer.appendChild(cell);
+    }
+
+    var pastOverlay = document.createElement('div');
+    pastOverlay.className = 'past-overlay';
+    pastOverlay.id = 'past-' + r;
+    pastOverlay.style.width = '0%';
+    cellsContainer.appendChild(pastOverlay);
+
+    var indicator = document.createElement('div');
+    indicator.className = 'time-indicator';
+    indicator.id = 'indicator-' + r;
+    indicator.style.display = 'none';
+    cellsContainer.appendChild(indicator);
+
+    tasks.filter(function(t) { return t.scheduled && t.rowIndex === r; })
+      .sort(function(a, b) { return a.startSlot - b.startSlot; })
+      .forEach(function(task) {
+        var bar = createTaskBar(task, cellsContainer);
+        cellsContainer.appendChild(bar);
+      });
+
+    content.appendChild(cellsContainer);
+    row.appendChild(content);
+    grid.appendChild(row);
+  });
+
+  // Render note alarm markers on grid
+  renderNoteAlarmMarkers();
+}
+
+function renderNoteAlarmMarkers() {
+  // Remove old markers
+  var oldMarkers = document.querySelectorAll('.note-alarm-marker');
+  for (var i = 0; i < oldMarkers.length; i++) oldMarkers[i].remove();
+
+  stickyNotes.forEach(function(note) {
+    if (!note.alarmEnabled || !note.alarmTime) return;
+    var alarmMin = parseTimeToMinutes(note.alarmTime);
+    if (alarmMin < 0) return;
+
+    for (var r = 0; r < TIME_RANGES.length; r++) {
+      var range = TIME_RANGES[r];
+      var rowEnd = getRowEndMin(range);
+      if (alarmMin >= range.startMin && alarmMin < rowEnd) {
+        var container = document.getElementById('row-cells-' + r);
+        if (!container) break;
+        var progress = (alarmMin - range.startMin) / (rowEnd - range.startMin);
+        var marker = document.createElement('div');
+        marker.className = 'note-alarm-marker';
+        marker.style.left = (progress * 100) + '%';
+        marker.textContent = '📌';
+        marker.dataset.time = formatTime(alarmMin);
+        var noteText = note.text ? note.text.substring(0, 15) : '便签提醒';
+        marker.title = noteText + ' ' + formatTime(alarmMin);
+        container.appendChild(marker);
+        break;
+      }
+    }
+  });
+}
+
+function createTaskBar(task, cellsContainer) {
+  var bar = document.createElement('div');
+  bar.className = 'task-bar';
+  bar.dataset.taskId = task.id;
+
+  if (justScheduledId === task.id) {
+    bar.classList.add('snap-in');
+  }
+
+  var color = getColor(task.colorIdx);
+  bar.style.background = color;
+  bar.style.color = isLightColor(color) ? '#222' : '#fff';
+
+  var durSlots = task.duration / SLOT_MIN;
+  bar.style.left = (task.startSlot / SLOTS_PER_ROW * 100) + '%';
+  bar.style.width = 'calc(' + (durSlots / SLOTS_PER_ROW * 100) + '% - 4px)';
+
+  var startMin = getTaskStartMinutes(task);
+  var endMin = getTaskEndMinutes(task);
+
+  var startTime = document.createElement('span');
+  startTime.className = 'bar-time-start';
+  startTime.textContent = formatTime(startMin);
+  bar.appendChild(startTime);
+
+  var content = document.createElement('span');
+  content.className = 'bar-content';
+  content.textContent = task.content;
+  bar.appendChild(content);
+
+  var endTime = document.createElement('span');
+  endTime.className = 'bar-time-end';
+  endTime.textContent = formatTime(endMin);
+  bar.appendChild(endTime);
+
+  // Resize handle (no delete button on grid - use double-tap or drag to pool)
+  var handle = document.createElement('div');
+  handle.className = 'resize-handle';
+  handle.title = '拖动调整时长';
+  bar.appendChild(handle);
+
+  bar.title = task.content + ' | ' + formatTime(startMin) + '-' + formatTime(endMin) + ' (' + task.duration + '分钟) | 双击移回任务池';
+
+  bar.addEventListener('pointerdown', function(e) {
+    if (e.target.closest('.resize-handle')) return;
+    startDrag(e, task, 'grid', bar);
+  });
+
+  handle.addEventListener('pointerdown', function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    startResize(e, task, bar, cellsContainer, handle);
+  });
+
+  bar.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+  return bar;
+}
+
+// ==================== Render: Pool ====================
+function renderPool() {
+  var pool = document.getElementById('taskPool');
+  pool.innerHTML = '';
+
+  var poolTasks = tasks.filter(function(t) { return !t.scheduled; });
+
+  poolTasks.forEach(function(task) {
+    var card = document.createElement('div');
+    card.className = 'pool-card';
+    card.dataset.taskId = task.id;
+
+    if (justUnscheduledId === task.id) {
+      card.classList.add('bounce-in');
+    }
+
+    var color = getColor(task.colorIdx);
+    card.style.borderLeftColor = color;
+
+    var content = document.createElement('span');
+    content.className = 'pc-content';
+    content.textContent = task.content;
+    card.appendChild(content);
+
+    var duration = document.createElement('span');
+    duration.className = 'pc-duration';
+    duration.textContent = task.duration + '分钟';
+    card.appendChild(duration);
+
+    card.addEventListener('pointerdown', function(e) {
+      if (card.classList.contains('editing')) return;
+      if (e.target.closest('.edit-input, .edit-select, .edit-btn')) return;
+      startDrag(e, task, 'pool', card);
+    });
+
+    card.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    pool.appendChild(card);
+  });
+
+  var addCard = document.createElement('div');
+  addCard.className = 'pool-card add-card';
+  addCard.innerHTML = '<span class="add-icon">＋</span><span class="add-text">添加任务</span>';
+  addCard.addEventListener('click', function(e) {
+    e.stopPropagation();
+    startAddInline(addCard);
+  });
+  pool.appendChild(addCard);
+}
+
+// ==================== Render: Notes ====================
+function renderNotes() {
+  var area = document.getElementById('notesArea');
+  area.innerHTML = '';
+
+  stickyNotes.forEach(function(note) {
+    var el = createNoteElement(note);
+    area.appendChild(el);
+  });
+
+  var countEl = document.getElementById('notesCount');
+  if (countEl) countEl.textContent = stickyNotes.length + ' 张便签';
+}
+
+function createNoteElement(note) {
+  var color = NOTE_COLORS[note.colorIdx % NOTE_COLORS.length];
+  var el = document.createElement('div');
+  el.className = 'sticky-note';
+  el.dataset.noteId = note.id;
+  el.style.left = note.x + '%';
+  el.style.top = note.y + '%';
+  el.style.background = color.bg;
+  el.style.setProperty('--rot', note.rotation + 'deg');
+
+  if (justAddedNoteId === note.id) {
+    el.classList.add('new-note');
+  }
+
+  var alarmRowHtml = note.alarmEnabled
+    ? '<div class="note-alarm-row"><input type="time" class="note-alarm-time" value="' + (note.alarmTime || '') + '"></div>'
+    : '';
+
+  el.innerHTML =
+    '<div class="note-header">' +
+      '<span class="note-emoji">' + color.emoji + '</span>' +
+      '<div class="note-actions">' +
+        '<button class="note-alarm-btn ' + (note.alarmEnabled ? 'active' : '') + '" title="闹铃提醒">🔔</button>' +
+        '<button class="note-delete" title="删除便签">×</button>' +
+      '</div>' +
+    '</div>' +
+    alarmRowHtml +
+    '<textarea class="note-text" placeholder="写点什么..." maxlength="120"></textarea>';
+
+  var ta = el.querySelector('.note-text');
+  ta.value = note.text;
+
+  ta.addEventListener('input', function() {
+    note.text = ta.value;
+    saveNotes();
+  });
+
+  ta.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+
+  var delBtn = el.querySelector('.note-delete');
+  delBtn.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+  delBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    deleteNote(note.id);
+  });
+
+  var alarmBtn = el.querySelector('.note-alarm-btn');
+  alarmBtn.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+  alarmBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    note.alarmEnabled = !note.alarmEnabled;
+    if (note.alarmEnabled && !note.alarmTime) {
+      var d = new Date();
+      d.setHours(d.getHours() + 1, 0, 0, 0);
+      note.alarmTime = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    }
+    if (!note.alarmEnabled) note.alarmTime = '';
+    saveNotes();
+    renderNotes();
+    renderNoteAlarmMarkers();
+    if (note.alarmEnabled) playSound('snap');
+  });
+
+  var alarmTimeInput = el.querySelector('.note-alarm-time');
+  if (alarmTimeInput) {
+    alarmTimeInput.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+    alarmTimeInput.addEventListener('change', function(e) {
+      note.alarmTime = e.target.value;
+      saveNotes();
+      renderNoteAlarmMarkers();
+    });
+  }
+
+  el.addEventListener('pointerdown', function(e) {
+    if (e.target.closest('.note-text, .note-delete, .note-alarm-btn, .note-alarm-time')) return;
+    startNoteDrag(e, note, el);
+  });
+
+  el.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+  return el;
+}
+
+function addNote() {
+  var colorIdx = Math.floor(Math.random() * NOTE_COLORS.length);
+  var note = {
+    id: noteNextId++,
+    text: '',
+    x: 15 + Math.random() * 50,
+    y: 8 + Math.random() * 40,
+    colorIdx: colorIdx,
+    rotation: (Math.random() - 0.5) * 10,
+    alarmEnabled: false,
+    alarmTime: '',
+  };
+  stickyNotes.push(note);
+  justAddedNoteId = note.id;
+  saveNotes();
+  renderNotes();
+  setTimeout(function() {
+    justAddedNoteId = null;
+    var ta = document.querySelector('.sticky-note[data-note-id="' + note.id + '"] .note-text');
+    if (ta) ta.focus();
+  }, 100);
+  playSound('snap');
+}
+
+function deleteNote(id) {
+  stickyNotes = stickyNotes.filter(function(n) { return n.id !== id; });
+  saveNotes();
+  renderNotes();
+  renderNoteAlarmMarkers();
+  playSound('delete');
+}
+
+// ==================== Note Drag ====================
+function startNoteDrag(e, note, el) {
+  e.preventDefault();
+  var area = document.getElementById('notesArea');
+  var areaRect = area.getBoundingClientRect();
+  var noteRect = el.getBoundingClientRect();
+
+  noteDrag = {
+    note: note,
+    el: el,
+    offsetX: e.clientX - noteRect.left,
+    offsetY: e.clientY - noteRect.top,
+    areaRect: areaRect,
+    pointerId: e.pointerId,
+  };
+
+  el.classList.add('dragging');
+  if (el.setPointerCapture) {
+    try { el.setPointerCapture(e.pointerId); } catch(err) {}
+  }
+
+  el.addEventListener('pointermove', onNoteDragMove);
+  el.addEventListener('pointerup', onNoteDragEnd);
+  el.addEventListener('pointercancel', onNoteDragEnd);
+}
+
+function onNoteDragMove(e) {
+  if (!noteDrag || e.pointerId !== noteDrag.pointerId) return;
+  e.preventDefault();
+
+  var x = e.clientX - noteDrag.offsetX - noteDrag.areaRect.left;
+  var y = e.clientY - noteDrag.offsetY - noteDrag.areaRect.top;
+
+  var noteW = noteDrag.el.offsetWidth;
+  var noteH = noteDrag.el.offsetHeight;
+  x = Math.max(0, Math.min(x, noteDrag.areaRect.width - noteW));
+  y = Math.max(0, Math.min(y, noteDrag.areaRect.height - noteH));
+
+  var xPct = (x / noteDrag.areaRect.width) * 100;
+  var yPct = (y / noteDrag.areaRect.height) * 100;
+
+  noteDrag.note.x = xPct;
+  noteDrag.note.y = yPct;
+  noteDrag.el.style.left = xPct + '%';
+  noteDrag.el.style.top = yPct + '%';
+}
+
+function onNoteDragEnd(e) {
+  if (!noteDrag || e.pointerId !== noteDrag.pointerId) return;
+
+  if (noteDrag.el.releasePointerCapture) {
+    try { noteDrag.el.releasePointerCapture(noteDrag.pointerId); } catch(err) {}
+  }
+  noteDrag.el.removeEventListener('pointermove', onNoteDragMove);
+  noteDrag.el.removeEventListener('pointerup', onNoteDragEnd);
+  noteDrag.el.removeEventListener('pointercancel', onNoteDragEnd);
+
+  noteDrag.el.classList.remove('dragging');
+  saveNotes();
+  noteDrag = null;
+}
+
+// ==================== Render: All ====================
+function renderAll() {
+  try { renderGrid(); } catch(e) { logError('renderGrid', e); }
+  try { renderPool(); } catch(e) { logError('renderPool', e); }
+  try { renderNotes(); } catch(e) { logError('renderNotes', e); }
+  try { updateStats(); } catch(e) { logError('updateStats', e); }
+  try { updateStarDisplay(); } catch(e) { logError('updateStarDisplay', e); }
+  try { updateProgress(); } catch(e) { logError('updateProgress', e); }
+}
+
+function logError(where, e) {
+  renderErrors = true;
+  console.error('Error in', where, e);
+  var msg = document.getElementById('compatMsg');
+  if (msg) {
+    msg.style.display = 'block';
+    msg.textContent = '⚠️ 部分内容加载失败（' + where + '），请刷新重试。';
+  }
+}
+
+function updateStats() {
+  var scheduled = tasks.filter(function(t) { return t.scheduled; }).length;
+  var total = tasks.length;
+  var poolCount = total - scheduled;
+  document.getElementById('stats').innerHTML =
+    '<span>已安排: <strong>' + scheduled + '</strong></span>' +
+    '<span>待安排: <strong>' + poolCount + '</strong></span>' +
+    '<span>总计: <strong>' + total + '</strong></span>';
+}
+
+function updateStarDisplay() {
+  var el = document.getElementById('starCount');
+  if (el) el.textContent = stars;
+}
+
+// ==================== Inline Edit (Pool) ====================
+function startEditPoolCard(taskId) {
+  var task = tasks.find(function(t) { return t.id === taskId; });
+  if (!task) return;
+
+  var card = document.querySelector('.pool-card[data-task-id="' + taskId + '"]');
+  if (!card) return;
+
+  card.classList.add('editing');
+  card.innerHTML = '';
+
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'edit-input';
+  input.value = task.content;
+  input.maxLength = 20;
+
+  var select = document.createElement('select');
+  select.className = 'edit-select';
+  DURATION_OPTIONS.forEach(function(d) {
+    var opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = d + '分钟';
+    if (d === task.duration) opt.selected = true;
+    select.appendChild(opt);
+  });
+
+  var saveBtn = document.createElement('button');
+  saveBtn.className = 'edit-btn save';
+  saveBtn.textContent = '\u2713';
+  saveBtn.title = '保存';
+
+  var cancelBtn = document.createElement('button');
+  cancelBtn.className = 'edit-btn cancel';
+  cancelBtn.textContent = '\u2715';
+  cancelBtn.title = '取消';
+
+  var delBtn = document.createElement('button');
+  delBtn.className = 'edit-btn delete';
+  delBtn.innerHTML = '🗑';
+  delBtn.title = '删除此任务';
+
+  card.appendChild(input);
+  card.appendChild(select);
+  card.appendChild(saveBtn);
+  card.appendChild(cancelBtn);
+  card.appendChild(delBtn);
+
+  setTimeout(function() { input.focus(); input.select(); }, 50);
+
+  function doSave() {
+    var v = input.value.trim();
+    if (v) task.content = v;
+    task.duration = parseInt(select.value);
+    saveState();
+    renderAll();
+  }
+
+  saveBtn.addEventListener('click', function(e) { e.stopPropagation(); doSave(); });
+  cancelBtn.addEventListener('click', function(e) { e.stopPropagation(); renderAll(); });
+  delBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    playSound('delete');
+    deleteTask(taskId);
+  });
+
+  input.addEventListener('keydown', function(e) {
+    e.stopPropagation();
+    if (e.key === 'Enter') doSave();
+    if (e.key === 'Escape') renderAll();
+  });
+  select.addEventListener('keydown', function(e) {
+    e.stopPropagation();
+    if (e.key === 'Enter') doSave();
+    if (e.key === 'Escape') renderAll();
+  });
+  input.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+  select.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+}
+
+function startAddInline(addCard) {
+  if (addCard.classList.contains('editing')) return;
+
+  addCard.classList.add('editing');
+  addCard.innerHTML = '';
+
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'edit-input';
+  input.placeholder = '任务名称';
+  input.maxLength = 20;
+
+  var select = document.createElement('select');
+  select.className = 'edit-select';
+  DURATION_OPTIONS.forEach(function(d) {
+    var opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = d + '分钟';
+    select.appendChild(opt);
+  });
+
+  var saveBtn = document.createElement('button');
+  saveBtn.className = 'edit-btn save';
+  saveBtn.textContent = '\u2713';
+  saveBtn.title = '添加';
+
+  var cancelBtn = document.createElement('button');
+  cancelBtn.className = 'edit-btn cancel';
+  cancelBtn.textContent = '\u2715';
+  cancelBtn.title = '取消';
+
+  addCard.appendChild(input);
+  addCard.appendChild(select);
+  addCard.appendChild(saveBtn);
+  addCard.appendChild(cancelBtn);
+
+  setTimeout(function() { input.focus(); }, 50);
+
+  function doSave() {
+    var v = input.value.trim();
+    if (v) {
+      addTask(v, select.value);
+      playSound('snap');
+    } else {
+      renderAll();
+    }
+  }
+
+  saveBtn.addEventListener('click', function(e) { e.stopPropagation(); doSave(); });
+  cancelBtn.addEventListener('click', function(e) { e.stopPropagation(); renderAll(); });
+
+  input.addEventListener('keydown', function(e) {
+    e.stopPropagation();
+    if (e.key === 'Enter') doSave();
+    if (e.key === 'Escape') renderAll();
+  });
+  select.addEventListener('keydown', function(e) {
+    e.stopPropagation();
+    if (e.key === 'Enter') doSave();
+    if (e.key === 'Escape') renderAll();
+  });
+  input.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+  select.addEventListener('pointerdown', function(e) { e.stopPropagation(); });
+}
+
+// ==================== Task Management ====================
+function addTask(content, duration) {
+  var colorIdx = tasks.length % TASK_COLORS.length;
+  tasks.push({
+    id: nextId++,
+    content: content.trim(),
+    duration: parseInt(duration),
+    colorIdx: colorIdx,
+    scheduled: false,
+    rowIndex: -1,
+    startSlot: -1,
+  });
+  justUnscheduledId = tasks[tasks.length - 1].id;
+  saveState();
+  renderAll();
+}
+
+function deleteTask(id) {
+  tasks = tasks.filter(function(t) { return t.id !== id; });
+  saveState();
+  renderAll();
+}
+
+function scheduleTask(id, rowIndex, startSlot) {
+  var task = tasks.find(function(t) { return t.id === id; });
+  if (!task) return;
+
+  var durSlots = task.duration / SLOT_MIN;
+  startSlot = Math.max(0, Math.min(startSlot, SLOTS_PER_ROW - durSlots));
+
+  task.rowIndex = rowIndex;
+  task.startSlot = startSlot;
+  task.scheduled = true;
+
+  var taskEnd = startSlot + durSlots;
+  tasks.forEach(function(t) {
+    if (t.id === id) return;
+    if (!t.scheduled || t.rowIndex !== rowIndex) return;
+    var tEnd = t.startSlot + t.duration / SLOT_MIN;
+    if (t.startSlot < taskEnd && tEnd > startSlot) {
+      t.startSlot = taskEnd;
+    }
+  });
+
+  resolveOverlaps();
+  justScheduledId = id;
+  saveState();
+  renderAll();
+  setTimeout(function() { justScheduledId = null; }, 400);
+}
+
+function unscheduleTask(id) {
+  var task = tasks.find(function(t) { return t.id === id; });
+  if (!task) return;
+  task.scheduled = false;
+  task.rowIndex = -1;
+  task.startSlot = -1;
+  justUnscheduledId = id;
+  saveState();
+  renderAll();
+  setTimeout(function() { justUnscheduledId = null; }, 400);
+}
+
+function clearSchedule() {
+  tasks.forEach(function(t) {
+    t.scheduled = false;
+    t.rowIndex = -1;
+    t.startSlot = -1;
+  });
+  justScheduledId = null;
+  justUnscheduledId = null;
+  saveState();
+  recalculateStars();
+  renderAll();
+  playSound('drop');
+  showToast('🧹 已清空', '所有任务已移回任务池', 'info');
+}
+
+// ==================== Overlap Resolution ====================
+function resolveOverlaps() {
+  var changed = true;
+  var iterations = 0;
+
+  while (changed && iterations < 30) {
+    changed = false;
+    iterations++;
+
+    for (var r = 0; r < TIME_RANGES.length; r++) {
+      var rowTasks = tasks
+        .filter(function(t) { return t.scheduled && t.rowIndex === r; })
+        .sort(function(a, b) { return a.startSlot - b.startSlot; });
+
+      var prevEnd = 0;
+      for (var i = 0; i < rowTasks.length; i++) {
+        var t = rowTasks[i];
+        var tDur = t.duration / SLOT_MIN;
+
+        if (t.startSlot < prevEnd) {
+          t.startSlot = prevEnd;
+          changed = true;
+        }
+
+        var tEnd = t.startSlot + tDur;
+
+        if (tEnd > SLOTS_PER_ROW) {
+          var placed = false;
+          for (var nr = r + 1; nr < TIME_RANGES.length; nr++) {
+            if (tDur <= SLOTS_PER_ROW) {
+              t.rowIndex = nr;
+              t.startSlot = 0;
+              placed = true;
+              changed = true;
+              break;
+            }
+          }
+          if (!placed) {
+            t.scheduled = false;
+            t.rowIndex = -1;
+            t.startSlot = -1;
+            changed = true;
+          }
+        } else {
+          prevEnd = tEnd;
+        }
+      }
+    }
+  }
+}
+
+// ==================== Time & Progress ====================
+function updateClock() {
+  var now = new Date();
+  var h = String(now.getHours()).padStart(2, '0');
+  var m = String(now.getMinutes()).padStart(2, '0');
+  var s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').textContent = h + ':' + m + ':' + s;
+}
+
+function updateDate() {
+  var now = new Date();
+  var days = ['日', '一', '二', '三', '四', '五', '六'];
+  document.getElementById('dateDisplay').textContent =
+    now.getFullYear() + '年' + (now.getMonth() + 1) + '月' + now.getDate() + '日 星期' + days[now.getDay()];
+}
+
+function updateProgress() {
+  var now = new Date();
+  var currentMinutes = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+
+  for (var r = 0; r < TIME_RANGES.length; r++) {
+    var range = TIME_RANGES[r];
+    var rowStart = range.startMin;
+    var rowEnd = getRowEndMin(range);
+    var rowDur = rowEnd - rowStart;
+
+    var progress = 0;
+    if (currentMinutes <= rowStart) {
+      progress = 0;
+    } else if (currentMinutes >= rowEnd) {
+      progress = 1;
+    } else {
+      progress = (currentMinutes - rowStart) / rowDur;
+    }
+
+    var overlay = document.getElementById('past-' + r);
+    if (overlay) overlay.style.width = (progress * 100) + '%';
+
+    var indicator = document.getElementById('indicator-' + r);
+    if (indicator) {
+      if (progress > 0 && progress < 1) {
+        indicator.style.display = 'block';
+        indicator.style.left = (progress * 100) + '%';
+        indicator.dataset.time = formatTime(currentMinutes);
+      } else {
+        indicator.style.display = 'none';
+      }
+    }
+  }
+
+  tasks.forEach(function(task) {
+    if (!task.scheduled) return;
+    var startMin = getTaskStartMinutes(task);
+    var endMin = getTaskEndMinutes(task);
+    var bar = document.querySelector('.task-bar[data-task-id="' + task.id + '"]');
+    if (!bar) return;
+
+    bar.classList.remove('past', 'in-progress');
+    if (endMin <= currentMinutes) {
+      bar.classList.add('past');
+    } else if (startMin <= currentMinutes && currentMinutes < endMin) {
+      bar.classList.add('in-progress');
+    }
+  });
+}
+
+// ==================== Alarms ====================
+function checkAlarms() {
+  var now = new Date();
+  var currentMinutes = now.getHours() * 60 + now.getMinutes();
+  var dateKey = now.toDateString();
+
+  // Check for day change - reset stars and pre-fire past alarms
+  if (lastCheckDate && lastCheckDate !== dateKey) {
+    recalculateStars();
+    preFirePastAlarms();
+  }
+  lastCheckDate = dateKey;
+
+  // Task alarms
+  for (var i = 0; i < tasks.length; i++) {
+    var task = tasks[i];
+    if (!task.scheduled) continue;
+
+    var startMin = getTaskStartMinutes(task);
+    var endMin = getTaskEndMinutes(task);
+
+    // Start alarm: ring for 10 seconds at task start (fires ONCE)
+    var startKey = task.id + '-start-' + dateKey;
+    if (currentMinutes === startMin && !firedAlarms[startKey]) {
+      firedAlarms[startKey] = true;
+      playAlarm(10, 'start');
+      showToast('🔔 ' + task.content + ' 开始啦！',
+        '时间到！' + formatTime(startMin) + '-' + formatTime(endMin) + ' | 加油！💪', 'start');
+      showDesktopNotification(task.content + ' 开始啦！',
+        formatTime(startMin) + '-' + formatTime(endMin) + ' | 加油！');
+    }
+
+    // End alarm: ring for 10 seconds at task end (fires ONCE)
+    var endKey = task.id + '-end-' + dateKey;
+    if (currentMinutes === endMin && !firedAlarms[endKey]) {
+      firedAlarms[endKey] = true;
+      playAlarm(10, 'end');
+      showToast('🔔 ' + task.content + ' 结束啦！',
+        '完成时间到！' + formatTime(endMin) + ' | 太棒了！🎉', 'end');
+      showDesktopNotification(task.content + ' 结束啦！',
+        '完成时间到！太棒了！');
+    }
+
+    // Star award: every 5 minutes of task duration = 1 star (fires ONCE per task)
+    var completeKey = task.id + '-complete-' + dateKey;
+    if (currentMinutes >= endMin && !firedAlarms[completeKey]) {
+      firedAlarms[completeKey] = true;
+      var earnedStars = Math.floor(task.duration / 5);
+      stars += earnedStars;
+      saveStars();
+      updateStarDisplay();
+      showToast('🎉 太棒了！', '完成了「' + task.content + '」(' + task.duration + '分钟)！获得' + earnedStars + '颗⭐！已累计' + stars + '颗星星！', 'star');
+    }
+  }
+
+  // Note alarms
+  for (var j = 0; j < stickyNotes.length; j++) {
+    var note = stickyNotes[j];
+    if (!note.alarmEnabled || !note.alarmTime) continue;
+
+    var noteAlarmMin = parseTimeToMinutes(note.alarmTime);
+    if (noteAlarmMin < 0) continue;
+
+    var noteKey = 'note-' + note.id + '-' + dateKey;
+    if (currentMinutes === noteAlarmMin && !firedAlarms[noteKey]) {
+      firedAlarms[noteKey] = true;
+      playAlarm(10, 'start');
+      var noteText = note.text ? note.text.substring(0, 30) : '便签提醒';
+      showToast('📌 便签提醒！', noteText + ' | 时间到！' + formatTime(noteAlarmMin), 'start');
+      showDesktopNotification('📌 便签提醒！', noteText);
+    }
+  }
+
+  // Clean old keys (from previous days)
+  for (var k in firedAlarms) {
+    if (k.indexOf(dateKey) < 0) delete firedAlarms[k];
+  }
+}
+
+// ==================== Notifications ====================
+function showToast(title, message, type) {
+  type = type || 'info';
+  var container = document.getElementById('toastContainer');
+
+  // Limit to max 3 toasts visible at once
+  var existing = container.querySelectorAll('.toast');
+  if (existing.length >= 3) {
+    existing[0].classList.remove('show');
+    setTimeout(function() { if (existing[0].parentNode) existing[0].remove(); }, 300);
+  }
+
+  var toast = document.createElement('div');
+  toast.className = 'toast toast-' + type;
+  toast.innerHTML = '<strong>' + title + '</strong><div class="toast-msg">' + message + '</div>';
+  container.appendChild(toast);
+
+  requestAnimationFrame(function() { toast.classList.add('show'); });
+
+  setTimeout(function() {
+    toast.classList.remove('show');
+    setTimeout(function() { if (toast.parentNode) toast.remove(); }, 300);
+  }, 4000);
+}
+
+function showDesktopNotification(title, body) {
+  if ('Notification' in window && Notification.permission === 'granted') {
+    try { new Notification(title, { body: body }); } catch(e) {}
+  }
+}
+
+// ==================== Pointer-Based Drag (Tasks) ====================
+function startDrag(e, task, source, el) {
+  if (drag) return;
+  e.preventDefault();
+
+  var rect = el.getBoundingClientRect();
+
+  drag = {
+    taskId: task.id,
+    source: source,
+    el: el,
+    clone: null,
+    startX: e.clientX,
+    startY: e.clientY,
+    offsetX: e.clientX - rect.left,
+    offsetY: e.clientY - rect.top,
+    width: rect.width,
+    height: rect.height,
+    started: false,
+    pointerId: e.pointerId,
+  };
+
+  if (el.setPointerCapture) {
+    try { el.setPointerCapture(e.pointerId); } catch(err) {}
+  }
+
+  el.addEventListener('pointermove', onDragMove);
+  el.addEventListener('pointerup', onDragEnd);
+  el.addEventListener('pointercancel', onDragEnd);
+}
+
+function onDragMove(e) {
+  if (!drag || e.pointerId !== drag.pointerId) return;
+
+  var dx = e.clientX - drag.startX;
+  var dy = e.clientY - drag.startY;
+  var dist = Math.sqrt(dx * dx + dy * dy);
+
+  if (!drag.started && dist > 8) {
+    drag.started = true;
+
+    var clone = drag.el.cloneNode(true);
+    clone.classList.add('drag-clone');
+    clone.classList.remove('snap-in', 'bounce-in', 'past', 'in-progress', 'tapped');
+    clone.style.left = (e.clientX - drag.offsetX) + 'px';
+    clone.style.top = (e.clientY - drag.offsetY) + 'px';
+    clone.style.width = drag.width + 'px';
+    clone.style.height = drag.height + 'px';
+    var rm = clone.querySelectorAll('.resize-handle, .edit-btn, .edit-input, .edit-select');
+    for (var i = 0; i < rm.length; i++) rm[i].remove();
+    document.body.appendChild(clone);
+    drag.clone = clone;
+
+    drag.el.style.opacity = '0.2';
+
+    playSound('pickup');
+  }
+
+  if (drag.started) {
+    drag.clone.style.left = (e.clientX - drag.offsetX) + 'px';
+    drag.clone.style.top = (e.clientY - drag.offsetY) + 'px';
+
+    updateDropTarget(e.clientX, e.clientY);
+
+    e.preventDefault();
+  }
+}
+
+function onDragEnd(e) {
+  if (!drag || e.pointerId !== drag.pointerId) return;
+
+  var el = drag.el;
+  if (el.releasePointerCapture) {
+    try { el.releasePointerCapture(drag.pointerId); } catch(err) {}
+  }
+  el.removeEventListener('pointermove', onDragMove);
+  el.removeEventListener('pointerup', onDragEnd);
+  el.removeEventListener('pointercancel', onDragEnd);
+
+  if (!drag.started) {
+    handleTap(drag.taskId, drag.source, el);
+    drag = null;
+    return;
+  }
+
+  var target = findDropTarget(e.clientX, e.clientY);
+
+  clearDropHighlights();
+  if (drag.clone) drag.clone.remove();
+  drag.el.style.opacity = '';
+
+  if (target) {
+    if (target.type === 'grid') {
+      scheduleTask(drag.taskId, target.rowIndex, target.slotIndex);
+      playSound('snap');
+    } else if (target.type === 'pool') {
+      if (drag.source === 'grid') {
+        unscheduleTask(drag.taskId);
+        playSound('drop');
+      } else {
+        playSound('drop');
+        renderAll();
+      }
+    }
+  } else {
+    playSound('drop');
+    renderAll();
+  }
+
+  drag = null;
+}
+
+function handleTap(taskId, source, el) {
+  if (source === 'pool') {
+    startEditPoolCard(taskId);
+  } else if (source === 'grid') {
+    var now = Date.now();
+    if (lastGridTap.id === taskId && now - lastGridTap.time < 350) {
+      unscheduleTask(taskId);
+      playSound('drop');
+      lastGridTap = { id: null, time: 0 };
+    } else {
+      lastGridTap = { id: taskId, time: now };
+      el.classList.add('tapped');
+      setTimeout(function() { el.classList.remove('tapped'); }, 350);
+    }
+  }
+}
+
+function findDropTarget(x, y) {
+  for (var r = 0; r < TIME_RANGES.length; r++) {
+    var container = document.getElementById('row-cells-' + r);
+    if (!container) continue;
+    var rect = container.getBoundingClientRect();
+    if (x >= rect.left && x <= rect.right && y >= rect.top - 40 && y <= rect.bottom + 20) {
+      var slotWidth = rect.width / SLOTS_PER_ROW;
+      var slotIndex = Math.max(0, Math.min(SLOTS_PER_ROW - 1, Math.floor((x - rect.left) / slotWidth)));
+      return { type: 'grid', rowIndex: r, slotIndex: slotIndex };
+    }
+  }
+  var pool = document.getElementById('taskPool');
+  if (pool) {
+    var pRect = pool.getBoundingClientRect();
+    if (x >= pRect.left && x <= pRect.right && y >= pRect.top && y <= pRect.bottom) {
+      return { type: 'pool' };
+    }
+  }
+  return null;
+}
+
+function updateDropTarget(x, y) {
+  clearDropHighlights();
+  var target = findDropTarget(x, y);
+  if (!target) return;
+
+  if (target.type === 'grid') {
+    var container = document.getElementById('row-cells-' + target.rowIndex);
+    if (container) {
+      container.classList.add('drag-over');
+      var task = tasks.find(function(t) { return t.id === drag.taskId; });
+      if (task) {
+        var durSlots = task.duration / SLOT_MIN;
+        var startSlot = Math.max(0, Math.min(target.slotIndex, SLOTS_PER_ROW - durSlots));
+        
+        var range = TIME_RANGES[target.rowIndex];
+        var startMin = range.startMin + startSlot * SLOT_MIN;
+        var endMin = startMin + task.duration;
+        
+        var preview = document.createElement('div');
+        preview.className = 'drop-preview-bar';
+        preview.style.left = (startSlot / SLOTS_PER_ROW * 100) + '%';
+        preview.style.width = 'calc(' + (durSlots / SLOTS_PER_ROW * 100) + '% - 4px)';
+        preview.textContent = formatTime(startMin) + ' ' + task.content + ' ' + formatTime(endMin);
+        container.appendChild(preview);
+        
+        var snapLine = document.createElement('div');
+        snapLine.className = 'snap-line';
+        snapLine.style.left = (startSlot / SLOTS_PER_ROW * 100) + '%';
+        container.appendChild(snapLine);
+      }
+    }
+  } else if (target.type === 'pool') {
+    document.getElementById('taskPool').classList.add('drag-over');
+  }
+}
+
+function clearDropHighlights() {
+  var highlights = document.querySelectorAll('.drag-over');
+  for (var i = 0; i < highlights.length; i++) {
+    highlights[i].classList.remove('drag-over');
+  }
+  var previews = document.querySelectorAll('.drop-preview-bar, .snap-line, .drop-preview');
+  for (var j = 0; j < previews.length; j++) {
+    if (previews[j].classList.contains('drop-preview')) {
+      previews[j].classList.remove('drop-preview');
+    } else {
+      previews[j].remove();
+    }
+  }
+}
+
+// ==================== Pointer-Based Resize ====================
+function startResize(e, task, bar, cellsContainer, handle) {
+  e.preventDefault();
+  isResizing = true;
+  handle.classList.add('active');
+
+  var startX = e.clientX;
+  var originalDuration = task.duration;
+  var rect = cellsContainer.getBoundingClientRect();
+  var slotWidth = rect.width / SLOTS_PER_ROW;
+
+  var rowTasks = tasks
+    .filter(function(t) { return t.scheduled && t.rowIndex === task.rowIndex && t.id !== task.id; })
+    .sort(function(a, b) { return a.startSlot - b.startSlot; });
+  var nextTask = null;
+  for (var i = 0; i < rowTasks.length; i++) {
+    if (rowTasks[i].startSlot > task.startSlot) { nextTask = rowTasks[i]; break; }
+  }
+  var maxEndSlot = nextTask ? nextTask.startSlot : SLOTS_PER_ROW;
+
+  if (handle.setPointerCapture) {
+    try { handle.setPointerCapture(e.pointerId); } catch(err) {}
+  }
+
+  function onMove(ev) {
+    var deltaX = ev.clientX - startX;
+    var deltaSlots = Math.round(deltaX / slotWidth);
+    var newDurSlots = Math.max(1, Math.min(
+      originalDuration / SLOT_MIN + deltaSlots,
+      maxEndSlot - task.startSlot
+    ));
+    var newDuration = newDurSlots * SLOT_MIN;
+
+    bar.style.width = 'calc(' + (newDurSlots / SLOTS_PER_ROW * 100) + '% - 4px)';
+
+    var startLabel = bar.querySelector('.bar-time-start');
+    var endLabel = bar.querySelector('.bar-time-end');
+    if (startLabel && endLabel) {
+      var sMin = getTaskStartMinutes(task);
+      startLabel.textContent = formatTime(sMin);
+      endLabel.textContent = formatTime(sMin + newDuration);
+    }
+
+    bar.dataset.tempDuration = String(newDuration);
+    ev.preventDefault();
+  }
+
+  function onUp(ev) {
+    if (handle.releasePointerCapture) {
+      try { handle.releasePointerCapture(ev.pointerId); } catch(err) {}
+    }
+    handle.removeEventListener('pointermove', onMove);
+    handle.removeEventListener('pointerup', onUp);
+    handle.removeEventListener('pointercancel', onUp);
+    isResizing = false;
+    handle.classList.remove('active');
+
+    if (bar.dataset.tempDuration) {
+      task.duration = parseInt(bar.dataset.tempDuration);
+      delete bar.dataset.tempDuration;
+      saveState();
+      renderAll();
+    }
+  }
+
+  handle.addEventListener('pointermove', onMove);
+  handle.addEventListener('pointerup', onUp);
+  handle.addEventListener('pointercancel', onUp);
+}
+
+// ==================== Init ====================
+function init() {
+  try {
+    loadState();
+    loadNotes();
+    loadStars();
+    recalculateStars();
+    preFirePastAlarms();
+    lastCheckDate = new Date().toDateString();
+  } catch(e) { console.error('Init load error:', e); }
+
+  renderAll();
+
+  var compatMsg = document.getElementById('compatMsg');
+  if (compatMsg && !renderErrors) {
+    compatMsg.style.display = 'none';
+  }
+
+  try {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  } catch(e) {}
+
+  onceEvent(document, 'pointerdown', initAudio);
+  onceEvent(document, 'touchstart', initAudio);
+  onceEvent(document, 'mousedown', initAudio);
+
+  try {
+    window.addEventListener('beforeunload', function() {
+      saveState();
+      saveNotes();
+      saveStars();
+    });
+  } catch(e) {}
+
+  try { updateClock(); } catch(e) {}
+  try { updateDate(); } catch(e) {}
+  try { updateProgress(); } catch(e) {}
+  try { checkAlarms(); } catch(e) {}
+  try {
+    setInterval(updateClock, 1000);
+    setInterval(updateProgress, 1000);
+    setInterval(checkAlarms, 1000);
+    setInterval(updateDate, 60000);
+  } catch(e) {}
+}
+
+try {
+  init();
+} catch(e) {
+  console.error('Init error:', e);
+  document.getElementById('clock').textContent = 'ERROR';
+  var msg = document.getElementById('compatMsg');
+  if (msg && !renderErrors) {
+    msg.textContent = '⚠️ 页面加载出错，请刷新重试，或换用系统浏览器打开。';
+    msg.style.display = 'block';
+  }
+  try { loadState(); renderAll(); } catch(e2) {}
+}
+
+// Safety net: if the clock still shows placeholder after 5s, show a help message
+setTimeout(function() {
+  var clock = document.getElementById('clock');
+  var msg = document.getElementById('compatMsg');
+  if (clock && clock.textContent.indexOf('--') >= 0 && msg && !renderErrors) {
+    msg.textContent = '⚠️ 加载较慢或浏览器不支持，请刷新重试。建议用 Safari/Chrome/Edge 打开。';
+    msg.style.display = 'block';
+  }
+}, 5000);
+</script>
+<script src="{{ site.baseurl }}/assets/nav.js" data-root="../../" data-theme="life" data-title="每日TODO清单"></script>

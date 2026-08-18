@@ -1,0 +1,90 @@
+---
+layout: post
+title: "字里行间 · 消暑纳凉"
+date: 2026-08-13
+category: kids
+tags: [读书, 美文]
+title: "酷暑蝉鸣时，翻开一页清凉——让好文字像微风拂过心头，让朗读声如溪水淙淙流淌。"
+---
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/summer-reading/style.css?v=6">
+
+
+
+<!-- 夏日封面 -->
+<section id="cover">
+  <div class="cover-bg"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="float boat"></div>
+  <div class="float leaf"></div>
+  <div class="firefly"></div>
+  <div class="firefly" style="animation-delay:-4s;left:72%"></div>
+
+  <div class="cover-card">
+    <div class="badge">暑期美文绘本</div>
+    <h1 class="cover-title"><span>字里行间</span><i class="dot">·</i><span>消暑纳凉</span></h1>
+    <p class="cover-sub">酷暑蝉鸣时，翻开一页清凉——<br>让好文字像微风拂过心头，让朗读声如溪水淙淙流淌。</p>
+    <button class="enter" id="enterBtn">
+      <span>翻开目录</span>
+      <span class="arrow">↓</span>
+    </button>
+  </div>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span>轻触进入目录</span>
+    <span class="chevron"></span>
+  </div>
+</section>
+
+<!-- 目录页 -->
+<section id="toc" style="display:none">
+  <div class="toc-header">
+    <button class="icon-btn" id="backToCover">←</button>
+    <div class="toc-title">目录</div>
+    <div class="spacer"></div>
+  </div>
+  <div class="toc-list" id="tocList"></div>
+</section>
+
+<!-- 阅读器 -->
+<section id="reader" style="display:none">
+  <div class="topbar">
+    <button class="icon-btn" id="back">←</button>
+    <div class="ttl" id="topTitle"></div>
+    <button class="icon-btn" id="voiceBtn" title="自动朗读">🔊</button>
+    <button class="icon-btn" id="annBtn" title="标注/画重点">✏️</button>
+    <button class="icon-btn" id="noteBtn" title="写备注">📝</button>
+  </div>
+
+  <div class="deck" id="deck"></div>
+
+  <canvas class="anno-canvas" id="annoCanvas"></canvas>
+
+  <div class="penbar" id="penbar">
+    <span class="swatch sel" data-color="#ffd34d" style="background:#ffd34d"></span>
+    <span class="swatch" data-color="#ff5a5a" style="background:#ff5a5a"></span>
+    <span class="swatch" data-color="#2f6bff" style="background:#2f6bff"></span>
+    <button class="icon-btn" id="clearBtn" style="background:rgba(0,0,0,.12)">🗑</button>
+  </div>
+
+  <div class="nav">
+    <button class="icon-btn" id="prev" title="上一页">‹</button>
+    <button class="icon-btn play" id="playBtn" title="播放 / 暂停">▶</button>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="dots" id="dots"></div>
+      <div id="idx"></div>
+    </div>
+    <button class="icon-btn" id="next" title="下一页">›</button>
+  </div>
+
+  <div class="notes" id="notes">
+    <h3>我的备注</h3>
+    <textarea id="noteArea" placeholder="在这一页写点笔记、画重点的心得……（会自动保存在本机）"></textarea>
+    <button class="done" id="noteClose">完成</button>
+  </div>
+</section>
+
+<script src="manifest.js?v=6"></script>
+<script src="{{ site.baseurl }}/assets/summer-reading/app.js?v=6"></script>

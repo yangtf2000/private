@@ -1,0 +1,388 @@
+/* =========================================================
+   城市更新与规划页面 · 全局深色适配（强效版）
+   用 body.theme-city 限定，覆盖飞书导出页自带的亮白卡片
+   ========================================================= */
+
+/* ---------- 强力兜底：把所有容器类翻成暗色玻璃 ---------- */
+body.theme-city .container,
+body.theme-city .container > *,
+body.theme-city .main-card,
+body.theme-city .main-card-header,
+body.theme-city .main-card-body,
+body.theme-city .card,
+body.theme-city .card-section,
+body.theme-city .tool-card,
+body.theme-city .category-card,
+body.theme-city .category-card-body,
+body.theme-city .agent-card,
+body.theme-city .agent-compare,
+body.theme-city .advantage-box,
+body.theme-city .advantage-item,
+body.theme-city .advantage-grid > *,
+body.theme-city .prerequisite-box,
+body.theme-city .prerequisite-item,
+body.theme-city .search-section,
+body.theme-city .legend,
+body.theme-city .outline-col,
+body.theme-city .skill-module,
+body.theme-city .two-col-grid > div,
+body.theme-city .tab-content,
+body.theme-city .nav-tabs,
+body.theme-city .nav-tab,
+body.theme-city .step-card,
+body.theme-city .step-item,
+body.theme-city .flow-step,
+body.theme-city .process-card,
+body.theme-city .process-step,
+body.theme-city .summary-box,
+body.theme-city .highlight-box,
+body.theme-city .info-card,
+body.theme-city .data-card,
+body.theme-city .metric-card,
+body.theme-city .feature-card,
+body.theme-city .example-card,
+body.theme-city .case-card,
+body.theme-city .method-card,
+body.theme-city .output-card,
+body.theme-city .input-card,
+body.theme-city .prompt-card,
+body.theme-city .result-card,
+body.theme-city .check-card,
+body.theme-city .tips-card,
+body.theme-city .note-card,
+body.theme-city .warning-card,
+body.theme-city .alert-box,
+body.theme-city .callout,
+body.theme-city .callout-box,
+body.theme-city .box,
+body.theme-city .panel,
+body.theme-city .widget,
+body.theme-city .module,
+body.theme-city .block,
+body.theme-city .section,
+body.theme-city .section-box,
+body.theme-city .content-block,
+body.theme-city .content-card,
+body.theme-city .inner,
+body.theme-city .wrapper,
+body.theme-city .frame,
+body.theme-city .well {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--text) !important;
+  border-color: var(--card-border) !important;
+}
+
+body.theme-city .container {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ---------- 头部标题保持白色 ---------- */
+body.theme-city .header,
+body.theme-city .header h1,
+body.theme-city .header p,
+body.theme-city .header .subtitle,
+body.theme-city .header .badge,
+body.theme-city .page-title,
+body.theme-city .page-title h1,
+body.theme-city .hero h1,
+body.theme-city .hero p {
+  color: #fff !important;
+}
+body.theme-city .header {
+  background: linear-gradient(135deg, rgba(30, 60, 114, 0.75), rgba(42, 82, 152, 0.75)) !important;
+}
+
+/* ---------- 文字统一浅色 ---------- */
+body.theme-city .section-title,
+body.theme-city .subsection-title,
+body.theme-city .section-desc,
+body.theme-city .card h3,
+body.theme-city .card h4,
+body.theme-city .card h5,
+body.theme-city .card p,
+body.theme-city .card li,
+body.theme-city .card-section h4,
+body.theme-city .card-section li,
+body.theme-city .tool-card h4,
+body.theme-city .tool-card h5,
+body.theme-city .tool-card li,
+body.theme-city .agent-card h3,
+body.theme-city .agent-card h4,
+body.theme-city .agent-card p,
+body.theme-city .agent-card li,
+body.theme-city .advantage-box h3,
+body.theme-city .advantage-box h4,
+body.theme-city .advantage-box p,
+body.theme-city .advantage-item h4,
+body.theme-city .advantage-item p,
+body.theme-city .prerequisite-box h4,
+body.theme-city .prerequisite-box li,
+body.theme-city .category-card-header,
+body.theme-city .step-title,
+body.theme-city .outline-level1,
+body.theme-city .outline-level2,
+body.theme-city .outline-level3,
+body.theme-city .outline-col ol li,
+body.theme-city .outline-col ol li ul li,
+body.theme-city .skill-module h5,
+body.theme-city .skill-module p,
+body.theme-city .search-tips,
+body.theme-city .fund-empty,
+body.theme-city .main-card-header,
+body.theme-city .main-card-body,
+body.theme-city .nav-tab,
+body.theme-city .agent-name,
+body.theme-city .agent-desc,
+body.theme-city .agent-features li,
+body.theme-city .metric-value,
+body.theme-city .metric-label,
+body.theme-city .data-value,
+body.theme-city .data-label {
+  color: var(--text) !important;
+}
+
+body.theme-city .subsection-title {
+  border-bottom-color: var(--card-border) !important;
+}
+
+/* ---------- 标签页 ---------- */
+body.theme-city .nav-tabs {
+  background: transparent !important;
+  border-bottom-color: var(--card-border) !important;
+}
+body.theme-city .nav-tab {
+  background: var(--card-bg) !important;
+  color: var(--muted) !important;
+}
+body.theme-city .nav-tab.active,
+body.theme-city .nav-tab:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--accent2) !important;
+  border-bottom-color: var(--accent2) !important;
+}
+
+/* ---------- 表格 ---------- */
+body.theme-city .indicator-table,
+body.theme-city .compare-table,
+body.theme-city .overview-table {
+  background: transparent !important;
+}
+body.theme-city .indicator-table th,
+body.theme-city .compare-table th,
+body.theme-city .overview-table th {
+  background: rgba(56, 189, 248, 0.22) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+body.theme-city .indicator-table td,
+body.theme-city .compare-table td,
+body.theme-city .overview-table td {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-bottom-color: var(--card-border) !important;
+  color: var(--text) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body.theme-city .indicator-table tr:hover td,
+body.theme-city .compare-table tr:hover td,
+body.theme-city .overview-table tr:hover td,
+body.theme-city .indicator-table tr:hover,
+body.theme-city .compare-table tr:hover,
+body.theme-city .overview-table tr:hover,
+body.theme-city .category-card:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+body.theme-city .num-col,
+body.theme-city .dim-col,
+body.theme-city .compare-table td:first-child,
+body.theme-city .overview-table .category,
+body.theme-city .total-row td {
+  color: var(--accent2) !important;
+  background: rgba(56, 189, 248, 0.08) !important;
+}
+body.theme-city .overview-table .category {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ---------- 折叠卡片头部 ---------- */
+body.theme-city .category-card-header {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-bottom-color: var(--card-border) !important;
+}
+body.theme-city .category-card-header .arrow {
+  color: var(--muted) !important;
+}
+
+/* ---------- 工具对比卡片 / Agent 卡片 ---------- */
+body.theme-city .tool-card.recommended,
+body.theme-city .agent-card.recommended {
+  background: rgba(129, 140, 248, 0.12) !important;
+  border-color: var(--accent1) !important;
+}
+body.theme-city .agent-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--card-border) !important;
+}
+body.theme-city .agent-card:hover {
+  border-color: var(--accent1) !important;
+  background: rgba(129, 140, 248, 0.1) !important;
+}
+body.theme-city .agent-badge {
+  color: #fff !important;
+}
+body.theme-city .agent-features li::before {
+  color: var(--accent3) !important;
+}
+
+/* ---------- 彩色提示框 ---------- */
+body.theme-city .warning-box,
+body.theme-city .prerequisite-box {
+  background: rgba(245, 158, 11, 0.12) !important;
+  border-left-color: #f59e0b !important;
+  border-color: rgba(245, 158, 11, 0.25) !important;
+}
+body.theme-city .warning-box h4,
+body.theme-city .warning-box li,
+body.theme-city .prerequisite-box h4,
+body.theme-city .prerequisite-box li {
+  color: #fbbf24 !important;
+}
+body.theme-city .tip-box,
+body.theme-city .advantage-box {
+  background: rgba(16, 185, 129, 0.12) !important;
+  border-left-color: #10b981 !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+body.theme-city .tip-box strong,
+body.theme-city .tip-box h3,
+body.theme-city .advantage-box h3,
+body.theme-city .advantage-box h4 {
+  color: #34d399 !important;
+}
+body.theme-city .advantage-item {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+body.theme-city .prompt-box {
+  background: #0b0e17 !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+/* ---------- 按钮、输入框 ---------- */
+body.theme-city .search-box input {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: var(--card-border) !important;
+  color: var(--text) !important;
+}
+body.theme-city .search-box button {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2)) !important;
+  color: #06121f !important;
+}
+body.theme-city .view-detail-btn {
+  background: var(--card-bg) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--card-border) !important;
+}
+
+/* ---------- 步骤序号 ---------- */
+body.theme-city .step-number {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2)) !important;
+  color: #06121f !important;
+}
+
+/* ---------- 搜索区 sticky 避开全局导航 ---------- */
+body.theme-city .search-section {
+  top: 0 !important;
+}
+
+/* ---------- 小卡片图标保持白色 ---------- */
+body.theme-city .section-title .icon {
+  color: #fff !important;
+}
+
+/* =========================================================
+   兜底覆盖：城市页内部残留的浅色/白色背景（暴力兜底）
+   ========================================================= */
+
+/* 所有在 body.theme-city .container 内明确写了浅色 inline background 的元素 */
+body.theme-city .container [style*="background:#f" i],
+body.theme-city .container [style*="background: #f" i],
+body.theme-city .container [style*="background:#e" i],
+body.theme-city .container [style*="background: #e" i],
+body.theme-city .container [style*="background: white" i],
+body.theme-city .container [style*="background:white" i],
+body.theme-city .container [style*="background: #fff" i],
+body.theme-city .container [style*="background:#fff" i] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--text) !important;
+}
+
+/* 常见还漏掉的语义卡片/标签/徽章 */
+body.theme-city .container [class*="tag"],
+body.theme-city .container [class*="badge"],
+body.theme-city .container [class*="pill"],
+body.theme-city .container [class*="label"],
+body.theme-city .container [class*="chip"],
+body.theme-city .container [class*="tip"],
+body.theme-city .container [class*="warning"],
+body.theme-city .container .highlight,
+body.theme-city .container .highlight-box,
+body.theme-city .container .summary,
+body.theme-city .container .summary-box,
+body.theme-city .container .note,
+body.theme-city .container .note-box,
+body.theme-city .container .hint,
+body.theme-city .container .key-point,
+body.theme-city .container .tag-item,
+body.theme-city .container .label-item {
+  background: rgba(255, 255, 255, 0.07) !important;
+  color: var(--text) !important;
+  border-color: var(--card-border) !important;
+}
+
+/* 表格行残留浅色 */
+body.theme-city .container tr[class*="hlt"],
+body.theme-city .container tr[class*="highlight"],
+body.theme-city .container tr[class*="rec"],
+body.theme-city .container tr[class*="recommend"],
+body.theme-city .container tr[class*="total"],
+body.theme-city .container td[class*="hlt"],
+body.theme-city .container td[class*="highlight"],
+body.theme-city .container td[class*="rec"],
+body.theme-city .container td[class*="recommend"],
+body.theme-city .container td[class*="total"] {
+  background: rgba(56, 189, 248, 0.12) !important;
+  color: var(--text) !important;
+}
+
+/* 列表/步骤里常见的浅色小标题块 */
+body.theme-city .container [class*="step"] [class*="title"],
+body.theme-city .container [class*="item-title"],
+body.theme-city .container [class*="section-subtitle"] {
+  color: var(--text) !important;
+}
+
+/* 终极兜底：所有未被上面规则命中的 div/section/article/aside/main
+   如果它们有显式浅色背景，强制透明化 */
+body.theme-city .container div,
+body.theme-city .container section,
+body.theme-city .container article,
+body.theme-city .container aside,
+body.theme-city .container main,
+body.theme-city .container figure,
+body.theme-city .container figcaption {
+  color: var(--text) !important;
+}
+
+/* 针对个别顽固浅色背景（如 #f8f9fc, #fafbff, #f5f7ff 等） */
+body.theme-city .container [style*="background:#f8f9fc" i],
+body.theme-city .container [style*="background:#fafbff" i],
+body.theme-city .container [style*="background:#f5f7ff" i],
+body.theme-city .container [style*="background:#f0f1ff" i],
+body.theme-city .container [style*="background:#f0f2ff" i],
+body.theme-city .container [style*="background:#f9fafb" i],
+body.theme-city .container [style*="background:#f0fdf4" i],
+body.theme-city .container [style*="background:#fffbeb" i],
+body.theme-city .container [style*="background:#eff6ff" i],
+body.theme-city .container [style*="background:#f5f3ff" i] {
+  background: rgba(255, 255, 255, 0.06) !important;
+}

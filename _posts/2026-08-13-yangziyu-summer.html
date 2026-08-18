@@ -1,0 +1,1414 @@
+---
+layout: post
+title: "暑假学习安排方案"
+date: 2026-08-13
+category: kids
+tags: [暑假, 计划]
+title: "以下提供三种日类型的作息模板，根据当天是否有课外班灵活切换。"
+---
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/theme.css"><link rel="stylesheet" href="{{ site.baseurl }}/assets/force-dark.css">
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* === HERO === */
+  .hero {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 50%, #1a1a2e 100%);
+    padding: 48px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid #2a2a4a;
+  }
+  .hero h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .hero .subtitle {
+    font-size: 15px;
+    color: #8892b0;
+  }
+  .hero .date-range {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 20px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    font-size: 14px;
+    color: #a8b2d1;
+  }
+
+  /* === CONTAINER === */
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+
+  /* === SECTION === */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding-left: 14px;
+    border-left: 4px solid #e94560;
+  }
+  .section-title.blue { border-color: #4fc3f7; }
+  .section-title.orange { border-color: #ffa726; }
+  .section-title.green { border-color: #66bb6a; }
+  .section-title.purple { border-color: #ab47bc; }
+
+  /* === WORKLOAD SUMMARY CARDS === */
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .summary-card {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid #2a2a4a;
+    transition: transform 0.2s;
+  }
+  .summary-card:hover { transform: translateY(-3px); }
+  .summary-card .subject-icon { font-size: 36px; margin-bottom: 8px; }
+  .summary-card .subject-name { font-size: 18px; font-weight: bold; margin-bottom: 6px; }
+  .summary-card .total-hours { font-size: 32px; font-weight: bold; }
+  .summary-card .total-hours .unit { font-size: 16px; font-weight: normal; }
+  .summary-card .task-count { font-size: 13px; color: #8892b0; margin-top: 4px; }
+  .summary-card.chinese .subject-name { color: #4fc3f7; }
+  .summary-card.chinese .total-hours { color: #4fc3f7; }
+  .summary-card.math .subject-name { color: #ffa726; }
+  .summary-card.math .total-hours { color: #ffa726; }
+  .summary-card.english .subject-name { color: #66bb6a; }
+  .summary-card.english .total-hours { color: #66bb6a; }
+
+  .grand-total {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 1px solid #e94560;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .grand-total .label { font-size: 14px; color: #8892b0; }
+  .grand-total .value { font-size: 36px; font-weight: bold; color: #e94560; }
+  .grand-total .value .unit { font-size: 16px; }
+  .grand-total .daily-avg { font-size: 14px; color: #a8b2d1; margin-top: 4px; }
+
+  .alert-box {
+    background: rgba(255, 87, 34, 0.1);
+    border: 1px solid rgba(255, 87, 34, 0.3);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .alert-box .alert-title {
+    color: #ff7043;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .alert-box .alert-text { font-size: 14px; color: #b0bec5; }
+  .alert-box.green { background: rgba(102,187,106,0.1); border-color: rgba(102,187,106,0.3); }
+  .alert-box.green .alert-title { color: #66bb6a; }
+
+  /* === TABLES === */
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  .task-table th {
+    background: #16213e;
+    color: #a8b2d1;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #2a2a4a;
+    white-space: nowrap;
+  }
+  .task-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #1e2a3a;
+    color: #c0c8d8;
+  }
+  .task-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .task-table .task-name { color: #e0e0e0; font-weight: 500; }
+  .task-table .hours { color: #ffa726; font-weight: bold; text-align: center; }
+  .task-table .freq { color: #8892b0; }
+  .priority-high { color: #ef5350 !important; }
+  .priority-mid { color: #ffa726 !important; }
+  .priority-low { color: #66bb6a !important; }
+
+  .subject-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    margin-top: 24px;
+  }
+  .subject-header .badge { font-size: 24px; }
+  .subject-header .name { font-size: 18px; font-weight: bold; }
+  .subject-header.chinese .name { color: #4fc3f7; }
+  .subject-header.math .name { color: #ffa726; }
+  .subject-header.english .name { color: #66bb6a; }
+  .subject-header .subtotal { margin-left: auto; font-size: 14px; color: #8892b0; }
+  .subject-header .subtotal span { font-weight: bold; }
+
+  /* === PHASE TIMELINE === */
+  .phase-card {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border-left: 4px solid #4fc3f7;
+  }
+  .phase-card.p2 { border-left-color: #ffa726; }
+  .phase-card.p3 { border-left-color: #66bb6a; }
+  .phase-card.p4 { border-left-color: #ab47bc; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .phase-tag {
+    padding: 3px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .phase-tag.p1 { background: #4fc3f7; }
+  .phase-tag.p2 { background: #ffa726; }
+  .phase-tag.p3 { background: #66bb6a; }
+  .phase-tag.p4 { background: #ab47bc; }
+  .phase-title { font-size: 17px; color: #ffffff; font-weight: bold; }
+  .phase-dates { font-size: 13px; color: #8892b0; margin-left: auto; }
+  .phase-goals { font-size: 14px; color: #b0bec5; }
+  .phase-goals li { margin-bottom: 4px; margin-left: 20px; }
+
+  /* === DAILY SCHEDULE === */
+  .schedule-day {
+    background: #16213e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .schedule-day-header {
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+  }
+  .schedule-day-header.type-class { background: rgba(129,140,248,0.08); }
+  .schedule-day-header.type-normal { background: linear-gradient(90deg, #1565c0, #0288d1); }
+  .schedule-day-header.type-light { background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+
+  .time-slot {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 0;
+    border-bottom: 1px solid #1e2a3a;
+  }
+  .time-slot:last-child { border-bottom: none; }
+  .time-slot .time {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #8892b0;
+    border-right: 1px solid #1e2a3a;
+    font-family: monospace;
+  }
+  .time-slot .activity {
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #e0e0e0;
+  }
+  .time-slot .activity .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin-right: 6px;
+    font-weight: bold;
+  }
+  .tag-chinese { background: rgba(79,195,247,0.2); color: #4fc3f7; }
+  .tag-math { background: rgba(255,167,38,0.2); color: #ffa726; }
+  .tag-english { background: rgba(102,187,106,0.2); color: #66bb6a; }
+  .tag-rest { background: rgba(176,190,197,0.2); color: #b0bec5; }
+  .tag-other { background: rgba(239,83,80,0.2); color: #ef5350; }
+  .time-slot .duration {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #8892b0;
+    text-align: right;
+  }
+
+  /* === TIPS === */
+  .tips-list { list-style: none; }
+  .tips-list li {
+    background: #16213e;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #b0bec5;
+    border-left: 3px solid #e94560;
+  }
+  .tips-list li strong { color: #ffffff; }
+  .tips-list li.green-tip { border-left-color: #66bb6a; }
+  .tips-list li.blue-tip { border-left-color: #4fc3f7; }
+  .tips-list li.orange-tip { border-left-color: #ffa726; }
+
+  /* === LEGEND === */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #8892b0;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  @media (max-width: 700px) {
+    .summary-cards { grid-template-columns: 1fr; }
+    .time-slot { grid-template-columns: 90px 1fr; }
+    .time-slot .duration { display: none; }
+    .hero h1 { font-size: 24px; }
+  }
+
+    </style><style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  /* === HERO === */
+  .hero {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 50%, #1a1a2e 100%);
+    padding: 48px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid #2a2a4a;
+  }
+  .hero h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .hero .subtitle {
+    font-size: 15px;
+    color: #8892b0;
+  }
+  .hero .date-range {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 20px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    font-size: 14px;
+    color: #a8b2d1;
+  }
+
+  /* === CONTAINER === */
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 24px; }
+
+  /* === SECTION === */
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding-left: 14px;
+    border-left: 4px solid #e94560;
+  }
+  .section-title.blue { border-color: #4fc3f7; }
+  .section-title.orange { border-color: #ffa726; }
+  .section-title.green { border-color: #66bb6a; }
+  .section-title.purple { border-color: #ab47bc; }
+
+  /* === WORKLOAD SUMMARY CARDS === */
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .summary-card {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-align: center;
+    border: 1px solid #2a2a4a;
+    transition: transform 0.2s;
+  }
+  .summary-card:hover { transform: translateY(-3px); }
+  .summary-card .subject-icon { font-size: 36px; margin-bottom: 8px; }
+  .summary-card .subject-name { font-size: 18px; font-weight: bold; margin-bottom: 6px; }
+  .summary-card .total-hours { font-size: 32px; font-weight: bold; }
+  .summary-card .total-hours .unit { font-size: 16px; font-weight: normal; }
+  .summary-card .task-count { font-size: 13px; color: #8892b0; margin-top: 4px; }
+  .summary-card.chinese .subject-name { color: #4fc3f7; }
+  .summary-card.chinese .total-hours { color: #4fc3f7; }
+  .summary-card.math .subject-name { color: #ffa726; }
+  .summary-card.math .total-hours { color: #ffa726; }
+  .summary-card.english .subject-name { color: #66bb6a; }
+  .summary-card.english .total-hours { color: #66bb6a; }
+
+  .grand-total {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 1px solid #e94560;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .grand-total .label { font-size: 14px; color: #8892b0; }
+  .grand-total .value { font-size: 36px; font-weight: bold; color: #e94560; }
+  .grand-total .value .unit { font-size: 16px; }
+  .grand-total .daily-avg { font-size: 14px; color: #a8b2d1; margin-top: 4px; }
+
+  .alert-box {
+    background: rgba(255, 87, 34, 0.1);
+    border: 1px solid rgba(255, 87, 34, 0.3);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .alert-box .alert-title {
+    color: #ff7043;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .alert-box .alert-text { font-size: 14px; color: #b0bec5; }
+  .alert-box.green { background: rgba(102,187,106,0.1); border-color: rgba(102,187,106,0.3); }
+  .alert-box.green .alert-title { color: #66bb6a; }
+
+  /* === TABLES === */
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  .task-table th {
+    background: #16213e;
+    color: #a8b2d1;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #2a2a4a;
+    white-space: nowrap;
+  }
+  .task-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #1e2a3a;
+    color: #c0c8d8;
+  }
+  .task-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .task-table .task-name { color: #e0e0e0; font-weight: 500; }
+  .task-table .hours { color: #ffa726; font-weight: bold; text-align: center; }
+  .task-table .freq { color: #8892b0; }
+  .priority-high { color: #ef5350 !important; }
+  .priority-mid { color: #ffa726 !important; }
+  .priority-low { color: #66bb6a !important; }
+
+  .subject-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    margin-top: 24px;
+  }
+  .subject-header .badge { font-size: 24px; }
+  .subject-header .name { font-size: 18px; font-weight: bold; }
+  .subject-header.chinese .name { color: #4fc3f7; }
+  .subject-header.math .name { color: #ffa726; }
+  .subject-header.english .name { color: #66bb6a; }
+  .subject-header .subtotal { margin-left: auto; font-size: 14px; color: #8892b0; }
+  .subject-header .subtotal span { font-weight: bold; }
+
+  /* === PHASE TIMELINE === */
+  .phase-card {
+    background: #16213e;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border-left: 4px solid #4fc3f7;
+  }
+  .phase-card.p2 { border-left-color: #ffa726; }
+  .phase-card.p3 { border-left-color: #66bb6a; }
+  .phase-card.p4 { border-left-color: #ab47bc; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .phase-tag {
+    padding: 3px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .phase-tag.p1 { background: #4fc3f7; }
+  .phase-tag.p2 { background: #ffa726; }
+  .phase-tag.p3 { background: #66bb6a; }
+  .phase-tag.p4 { background: #ab47bc; }
+  .phase-title { font-size: 17px; color: #ffffff; font-weight: bold; }
+  .phase-dates { font-size: 13px; color: #8892b0; margin-left: auto; }
+  .phase-goals { font-size: 14px; color: #b0bec5; }
+  .phase-goals li { margin-bottom: 4px; margin-left: 20px; }
+
+  /* === DAILY SCHEDULE === */
+  .schedule-day {
+    background: #16213e;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .schedule-day-header {
+    padding: 12px 20px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #fff;
+  }
+  .schedule-day-header.type-class { background: rgba(129,140,248,0.08); }
+  .schedule-day-header.type-normal { background: linear-gradient(90deg, #1565c0, #0288d1); }
+  .schedule-day-header.type-light { background: linear-gradient(90deg, #2e7d32, #66bb6a); }
+
+  .time-slot {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    gap: 0;
+    border-bottom: 1px solid #1e2a3a;
+  }
+  .time-slot:last-child { border-bottom: none; }
+  .time-slot .time {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #8892b0;
+    border-right: 1px solid #1e2a3a;
+    font-family: monospace;
+  }
+  .time-slot .activity {
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #e0e0e0;
+  }
+  .time-slot .activity .tag {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin-right: 6px;
+    font-weight: bold;
+  }
+  .tag-chinese { background: rgba(79,195,247,0.2); color: #4fc3f7; }
+  .tag-math { background: rgba(255,167,38,0.2); color: #ffa726; }
+  .tag-english { background: rgba(102,187,106,0.2); color: #66bb6a; }
+  .tag-rest { background: rgba(176,190,197,0.2); color: #b0bec5; }
+  .tag-other { background: rgba(239,83,80,0.2); color: #ef5350; }
+  .time-slot .duration {
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #8892b0;
+    text-align: right;
+  }
+
+  /* === TIPS === */
+  .tips-list { list-style: none; }
+  .tips-list li {
+    background: #16213e;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #b0bec5;
+    border-left: 3px solid #e94560;
+  }
+  .tips-list li strong { color: #ffffff; }
+  .tips-list li.green-tip { border-left-color: #66bb6a; }
+  .tips-list li.blue-tip { border-left-color: #4fc3f7; }
+  .tips-list li.orange-tip { border-left-color: #ffa726; }
+
+  /* === LEGEND === */
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #8892b0;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; }
+
+  @media (max-width: 700px) {
+    .summary-cards { grid-template-columns: 1fr; }
+    .time-slot { grid-template-columns: 90px 1fr; }
+    .time-slot .duration { display: none; }
+    .hero h1 { font-size: 24px; }
+  }
+
+    </style>
+
+
+<!-- HERO -->
+<div class="hero">
+  <h1>四升五 暑假学习安排方案</h1>
+  <div class="subtitle">基于暑假计划文档 + 日历手写排期 的任务整理与作息方案</div>
+  <div class="date-range">2026年7月2日 — 8月29日 ｜ 课外班已识别 + 待确认</div>
+</div>
+
+<div class="container">
+
+<!-- ========== 一、已识别的课外班时间安排 ========== -->
+<div class="section">
+  <div class="section-title">一、已识别的课外班时间安排（来自日历手写标注）</div>
+
+  <div class="alert-box">
+    <div class="alert-title">📅 识别说明</div>
+    <div class="alert-text">
+      以下时间安排识别自您提供的日历图片（<b>2026年7月2日 — 8月29日</b>）。
+      "顺安"推测为培训机构名，"8:20-11:30"等为上午课程时段，"13:30-15:30"为下午加课。
+      字迹模糊处标注为「待确认」。
+    </div>
+  </div>
+
+  <!-- 学而思数学课 -->
+  <div class="subject-header" style="margin-top:8px">
+    <span class="badge">📐</span>
+    <span class="name" style="color:#ffa726">学而思数学课（已确认日期）</span>
+  </div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>星期</th>
+        <th>时间</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="task-name">7月2日</td>
+        <td>周四</td>
+        <td class="hours">14:00–15:30</td>
+        <td class="freq">下午 1.5h 课</td>
+      </tr>
+      <tr>
+        <td class="task-name">7月3日</td>
+        <td>周五</td>
+        <td class="hours">14:00–15:30 + 15:30–17:00 课学</td>
+        <td class="freq">下午上课 + 课后练习</td>
+      </tr>
+      <tr>
+        <td class="task-name">7月10日</td>
+        <td>周五</td>
+        <td class="hours">类似 7/3 时间（待确认）</td>
+        <td class="freq">上课 + 课学</td>
+      </tr>
+      <tr>
+        <td class="task-name">7月17日</td>
+        <td>周五</td>
+        <td class="hours">13:30 + 课学（待确认）</td>
+        <td class="freq">下午课 + 课学</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 9:00 语文班 -->
+  <div class="subject-header">
+    <span class="badge">📖</span>
+    <span class="name" style="color:#4fc3f7">每日 9:00 语文班（豆神）</span>
+  </div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th>时间</th>
+        <th>内容</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="task-name">7月13日 — 7月18日</td>
+        <td class="hours">9:00</td>
+        <td>语文（豆神）</td>
+        <td class="freq">连续 6 天早晨 9 点</td>
+      </tr>
+      <tr>
+        <td class="task-name">7月20日 — 7月25日</td>
+        <td class="hours">9:00</td>
+        <td>语文（豆神）</td>
+        <td class="freq">连续 6 天早晨 9 点</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 8月每天上午课程 -->
+  <div class="subject-header">
+    <span class="badge">🏊</span>
+    <span class="name" style="color:#66bb6a">8月密集排期（上午 8:20-11:30）</span>
+  </div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>日期范围</th>
+        <th>上午</th>
+        <th>下午（特殊）</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="task-name">8月2日 — 8月7日</td>
+        <td class="hours">8:20–11:30</td>
+        <td>—</td>
+        <td class="freq">一周密集排期（英/数轮替）</td>
+      </tr>
+      <tr>
+        <td class="task-name">8月8日（周六）</td>
+        <td class="hours">8:20–10:30</td>
+        <td class="hours">12:30–15:30</td>
+        <td class="freq">素雅候助馆 + 黄沙（疑似游泳）</td>
+      </tr>
+      <tr>
+        <td class="task-name">8月9日 — 8月14日</td>
+        <td class="hours">8:20/8:30–11:30</td>
+        <td>—</td>
+        <td class="freq">一周密集排期</td>
+      </tr>
+      <tr>
+        <td class="task-name">8月15日（周五）</td>
+        <td class="hours">8:30–11:30</td>
+        <td class="hours">13:30–15:30</td>
+        <td class="freq">下午加课</td>
+      </tr>
+      <tr>
+        <td class="task-name">8月16日 — 8月22日</td>
+        <td class="hours">8:20–11:30 / 8:30–11:30</td>
+        <td>—</td>
+        <td class="freq">一周密集排期</td>
+      </tr>
+      <tr>
+        <td class="task-name">8月23日 — 8月29日</td>
+        <td class="hours">8:20–11:30</td>
+        <td class="hours">8/27 13:30–15:30</td>
+        <td class="freq">8/27 顺安数学（中元节附近）</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box green">
+    <div class="alert-title">🔍 关键时间模式识别</div>
+    <div class="alert-text">
+      <ol style="margin-left:20px;font-size:13px;line-height:1.9;color:#b0bec5">
+        <li><b>早晨 9:00 语文班</b>：7/13-18、7/20-25（豆神语文课，集中在7月中下旬）</li>
+        <li><b>下午 14:00-15:30 数学班</b>：7月初的周五（学而思）</li>
+        <li><b>8月每天上午 8:20-11:30 都有安排</b>：8/2-29 持续一个月（应是暑期主课）</li>
+        <li><b>8/27 下午 13:30-15:30 加课</b>：顺安数学</li>
+        <li><b>8/8（周六）特殊</b>：8:20-10:30 素雅候助馆 + 12:30-15:30 黄沙</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 二、总工作量概览 ========== -->
+<div class="section">
+  <div class="section-title blue">二、总工作量概览</div>
+
+  <div class="summary-cards">
+    <div class="summary-card chinese">
+      <div class="subject-icon">📖</div>
+      <div class="subject-name">语文</div>
+      <div class="total-hours">~138<span class="unit">小时</span></div>
+      <div class="task-count">7 项任务</div>
+    </div>
+    <div class="summary-card math">
+      <div class="subject-icon">📐</div>
+      <div class="subject-name">数学</div>
+      <div class="total-hours">~110<span class="unit">小时</span></div>
+      <div class="task-count">3 项任务</div>
+    </div>
+    <div class="summary-card english">
+      <div class="subject-icon">🔤</div>
+      <div class="subject-name">英语</div>
+      <div class="total-hours">~125<span class="unit">小时</span></div>
+      <div class="task-count">4 项任务</div>
+    </div>
+  </div>
+
+  <div class="grand-total">
+    <div class="label">三科暑假总工作量</div>
+    <div class="value">~373<span class="unit"> 小时</span></div>
+    <div class="daily-avg">日均约 6.5 小时（含上课时间）｜ 纯自主学习日均约 4-5 小时</div>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-title">⚠️ 重要发现：8月课业压力显著高于7月</div>
+    <div class="alert-text">
+      8月2日—29日连续 <b>28天</b> 都有上午 8:20-11:30 课程，相当于每天 3.2h 的密集排期。
+      8月是整个暑假课业任务最重的阶段，建议：
+      <ul style="margin-left:20px;margin-top:6px;">
+        <li>8月每日 <b>只保留 2-3 项核心任务</b>（如英语单词、阅读训练、读书）</li>
+        <li>下午时间 <b>集中处理作业 + 预习 + 思维导图</b></li>
+        <li>数学预习尽量 <b>7 月内完成大部分</b>，8 月只做查漏补缺</li>
+        <li>作文集中安排在 <b>8月中下旬和周末</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 三、各科任务清单 ========== -->
+<div class="section">
+  <div class="section-title orange">三、各科任务清单与工作量明细</div>
+
+  <!-- 语文 -->
+  <div class="subject-header chinese">
+    <span class="badge">📖</span>
+    <span class="name">语文</span>
+    <span class="subtotal">小计：<span style="color:#4fc3f7">~138 小时</span></span>
+  </div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th style="width:30px">#</th>
+        <th>任务</th>
+        <th>单次工作量</th>
+        <th>频次 / 总量</th>
+        <th style="text-align:center">小计</th>
+        <th>优先级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="task-name">练字课<br><span style="font-size:12px;color:#8892b0">7.6–7.17，下午14:30–16:00</span></td>
+        <td>1.5h上课 + 1h练习</td>
+        <td class="freq">12 次（固定）</td>
+        <td class="hours">30h</td>
+        <td class="priority-high">高（已开课）</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="task-name">木头马阅读训练<br><span style="font-size:12px;color:#8892b0">新购阅读资料，每日训练</span></td>
+        <td>≥0.5h/天</td>
+        <td class="freq">约 50 天</td>
+        <td class="hours">25h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="task-name">课外读书 + 思维导图<br><span style="font-size:12px;color:#8892b0">按学校要求读完指定本数</span></td>
+        <td>~1h/天（含思维导图）</td>
+        <td class="freq">约 40 天</td>
+        <td class="hours">40h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="task-name">背诵课内内容</td>
+        <td>~0.3h/天</td>
+        <td class="freq">约 40 天</td>
+        <td class="hours">12h</td>
+        <td class="priority-mid">中</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="task-name">写作文<br><span style="font-size:12px;color:#8892b0">暑假共写 2–4 篇</span></td>
+        <td>~1.5h/篇</td>
+        <td class="freq">3 篇（取中间值）</td>
+        <td class="hours">4.5h</td>
+        <td class="priority-mid">中</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="task-name">豆神课程<br><span style="font-size:12px;color:#8892b0">已确认 7/13-18, 7/20-25 每天 9:00</span></td>
+        <td>~2h/次</td>
+        <td class="freq">12 次</td>
+        <td class="hours">24h</td>
+        <td class="priority-mid">中</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="task-name">非遗实践</td>
+        <td>~3h/次</td>
+        <td class="freq">1–2 次</td>
+        <td class="hours">6h</td>
+        <td class="priority-low">低（灵活安排）</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 数学 -->
+  <div class="subject-header math">
+    <span class="badge">📐</span>
+    <span class="name">数学</span>
+    <span class="subtotal">小计：<span style="color:#ffa726">~110 小时</span></span>
+  </div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th style="width:30px">#</th>
+        <th>任务</th>
+        <th>单次工作量</th>
+        <th>频次 / 总量</th>
+        <th style="text-align:center">小计</th>
+        <th>优先级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="task-name">学而思数学课 + 课后练习<br><span style="font-size:12px;color:#8892b0">7月初周五下午 14:00-15:30</span></td>
+        <td>~2h上课 + 2.5h练习</td>
+        <td class="freq">约 4 次课 + 8 月每天 8:20-11:30</td>
+        <td class="hours">100+h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="task-name">五上数学预习<br><span style="font-size:12px;color:#8892b0">约 8 个单元</span></td>
+        <td>~2h/单元</td>
+        <td class="freq">8 单元</td>
+        <td class="hours">16h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="task-name">实验班练习<br><span style="font-size:12px;color:#8892b0">每单元预习后做对应练习</span></td>
+        <td>1–2h/单元</td>
+        <td class="freq">8 单元</td>
+        <td class="hours">12–16h</td>
+        <td class="priority-mid">中</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 英语 -->
+  <div class="subject-header english">
+    <span class="badge">🔤</span>
+    <span class="name">英语</span>
+    <span class="subtotal">小计：<span style="color:#66bb6a">~125 小时</span></span>
+  </div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th style="width:30px">#</th>
+        <th>任务</th>
+        <th>单次工作量</th>
+        <th>频次 / 总量</th>
+        <th style="text-align:center">小计</th>
+        <th>优先级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="task-name">五上单词记忆<br><span style="font-size:12px;color:#8892b0">外研版五年级上册</span></td>
+        <td>0.5h/次</td>
+        <td class="freq">约 50 天</td>
+        <td class="hours">25h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="task-name">课文朗读 + 背诵<br><span style="font-size:12px;color:#8892b0">配合视频动画学习</span></td>
+        <td>0.5h/次</td>
+        <td class="freq">约 50 天</td>
+        <td class="hours">25h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="task-name">英语阅读材料<br><span style="font-size:12px;color:#8892b0">专门阅读材料</span></td>
+        <td>≥0.5h/天</td>
+        <td class="freq">约 50 天</td>
+        <td class="hours">25h</td>
+        <td class="priority-high">高</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="task-name">课外英语学习班 + 作业<br><span style="font-size:12px;color:#8892b0">8月每天上午 8:20-11:30</span></td>
+        <td>~3.2h/天 + 作业</td>
+        <td class="freq">约 28 天</td>
+        <td class="hours">50+h</td>
+        <td class="priority-high">高</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#ef5350"></span>高优先级：必须完成</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#ffa726"></span>中优先级：尽量完成</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#66bb6a"></span>低优先级：灵活安排</div>
+  </div>
+</div>
+
+<!-- ========== 四、分阶段安排 ========== -->
+<div class="section">
+  <div class="section-title green">四、分阶段安排（基于已识别时间）</div>
+
+  <div class="phase-card">
+    <div class="phase-header">
+      <span class="phase-tag p1">阶段一</span>
+      <span class="phase-title">7月启动期（学而思+练字+豆神语文）</span>
+      <span class="phase-dates">7月2日 — 7月17日 ｜ 16天</span>
+    </div>
+    <ul class="phase-goals">
+      <li><b>7/2（周四）</b>：学而思数学课 14:00-15:30 第一次</li>
+      <li><b>7/3、7/10、7/17（周五）</b>：学而思数学课 14:00-17:00</li>
+      <li><b>7/6-7/17（12天）</b>：每日练字课 14:30-16:00 + 1h 练习</li>
+      <li><b>7/13-7/18、7/20-7/25</b>：每日 9:00 豆神语文班</li>
+      <li><b>英语</b>：建立单词+课文每日习惯（早晨/晚上）</li>
+      <li><b>数学</b>：学而思练习为主，开始五上预习 1-2 个单元</li>
+      <li><b>语文</b>：木头马阅读训练 + 课外读书 + 思维导图</li>
+      <li><b>本阶段日均学习</b>：约 6-7h（含上课 2-3h）</li>
+    </ul>
+  </div>
+
+  <div class="phase-card p2">
+    <div class="phase-header">
+      <span class="phase-tag p2">阶段二</span>
+      <span class="phase-title">7月主力期（豆神+学而思收尾）</span>
+      <span class="phase-dates">7月18日 — 7月31日 ｜ 14天</span>
+    </div>
+    <ul class="phase-goals">
+      <li><b>7/20-7/25</b>：豆神语文班继续 9:00（6天）</li>
+      <li><b>数学</b>：完成五上预习 4-5 个单元 + 配套实验班练习</li>
+      <li><b>英语</b>：单词+课文+阅读 每日三件事不可断</li>
+      <li><b>语文</b>：继续豆神课程 + 读书思维导图 + 写 1 篇作文</li>
+      <li><b>本阶段日均学习</b>：约 5-6h</li>
+    </ul>
+  </div>
+
+  <div class="phase-card p3">
+    <div class="phase-header">
+      <span class="phase-tag p3">阶段三</span>
+      <span class="phase-title">8月密集期（每天上午 8:20-11:30 课程）</span>
+      <span class="phase-dates">8月2日 — 8月29日 ｜ 28天</span>
+    </div>
+    <ul class="phase-goals">
+      <li><b>每天上午</b>：8:20-11:30 课外班课程（英/数轮替，含 8/8 素雅+黄沙，8/15、8/27 下午加课）</li>
+      <li><b>数学</b>：完成剩余 3-4 单元预习 + 全部实验班练习 + 学而思作业</li>
+      <li><b>英语</b>：五上单词和课文过完一轮，开始二轮复习</li>
+      <li><b>语文</b>：完成 2-3 篇作文，读书思维导图收尾</li>
+      <li><b>非遗实践</b>：8 月中下旬安排 1-2 次</li>
+      <li><b>本阶段日均学习</b>：上午 3.2h 课外班 + 下午 3-4h 自主 = <b>6-7.5h</b></li>
+    </ul>
+  </div>
+
+  <div class="phase-card p4">
+    <div class="phase-header">
+      <span class="phase-tag p4">阶段四</span>
+      <span class="phase-title">收尾调整期</span>
+      <span class="phase-dates">8月30日 — 8月31日 ｜ 2天</span>
+    </div>
+    <ul class="phase-goals">
+      <li><b>查漏补缺</b>：回顾各科未完成任务，集中补齐</li>
+      <li><b>英语</b>：五上内容全面复习，确保单词和课文熟练</li>
+      <li><b>数学</b>：预习内容回顾，重点单元再做练习</li>
+      <li><b>语文</b>：读书思维导图完善，背诵内容过关</li>
+      <li><b>调整作息</b>：逐步调整到上学作息</li>
+      <li><b>本阶段日均学习</b>：约 4-5h（轻量收尾）</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 五、每日作息安排 ========== -->
+<div class="section">
+  <div class="section-title purple">五、每日作息安排模板</div>
+  <p style="color:#8892b0;font-size:14px;margin-bottom:20px;">
+    以下提供三种日类型的作息模板，根据当天是否有课外班灵活切换。
+  </p>
+
+  <!-- 类型A：8月密集日 -->
+  <div class="schedule-day">
+    <div class="schedule-day-header type-class">🔴 类型 A：8月密集日（8/2-8/29，每天上午 8:20-11:30 课程）</div>
+    <div class="time-slot">
+      <div class="time">07:00–07:30</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语单词记忆（五上）</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">07:30–08:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>早餐 + 出门准备</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">08:20–11:30</div>
+      <div class="activity"><span class="tag tag-other">课</span>🧑‍🏫 上午课外班（英/数轮替）</div>
+      <div class="duration">3.2h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">11:30–12:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>午餐前放松</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">12:00–13:30</div>
+      <div class="activity"><span class="tag tag-rest">休</span>午餐 + 午休</div>
+      <div class="duration">1.5h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">13:30–14:00</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语课文朗读/背诵</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">14:00–15:00</div>
+      <div class="activity"><span class="tag tag-math">数</span>数学作业/预习（课外班日减量）</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">15:00–16:00</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>木头马阅读训练</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">16:00–17:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>运动 / 自由活动 ⚽🏀</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">17:00–18:00</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语阅读材料</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">18:00–19:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>晚餐 + 休息</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">19:00–20:00</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>课外读书 + 思维导图</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">20:00–20:30</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>背诵课内内容 / 作文（每周1次）</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">20:30–21:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>自由阅读 / 睡前准备</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">21:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>🌙 就寝</div>
+      <div class="duration">—</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#8892b0;margin-bottom:24px;">
+    📊 本类型学习时长：约 <b style="color:#e94560">7h</b>（含上午 3.2h 课程 + 下午 3.8h 自主）
+  </p>
+
+  <!-- 类型B：7月无课日（自主学习日） -->
+  <div class="schedule-day">
+    <div class="schedule-day-header type-normal">🔵 类型 B：7月自主日（无课外班）</div>
+    <div class="time-slot">
+      <div class="time">08:00–08:30</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语单词记忆（五上）</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">08:30–09:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>早餐 + 休息</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">09:00–09:30</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语课文朗读/背诵</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">09:30–10:30</div>
+      <div class="activity"><span class="tag tag-math">数</span>数学五上预习（1个单元/2天节奏）</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">10:30–10:45</div>
+      <div class="activity"><span class="tag tag-rest">休</span>休息活动</div>
+      <div class="duration">15min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">10:45–11:30</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>木头马阅读训练</div>
+      <div class="duration">45min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">11:30–12:00</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>背诵课内内容</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">12:00–14:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>午餐 + 午休</div>
+      <div class="duration">2h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">14:00–14:30</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语阅读材料</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">14:30–15:30</div>
+      <div class="activity"><span class="tag tag-math">数</span>数学实验班练习 / 预习练习</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">15:30–16:30</div>
+      <div class="activity"><span class="tag tag-rest">休</span>运动 / 户外活动 ⚽🏀</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">16:30–17:30</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>课外读书 + 思维导图</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">17:30–19:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>晚餐 + 休息</div>
+      <div class="duration">1.5h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">19:00–19:45</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语课外作业 / 复习</div>
+      <div class="duration">45min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">19:45–20:30</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>作文写作（每周1篇）</div>
+      <div class="duration">45min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">20:30–21:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>自由阅读 / 睡前准备</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">21:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>🌙 就寝</div>
+      <div class="duration">—</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#8892b0;margin-bottom:24px;">
+    📊 本类型学习时长：约 <b style="color:#0288d1">5.5h</b>（纯自主学习）｜ 运动休息 2.5h
+  </p>
+
+  <!-- 类型C：7月豆神语文日 + 练字课日 -->
+  <div class="schedule-day">
+    <div class="schedule-day-header type-class">🔴 类型 C：7月豆神+练字双课日（7/13-7/17 上午豆神+下午练字）</div>
+    <div class="time-slot">
+      <div class="time">07:30–08:00</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语单词记忆（五上）</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">08:00–08:30</div>
+      <div class="activity"><span class="tag tag-rest">休</span>早餐 + 出门准备</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">09:00–11:00</div>
+      <div class="activity"><span class="tag tag-chinese">课</span>📚 豆神语文班（9:00 开始）</div>
+      <div class="duration">2h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">11:00–12:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>午餐前自由 / 回家</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">12:00–13:30</div>
+      <div class="activity"><span class="tag tag-rest">休</span>午餐 + 短暂休息</div>
+      <div class="duration">1.5h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">13:30–14:00</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语课文朗读（出门前快速过）</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">14:00–14:30</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>背诵课内内容</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">14:30–16:00</div>
+      <div class="activity"><span class="tag tag-other">课</span>✍️ 练字课（7.6-7.17 固定）</div>
+      <div class="duration">1.5h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">16:00–17:00</div>
+      <div class="activity"><span class="tag tag-other">课</span>✍️ 练字课后练习</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">17:00–18:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>运动 / 自由活动 ⚽</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">18:00–19:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>晚餐 + 休息</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">19:00–20:00</div>
+      <div class="activity"><span class="tag tag-chinese">语</span>课外读书 + 思维导图（豆神日延后）</div>
+      <div class="duration">1h</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">20:00–20:30</div>
+      <div class="activity"><span class="tag tag-english">英</span>英语阅读材料</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">20:30–21:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>自由阅读 / 睡前准备</div>
+      <div class="duration">30min</div>
+    </div>
+    <div class="time-slot">
+      <div class="time">21:00</div>
+      <div class="activity"><span class="tag tag-rest">休</span>🌙 就寝</div>
+      <div class="duration">—</div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:#8892b0;margin-bottom:24px;">
+    📊 本类型学习时长：约 <b style="color:#e94560">5h</b>（含豆神 2h + 练字 2.5h）｜ 自主学习约 1h
+  </p>
+</div>
+
+<!-- ========== 六、关键建议 ========== -->
+<div class="section">
+  <div class="section-title">六、关键建议</div>
+  <ul class="tips-list">
+    <li class="blue-tip">
+      <strong>英语每日三件事不可断：</strong>单词记忆(30min) + 课文朗读背诵(30min) + 阅读材料(30min)。
+      这三项是暑假英语的基础线，即使在课外班日也要保证至少完成前两项。
+    </li>
+    <li class="orange-tip">
+      <strong>7月是数学预习黄金期。</strong>8月每天上午被课外班占满 3.2h，
+      数学预习要 <b>在 7 月内完成 5-6 个单元</b>（8 单元的 60-75%），8 月只完成剩余 + 实验班。
+    </li>
+    <li class="orange-tip">
+      <strong>8月策略：极简原则。</strong>每天只保留 2-3 项核心任务（英语单词、阅读、读书思维导图），
+      其他弹性任务在 7 月内完成。8 月课业 + 课外班叠加已经超负荷，不要再加码。
+    </li>
+    <li class="blue-tip">
+      <strong>豆神语文班 7/13-18 和 7/20-25 每天 9:00 准时开始。</strong>7/13-7/17 同时还有下午练字课，
+      这 5 天强度最高，注意保证前晚 21:00 就寝，第二天精力充沛。
+    </li>
+    <li class="blue-tip">
+      <strong>学而思数学课（7/3、7/10、7/17 周五）</b>：14:00-15:30 上课 + 15:30-17:00 课学（连排），
+      出门前确保 14:00 前到达。课程 + 课学 3h 内完成，回 家后晚上做作业。
+    </li>
+    <li class="green-tip">
+      <strong>8/8（周六）特殊日：</strong>上午 8:20-10:30 素雅候助馆 + 下午 12:30-15:30 黄沙（疑似游泳）。
+      这天建议：早上 7:00 前完成英语单词，10:30-12:30 午餐午休，15:30 后只做轻量任务。
+    </li>
+    <li class="green-tip">
+      <strong>保证每天 1 小时运动。</strong>8 月课业重，运动是保持精力的关键。
+      建议下午 16:00-17:00 户外活动，跳绳、打球、游泳均可。
+    </li>
+    <li>
+      <strong>非遗实践安排在 8 月中下旬。</strong>如 8/19-8/22 周末某个下午，
+      既完成实践要求又转换心情。
+    </li>
+    <li>
+      <strong>8/30-31 收尾调整。</strong>上午无课，集中完成未竟任务（读书思维导图、作文收尾、单词复习），
+      调整作息到上学模式（21:00 就寝，6:30 起床）。
+    </li>
+  </ul>
+</div>
+
+<!-- ========== 七、待确认事项 ========== -->
+<div class="section">
+  <div class="section-title purple">七、待确认事项（建议尽快核实）</div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th style="width:30px">#</th>
+        <th>待确认内容</th>
+        <th>影响</th>
+        <th>建议</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="task-name">7/10、7/17 学而思课的确切时间</td>
+        <td class="freq">影响 7 月周五的排期</td>
+        <td>假设与 7/3 相同（14:00-15:30 + 15:30-17:00 课学）</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="task-name">8/2-8/29 每天上午 8:20-11:30 的具体内容（英语 vs 数学轮替规律）</td>
+        <td class="freq">影响 8 月每日类型判断</td>
+        <td>需要老师课表，目前按"英/数轮替"安排</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td class="task-name">"顺安"机构全名 + 课程内容</td>
+        <td class="freq">8/27 顺安数学下午加课</td>
+        <td>确认是数学课还是其他</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="task-name">"素雅候助馆"、"黄沙"是什么</td>
+        <td class="freq">8/8 特殊安排日</td>
+        <td>疑似游泳/体能训练？</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="task-name">7/26-7/31、7/18-7/19 是否也有课外班</td>
+        <td class="freq">影响阶段二的排期</td>
+        <td>日历上未明显标注，暂按自主日处理</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="task-name">学校要求的读书书目和本数</td>
+        <td class="freq">影响读书+思维导图进度</td>
+        <td>确认后制定分周读书计划</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="task-name">非遗实践具体要求和安排</td>
+        <td class="freq">影响 8 月中下旬排期</td>
+        <td>建议安排在 8/19-8/22 周末</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="text-align:center;padding:32px 0 48px;color: #e8ecf4;font-size:13px;">
+  暑假学习安排方案 ｜ 更新于 2026年7月10日 21:18（基于日历手写排期）
+</div>
+
+</div>
+<script src="{{ site.baseurl }}/assets/nav.js" data-root="../../" data-theme="life" data-title="暑假学习安排方案"></script>

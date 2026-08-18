@@ -1,0 +1,123 @@
+/* =========================================================
+   通用深色修复：覆盖 work/study/life/game 主题页面残留的白底卡片
+   城市主题（theme-city）由 city-override.css 单独处理，避免冲突。
+   ========================================================= */
+
+/* 常见白底卡片/盒子统一翻暗 */
+body .card:not(.white-flash),
+body .box,
+body .info-box,
+body .tip-box,
+body .warning-box,
+body .note-box,
+body .alert-box,
+body .highlight-box,
+body .summary-box,
+body .prerequisite-box,
+body .advantage-box,
+body .advantage-item,
+body .advantage-grid > *,
+body .example-box,
+body .card-section,
+body .tool-card,
+body .agent-card,
+body .category-card,
+body .category-card-body,
+body .result-item,
+body .skill-module,
+body .step-item,
+body .step-card,
+body .flow-step,
+body .process-card,
+body .process-step,
+body .phase,
+body .stat-box,
+body .course-card,
+body .book-card,
+body .main-card,
+body .main-card-body,
+body .feature-box,
+body .method-box,
+body .output-box,
+body .prompt-box,
+body .case-box,
+body .check-item,
+body .timeline-item,
+body .quiz-card,
+body .form-card,
+body .login-box,
+body .modal-content {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 文字兜底 */
+body .card h3,
+body .card h4,
+body .card p,
+body .card li,
+body .box h3,
+body .box h4,
+body .box p,
+body .box li,
+body .info-box p,
+body .tip-box p,
+body .warning-box p,
+body .note-box p,
+body .example-box p,
+body .card-section p,
+body .card-section li,
+body .tool-card p,
+body .agent-card p,
+body .category-card p,
+body .result-item p,
+body .skill-module p,
+body .step-item p,
+body .phase p,
+body .phase li,
+body .stat-box .num,
+body .stat-box .lbl {
+  color: #e8ecf4 !important;
+}
+
+/* 表格兜底 */
+body table th {
+  background: rgba(56, 189, 248, 0.2) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+body table td {
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+body table tr:hover td,
+body table tr:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 内联浅色背景兜底 */
+body [style*="background:#fff" i],
+body [style*="background: #fff" i],
+body [style*="background:white" i],
+body [style*="background: white" i],
+body [style*="background:#f8f9fc" i],
+body [style*="background:#fafbff" i],
+body [style*="background:#f5f7ff" i],
+body [style*="background:#f0f1ff" i],
+body [style*="background:#f0f2ff" i],
+body [style*="background:#f9fafb" i],
+body [style*="background:#f0fdf4" i],
+body [style*="background:#fffbeb" i],
+body [style*="background:#eff6ff" i],
+body [style*="background:#f5f3ff" i] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #e8ecf4 !important;
+}
+
+/* 保留需要白色的元素 */
+body .white-flash,
+body [class*="white-flash"] {
+  background: white !important;
+}

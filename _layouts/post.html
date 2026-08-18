@@ -1,0 +1,39 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} · {{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+  <style>
+    .blog-back{position:fixed;left:16px;top:14px;z-index:9999;
+      padding:7px 13px;border-radius:999px;font-size:13px;
+      background:rgba(13,17,23,.9);color:var(--ice);
+      border:1px solid var(--ice-dim);text-decoration:none;backdrop-filter:blur(6px)}
+    .blog-back:hover{background:rgba(125,211,252,.12);text-decoration:none}
+    .post-wrap{max-width:860px;margin:0 auto;padding:64px 16px 80px}
+    .post-meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px;color:var(--muted);margin-bottom:6px}
+    .post-title{font-size:27px;line-height:1.3;margin:6px 0 10px;color:var(--text)}
+    .cat{border:1px solid var(--ice-dim);color:var(--ice);border-radius:999px;padding:1px 9px;font-size:12px}
+    .post-excerpt{color:var(--muted);margin:0 0 18px}
+  </style>
+</head>
+<body>
+  <a class="blog-back" href="{{ site.baseurl }}/">← {{ site.title }} 目录</a>
+  <div class="post-wrap">
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y-%m-%d" }}</time>
+      <span class="cat">{{ page.category }}</span>
+      {% if page.tags %}{% for t in page.tags %}<span style="color:var(--ice);font-size:12.5px">#{{ t }}</span>{% endfor %}{% endif %}
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.excerpt %}<p class="post-excerpt">{{ page.excerpt }}</p>{% endif %}
+    {{ content }}
+    {% include giscus.html %}
+  </div>
+</body>
+</html>

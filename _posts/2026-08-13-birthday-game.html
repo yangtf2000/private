@@ -1,0 +1,459 @@
+---
+layout: post
+title: "致我最爱的她 · 生日快乐 🎂"
+date: 2026-08-13
+category: kids
+tags: [游戏, 休闲]
+title: "点一点下面的按钮，把祝福像雨一样撒下来 🎉"
+---
+
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/theme.css"><link rel="stylesheet" href="{{ site.baseurl }}/assets/force-dark.css">
+<style>
+  :root{
+    --rose:#FF6FA5;
+    --rose-deep:#E84C8A;
+    --gold:#F4B740;
+    --gold-soft:#FFD56B;
+    --ink:#5A2A4A;
+    --glass:rgba(255,255,255,0.55);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;margin:0;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,system-ui,sans-serif;
+    color:var(--ink);
+    overflow:hidden;
+    background:linear-gradient(135deg,#FFE3EC 0%,#FFD9C0 38%,#F3D8FF 70%,#E7E0FF 100%);
+    position:relative;
+  }
+  /* 动态渐变光晕背景 */
+  .aura{
+    position:fixed;inset:-20%;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(40% 40% at 20% 25%, rgba(255,111,165,.35), transparent 60%),
+      radial-gradient(45% 45% at 80% 20%, rgba(244,183,64,.30), transparent 60%),
+      radial-gradient(50% 50% at 50% 85%, rgba(155,120,255,.28), transparent 60%);
+    filter:blur(8px);
+    animation:drift 16s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    0%{transform:translate3d(-2%,-1%,0) scale(1.02);}
+    100%{transform:translate3d(3%,2%,0) scale(1.08);}
+  }
+  #fx{position:fixed;inset:0;z-index:1;pointer-events:none;}
+
+  .stage{
+    position:relative;z-index:2;height:100%;
+    display:flex;flex-direction:column;align-items:center;
+    padding:max(18px,env(safe-area-inset-top)) 16px 20px;
+  }
+
+  header{text-align:center;margin-top:2vh;}
+  .kicker{
+    display:inline-block;font-size:13px;letter-spacing:.35em;
+    color:var(--rose-deep);background:rgba(255,255,255,.5);
+    padding:6px 16px;border-radius:999px;backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.7);
+  }
+  h1{
+    margin:.5rem 0 .2rem;font-size:clamp(30px,7vw,58px);line-height:1.1;
+    font-weight:800;
+    background:linear-gradient(90deg,#E84C8A,#F4B740 55%,#B06BFF);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 6px 30px rgba(232,76,138,.18);
+    animation:pulse 3.2s ease-in-out infinite;
+  }
+  @keyframes pulse{50%{transform:scale(1.03);}}
+  .subtitle{margin:0;font-size:clamp(14px,3.4vw,18px);color:#8a577a;font-weight:600;}
+
+  /* 进度 + 连击 */
+  .hud{
+    width:min(560px,92vw);margin-top:auto;margin-bottom:14px;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .meterwrap{
+    background:var(--glass);border:1px solid rgba(255,255,255,.7);
+    border-radius:18px;padding:12px 14px;backdrop-filter:blur(10px);
+    box-shadow:0 10px 30px rgba(180,90,140,.18);
+  }
+  .meter-label{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:13px;font-weight:700;color:#7c4670;margin-bottom:8px;}
+  .meter-label b{font-size:16px;color:var(--rose-deep);}
+  .meter{height:16px;border-radius:999px;background:rgba(255,255,255,.55);
+    overflow:hidden;box-shadow:inset 0 1px 3px rgba(150,80,120,.25);}
+  .meter > i{
+    display:block;height:100%;width:0%;border-radius:999px;
+    background:linear-gradient(90deg,#FF8FB6,#F4B740);
+    transition:width .35s cubic-bezier(.22,1,.36,1);
+    box-shadow:0 0 14px rgba(244,183,64,.6);
+  }
+  .combo{
+    text-align:center;font-weight:800;font-size:15px;color:var(--rose-deep);
+    height:20px;transition:transform .15s ease;
+  }
+  .combo.pop{transform:scale(1.35);}
+
+  /* 发射按钮 */
+  .launchers{
+    width:min(560px,92vw);
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  }
+  .launch{
+    border:none;cursor:pointer;color:var(--ink);
+    background:var(--glass);border:1px solid rgba(255,255,255,.75);
+    border-radius:20px;padding:14px 6px 12px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 10px 24px rgba(180,90,140,.16);
+    transition:transform .12s ease, box-shadow .12s ease;
+    user-select:none;
+  }
+  .launch:active{transform:translateY(3px) scale(.96);
+    box-shadow:0 4px 12px rgba(180,90,140,.2);}
+  .launch .emo{font-size:30px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12));}
+  .launch .nm{font-size:13px;font-weight:700;}
+  .launch .ct{font-size:11px;color:#9a6f8c;font-weight:700;}
+  .launch.flower{--c:#FF6FA5;} .launch.money{--c:#2BB673;}
+  .launch.food{--c:#FF8A3D;} .launch.coin{--c:#E0A100;}
+  .launch .nm{color:var(--c);}
+
+  .hint{margin-top:10px;font-size:12px;color:#9a6f8c;text-align:center;}
+
+  /* 贺卡 */
+  .finale{
+    position:fixed;inset:0;z-index:5;display:none;
+    align-items:center;justify-content:center;padding:20px;
+    background:rgba(90,42,74,.35);backdrop-filter:blur(6px);
+  }
+  .finale.show{display:flex;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
+  .card{
+    width:min(440px,90vw);background:#fff;border-radius:26px;
+    padding:30px 26px 26px;text-align:center;position:relative;
+    box-shadow:0 30px 80px rgba(120,40,90,.4);
+    animation:rise .5s cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes rise{from{transform:translateY(30px) scale(.92);opacity:0;}to{transform:none;opacity:1;}}
+  .card .badge{font-size:46px;line-height:1;}
+  .card h2{margin:10px 0 4px;font-size:26px;color:var(--rose-deep);}
+  .card .to{font-size:14px;color:#9a6f8c;font-weight:700;margin-bottom:14px;}
+  .card p{margin:0 0 10px;font-size:15px;line-height:1.7;color:#5A2A4A;}
+  .card .sign{margin-top:14px;font-size:14px;color:#9a6f8c;font-style:italic;}
+  .replay{
+    margin-top:18px;border:none;cursor:pointer;font-weight:800;font-size:15px;
+    color:#fff;background:linear-gradient(90deg,#FF6FA5,#F4B740);
+    padding:13px 26px;border-radius:999px;box-shadow:0 10px 24px rgba(232,76,138,.35);
+  }
+  .replay:active{transform:scale(.97);}
+</style><style>
+  :root{
+    --rose:#FF6FA5;
+    --rose-deep:#E84C8A;
+    --gold:#F4B740;
+    --gold-soft:#FFD56B;
+    --ink:#5A2A4A;
+    --glass:rgba(255,255,255,0.55);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{height:100%;margin:0;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,system-ui,sans-serif;
+    color:var(--ink);
+    overflow:hidden;
+    background:linear-gradient(135deg,#FFE3EC 0%,#FFD9C0 38%,#F3D8FF 70%,#E7E0FF 100%);
+    position:relative;
+  }
+  /* 动态渐变光晕背景 */
+  .aura{
+    position:fixed;inset:-20%;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(40% 40% at 20% 25%, rgba(255,111,165,.35), transparent 60%),
+      radial-gradient(45% 45% at 80% 20%, rgba(244,183,64,.30), transparent 60%),
+      radial-gradient(50% 50% at 50% 85%, rgba(155,120,255,.28), transparent 60%);
+    filter:blur(8px);
+    animation:drift 16s ease-in-out infinite alternate;
+  }
+  @keyframes drift{
+    0%{transform:translate3d(-2%,-1%,0) scale(1.02);}
+    100%{transform:translate3d(3%,2%,0) scale(1.08);}
+  }
+  #fx{position:fixed;inset:0;z-index:1;pointer-events:none;}
+
+  .stage{
+    position:relative;z-index:2;height:100%;
+    display:flex;flex-direction:column;align-items:center;
+    padding:max(18px,env(safe-area-inset-top)) 16px 20px;
+  }
+
+  header{text-align:center;margin-top:2vh;}
+  .kicker{
+    display:inline-block;font-size:13px;letter-spacing:.35em;
+    color:var(--rose-deep);background:rgba(255,255,255,.5);
+    padding:6px 16px;border-radius:999px;backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.7);
+  }
+  h1{
+    margin:.5rem 0 .2rem;font-size:clamp(30px,7vw,58px);line-height:1.1;
+    font-weight:800;
+    background:linear-gradient(90deg,#E84C8A,#F4B740 55%,#B06BFF);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 6px 30px rgba(232,76,138,.18);
+    animation:pulse 3.2s ease-in-out infinite;
+  }
+  @keyframes pulse{50%{transform:scale(1.03);}}
+  .subtitle{margin:0;font-size:clamp(14px,3.4vw,18px);color:#8a577a;font-weight:600;}
+
+  /* 进度 + 连击 */
+  .hud{
+    width:min(560px,92vw);margin-top:auto;margin-bottom:14px;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .meterwrap{
+    background:var(--glass);border:1px solid rgba(255,255,255,.7);
+    border-radius:18px;padding:12px 14px;backdrop-filter:blur(10px);
+    box-shadow:0 10px 30px rgba(180,90,140,.18);
+  }
+  .meter-label{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:13px;font-weight:700;color:#7c4670;margin-bottom:8px;}
+  .meter-label b{font-size:16px;color:var(--rose-deep);}
+  .meter{height:16px;border-radius:999px;background:rgba(255,255,255,.55);
+    overflow:hidden;box-shadow:inset 0 1px 3px rgba(150,80,120,.25);}
+  .meter > i{
+    display:block;height:100%;width:0%;border-radius:999px;
+    background:linear-gradient(90deg,#FF8FB6,#F4B740);
+    transition:width .35s cubic-bezier(.22,1,.36,1);
+    box-shadow:0 0 14px rgba(244,183,64,.6);
+  }
+  .combo{
+    text-align:center;font-weight:800;font-size:15px;color:var(--rose-deep);
+    height:20px;transition:transform .15s ease;
+  }
+  .combo.pop{transform:scale(1.35);}
+
+  /* 发射按钮 */
+  .launchers{
+    width:min(560px,92vw);
+    display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  }
+  .launch{
+    border:none;cursor:pointer;color:var(--ink);
+    background:var(--glass);border:1px solid rgba(255,255,255,.75);
+    border-radius:20px;padding:14px 6px 12px;
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 10px 24px rgba(180,90,140,.16);
+    transition:transform .12s ease, box-shadow .12s ease;
+    user-select:none;
+  }
+  .launch:active{transform:translateY(3px) scale(.96);
+    box-shadow:0 4px 12px rgba(180,90,140,.2);}
+  .launch .emo{font-size:30px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.12));}
+  .launch .nm{font-size:13px;font-weight:700;}
+  .launch .ct{font-size:11px;color:#9a6f8c;font-weight:700;}
+  .launch.flower{--c:#FF6FA5;} .launch.money{--c:#2BB673;}
+  .launch.food{--c:#FF8A3D;} .launch.coin{--c:#E0A100;}
+  .launch .nm{color:var(--c);}
+
+  .hint{margin-top:10px;font-size:12px;color:#9a6f8c;text-align:center;}
+
+  /* 贺卡 */
+  .finale{
+    position:fixed;inset:0;z-index:5;display:none;
+    align-items:center;justify-content:center;padding:20px;
+    background:rgba(90,42,74,.35);backdrop-filter:blur(6px);
+  }
+  .finale.show{display:flex;animation:fade .4s ease;}
+  @keyframes fade{from{opacity:0;}to{opacity:1;}}
+  .card{
+    width:min(440px,90vw);background:#fff;border-radius:26px;
+    padding:30px 26px 26px;text-align:center;position:relative;
+    box-shadow:0 30px 80px rgba(120,40,90,.4);
+    animation:rise .5s cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes rise{from{transform:translateY(30px) scale(.92);opacity:0;}to{transform:none;opacity:1;}}
+  .card .badge{font-size:46px;line-height:1;}
+  .card h2{margin:10px 0 4px;font-size:26px;color:var(--rose-deep);}
+  .card .to{font-size:14px;color:#9a6f8c;font-weight:700;margin-bottom:14px;}
+  .card p{margin:0 0 10px;font-size:15px;line-height:1.7;color:#5A2A4A;}
+  .card .sign{margin-top:14px;font-size:14px;color:#9a6f8c;font-style:italic;}
+  .replay{
+    margin-top:18px;border:none;cursor:pointer;font-weight:800;font-size:15px;
+    color:#fff;background:linear-gradient(90deg,#FF6FA5,#F4B740);
+    padding:13px 26px;border-radius:999px;box-shadow:0 10px 24px rgba(232,76,138,.35);
+  }
+  .replay:active{transform:scale(.97);}
+</style>
+
+  <div class="aura"></div>
+  <canvas id="fx"></canvas>
+
+  <div class="stage">
+    <header>
+      <span class="kicker">BIRTHDAY · 今天属于你</span>
+      <h1>致我最爱的她</h1>
+      <p class="subtitle">点一点下面的按钮，把祝福像雨一样撒下来 🎉</p>
+    </header>
+
+    <div class="hud">
+      <div class="meterwrap">
+        <div class="meter-label"><span>幸福进度</span><b id="pct">0%</b></div>
+        <div class="meter"><i id="bar"></i></div>
+      </div>
+      <div class="combo" id="combo"></div>
+    </div>
+
+    <div class="launchers">
+      <button class="launch flower" data-type="flower"><span class="emo">🌸</span><span class="nm">撒花</span><span class="ct" id="c-flower">0</span></button>
+      <button class="launch money"  data-type="money"><span class="emo">💰</span><span class="nm">撒钱</span><span class="ct" id="c-money">0</span></button>
+      <button class="launch food"   data-type="food"><span class="emo">🍰</span><span class="nm">食物</span><span class="ct" id="c-food">0</span></button>
+      <button class="launch coin"   data-type="coin"><span class="emo">🪙</span><span class="nm">金币</span><span class="ct" id="c-coin">0</span></button>
+    </div>
+
+    <p class="hint">连点越密，连击越高，幸福来得越快 ✨</p>
+  </div>
+
+  <div class="finale" id="finale">
+    <div class="card">
+      <div class="badge">🎂</div>
+      <h2>生日快乐！</h2>
+      <div class="to">致我最爱的她</div>
+      <p>你撒下的每一朵花、每一枚金币、每一份甜点和好运，<br/>都是今天最真心的祝福。</p>
+      <p>愿你新的一岁：<b>被爱意包围，被好运偏爱，</b><br/>所念皆所愿，所行皆坦途。</p>
+      <p class="sign">—— 永远爱你的家人</p>
+      <button class="replay" id="replay">再来一次 🔁</button>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const cv = document.getElementById('fx');
+  const ctx = cv.getContext('2d');
+  let W, H, DPR;
+  function resize(){
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W * DPR; cv.height = H * DPR;
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // 粒子类型
+  const TYPES = {
+    flower:{emo:'🌸', w:0.9, g:0.16, spin:0.04, size:[22,34]},
+    money :{emo:'💰', w:1.0, g:0.20, spin:0.05, size:[22,32]},
+    food  :{emo:'🍰', w:1.0, g:0.18, spin:0.06, size:[24,34]},
+    coin  :{emo:'🪙', w:0.9, g:0.22, spin:0.08, size:[20,30]},
+  };
+  const parts = [];
+  const bokeh = [];
+  // 背景漂浮光斑
+  for(let i=0;i<18;i++){
+    bokeh.push({x:Math.random()*W,y:Math.random()*H,r:8+Math.random()*22,
+      vy:-(0.2+Math.random()*0.4),a:0.12+Math.random()*0.18,
+      hue:Math.random()<0.5?'255,111,165':'244,183,64'});
+  }
+
+  function rand(a,b){return a+Math.random()*(b-a);}
+
+  function spawn(type, n){
+    const t = TYPES[type];
+    for(let i=0;i<n;i++){
+      const s = rand(t.size[0], t.size[1]);
+      parts.push({
+        x:rand(0,W), y:-30-rand(0,80),
+        vx:rand(-1.2,1.2), vy:rand(1,3),
+        rot:rand(0,Math.PI*2), vrot:rand(-t.spin,t.spin),
+        size:s, emo:t.emo, g:t.g, life:1
+      });
+    }
+  }
+
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    // 背景光斑
+    for(const b of bokeh){
+      b.y += b.vy; if(b.y < -b.r){b.y=H+b.r; b.x=Math.random()*W;}
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(${b.hue},${b.a})`;
+      ctx.arc(b.x,b.y,b.r,0,Math.PI*2); ctx.fill();
+    }
+    // 粒子
+    for(let i=parts.length-1;i>=0;i--){
+      const p=parts[i];
+      p.vy += p.g; p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
+      if(p.y > H+40){ parts.splice(i,1); continue; }
+      ctx.save();
+      ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+      ctx.font = p.size+'px serif';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(p.emo,0,0);
+      ctx.restore();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // 轻量音效
+  let actx;
+  function blip(){
+    try{
+      actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+      const o=actx.createOscillator(), g=actx.createGain();
+      o.type='triangle'; o.frequency.value=520+Math.random()*260;
+      g.gain.setValueAtTime(0.06,actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001,actx.currentTime+0.18);
+      o.connect(g); g.connect(actx.destination);
+      o.start(); o.stop(actx.currentTime+0.18);
+    }catch(e){}
+  }
+
+  // 进度 / 连击 / 计数
+  let meter=0, combo=0, comboTimer=null, counts={flower:0,money:0,food:0,coin:0};
+  const bar=document.getElementById('bar'), pct=document.getElementById('pct'),
+        comboEl=document.getElementById('combo');
+  const PER_TAP=6; // 每次点击贡献的进度%
+
+  function addBlessing(type){
+    counts[type]++;
+    document.getElementById('c-'+type).textContent=counts[type];
+    spawn(type, 14);
+    blip();
+    // 连击
+    combo++;
+    const mult=1+Math.min(combo,12)*0.08;
+    meter=Math.min(100, meter + PER_TAP*mult);
+    comboEl.textContent = combo>1 ? `连击 x${combo} · 倍率 ${mult.toFixed(2)}` : '';
+    comboEl.classList.add('pop');
+    setTimeout(()=>comboEl.classList.remove('pop'),150);
+    clearTimeout(comboTimer);
+    comboTimer=setTimeout(()=>{combo=0;comboEl.textContent='';},1200);
+    bar.style.width=meter+'%';
+    pct.textContent=Math.round(meter)+'%';
+    if(meter>=100) finale();
+  }
+
+  document.querySelectorAll('.launch').forEach(btn=>{
+    btn.addEventListener('click',()=>addBlessing(btn.dataset.type));
+  });
+
+  // 贺卡
+  const finaleEl=document.getElementById('finale');
+  let done=false;
+  function finale(){
+    if(done) return; done=true;
+    // 全屏礼花
+    ['flower','money','food','coin'].forEach(t=>spawn(t,40));
+    setTimeout(()=>finaleEl.classList.add('show'),400);
+  }
+  document.getElementById('replay').addEventListener('click',()=>{
+    finaleEl.classList.remove('show');
+    meter=0; combo=0; done=false; counts={flower:0,money:0,food:0,coin:0};
+    ['flower','money','food','coin'].forEach(t=>document.getElementById('c-'+t).textContent='0');
+    bar.style.width='0%'; pct.textContent='0%'; comboEl.textContent='';
+    for(let i=0;i<6;i++) setTimeout(()=>spawn(['flower','money','food','coin'][i%4],16),i*120);
+  });
+})();
+</script>
+<script src="{{ site.baseurl }}/assets/nav.js" data-root="../../" data-theme="life" data-title="致我最爱的她 · 生日快乐 🎂"></script>

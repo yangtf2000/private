@@ -1,0 +1,131 @@
+/* =========================================================
+   杨子禺暑假计划页面 · 全局深色适配
+   ========================================================= */
+
+body,
+.container {
+  background: #0b1120 !important;
+  color: #e8ecf4 !important;
+}
+
+h1, h2, h3,
+.course-card h3,
+.phase-title,
+.stat-box .num,
+.cal-cell .date {
+  color: #e8ecf4 !important;
+}
+
+.subtitle,
+.course-card .detail,
+.phase-body,
+.phase-body li,
+.cal-cell .tag-mini,
+.stat-box .lbl,
+.course-card .stat span {
+  color: #9aa6bf !important;
+}
+
+.course-card .stat strong {
+  color: #fff !important;
+}
+
+/* 课程卡片统一翻暗，保留左边彩色标识 */
+.course-card {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+.course-card .tag { color: #fff !important; }
+.c-calig .tag { background: #d97706 !important; }
+.c-chinese .tag { background: #059669 !important; }
+.c-eng .tag { background: #2563eb !important; }
+.c-math .tag { background: #dc2626 !important; }
+.c-calig .time { color: #fbbf24 !important; }
+.c-chinese .time { color: #6ee7b7 !important; }
+.c-eng .time { color: #7dd3fc !important; }
+.c-math .time { color: #fca5a5 !important; }
+
+/* 统计块 */
+.stat-box {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 表格 */
+table th {
+  background: rgba(56, 189, 248, 0.2) !important;
+  color: #fff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+table td {
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #e8ecf4 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+td.label {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #e8ecf4 !important;
+}
+tr.rest td,
+tr.rest td.label {
+  background: rgba(220, 38, 38, 0.12) !important;
+  color: #fca5a5 !important;
+}
+
+/* 阶段卡 */
+.phase {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+.phase.free { background: rgba(37, 99, 235, 0.1) !important; border-color: rgba(96, 165, 250, 0.3) !important; }
+.phase.travel { background: rgba(217, 119, 6, 0.1) !important; border-color: rgba(251, 191, 36, 0.3) !important; }
+.phase.intense { background: rgba(220, 38, 38, 0.1) !important; border-color: rgba(248, 113, 113, 0.3) !important; }
+.phase-badge { color: #fff !important; }
+
+/* 警告框 */
+.alert-danger { background: rgba(220, 38, 38, 0.12) !important; border-color: rgba(248, 113, 113, 0.3) !important; color: #fca5a5 !important; }
+.alert-info { background: rgba(5, 150, 105, 0.12) !important; border-color: rgba(52, 211, 153, 0.3) !important; color: #6ee7b7 !important; }
+.alert-warning { background: rgba(217, 119, 6, 0.12) !important; border-color: rgba(251, 191, 36, 0.3) !important; color: #fcd34d !important; }
+
+/* 日历 */
+.cal-header { color: #9aa6bf !important; }
+.cal-cell {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.cal-cell.calig { background: rgba(217, 119, 6, 0.15) !important; border-color: rgba(251, 191, 36, 0.4) !important; }
+.cal-cell.chinese { background: rgba(5, 150, 105, 0.15) !important; border-color: rgba(52, 211, 153, 0.4) !important; }
+.cal-cell.eng { background: rgba(37, 99, 235, 0.15) !important; border-color: rgba(96, 165, 250, 0.4) !important; }
+.cal-cell.math { background: rgba(220, 38, 38, 0.15) !important; border-color: rgba(248, 113, 113, 0.4) !important; }
+.cal-cell.eng-math { background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 50%, rgba(220, 38, 38, 0.15) 50%) !important; border-color: rgba(248, 113, 113, 0.4) !important; }
+.cal-cell.calig-chinese { background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 50%, rgba(5, 150, 105, 0.15) 50%) !important; border-color: rgba(52, 211, 153, 0.4) !important; }
+.cal-cell.rest-day { background: rgba(255, 255, 255, 0.03) !important; color: #64748b !important; }
+.cal-cell.travel { background: rgba(217, 119, 6, 0.18) !important; border-color: #fbbf24 !important; }
+.cal-cell.free { background: rgba(37, 99, 235, 0.1) !important; border-color: rgba(96, 165, 250, 0.3) !important; }
+
+/* 兜底：所有内联浅色背景 */
+[style*="background:#FAEEDA" i],
+[style*="background:#E1F5EE" i],
+[style*="background:#E6F1FB" i],
+[style*="background:#FAECE7" i],
+[style*="background:#FFF8E1" i],
+[style*="background:#f5f5f5" i],
+[style*="background:#f0f0f0" i],
+[style*="background:#fafafa" i],
+[style*="background:#fff" i],
+[style*="background:#e0f0ff" i],
+[style*="background:#e8f5e9" i],
+[style*="background:#fff8e1" i],
+[style*="background:#fff0f0" i] {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #e8ecf4 !important;
+}
+
+/* 兜底：深色文字在深色背景上看不清 */
+[style*="color:#333" i],
+[style*="color:#1a1a1a" i],
+[style*="color:#555" i],
+[style*="color:#666" i],
+[style*="color:#888" i] {
+  color: #e8ecf4 !important;
+}
