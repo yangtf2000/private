@@ -23,7 +23,6 @@
 @keyframes floatUp{0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
 @keyframes sandFloat{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:0.6}90%{opacity:0.6}100%{transform:translateY(-100vh) translateX(30px);opacity:0}}
-@keyframes pulseGlow{0%,100%{box-shadow:0 0 20px rgba(199,91,57,0.3)}50%{box-shadow:0 0 40px rgba(199,91,57,0.6)}}
 @keyframes titleGlow{0%,100%{text-shadow:0 2px 8px rgba(62,39,35,0.4),0 0 20px rgba(212,165,116,0.3)}50%{text-shadow:0 2px 8px rgba(62,39,35,0.4),0 0 30px rgba(212,165,116,0.5)}}
 
 body{
@@ -35,15 +34,12 @@ body{
     linear-gradient(135deg,#B8860B 0%,#C4956A 25%,#A67B5B 50%,#8B6347 75%,#6B4423 100%);
   background-size:400% 400%;
   animation:duneDrift 20s ease infinite;
-  min-height:100vh;
-  position:relative;
-  overflow-x:hidden;
+  min-height:100vh;position:relative;overflow-x:hidden;
 }
 body::before{
   content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
-  animation:grain 8s steps(10) infinite;
-  opacity:0.5;
+  animation:grain 8s steps(10) infinite;opacity:0.5;
 }
 body::after{
   content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -57,8 +53,7 @@ body::after{
   backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(212,165,116,0.3);
   padding:10px 16px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;
-  box-shadow:0 4px 20px rgba(0,0,0,0.3);
-  text-align:center;
+  box-shadow:0 4px 20px rgba(0,0,0,0.3);text-align:center;
 }
 .top-nav a{
   display:inline-block;padding:6px 14px;margin-right:6px;border-radius:99px;
@@ -76,18 +71,11 @@ body::after{
 
 .hero{
   text-align:center;padding:50px 16px 40px;
-  background:
-    linear-gradient(180deg,rgba(62,39,35,0.55),rgba(107,68,35,0.7)),
-    url('https://aka.doubaocdn.com/s/8yAve17Z0E');
+  background:linear-gradient(180deg,rgba(62,39,35,0.55),rgba(107,68,35,0.7)),url('https://aka.doubaocdn.com/s/8yAve17Z0E');
   background-size:cover;background-position:center;
   border-radius:0 0 30px 30px;margin-bottom:30px;
   position:relative;overflow:hidden;
   box-shadow:0 12px 40px rgba(0,0,0,0.4),inset 0 -2px 0 rgba(212,165,116,0.3);
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(196,149,106,0.3),rgba(139,99,71,0.4));
-  pointer-events:none;
 }
 .hero h1{
   font-family:"Noto Serif SC",serif;font-size:30px;color:#fff;
@@ -104,32 +92,34 @@ body::after{
   border:1px solid rgba(255,255,255,0.35);
   backdrop-filter:blur(4px);
   box-shadow:0 2px 8px rgba(0,0,0,0.25);
-  transition:all 0.3s;
-  text-shadow:0 1px 3px rgba(0,0,0,0.4);
+  transition:all 0.3s;text-shadow:0 1px 3px rgba(0,0,0,0.4);
 }
 .hero-tags span:hover{background:rgba(212,165,116,0.4);transform:translateY(-2px);}
 
 section{margin-bottom:40px;animation:floatUp 0.8s ease-out both;}
-section:nth-child(2){animation-delay:0.1s}
-section:nth-child(3){animation-delay:0.2s}
-section:nth-child(4){animation-delay:0.3s}
-section:nth-child(5){animation-delay:0.4s}
-section:nth-child(6){animation-delay:0.5s}
-section:nth-child(7){animation-delay:0.6s}
-section:nth-child(8){animation-delay:0.7s}
+section:nth-of-type(1){animation-delay:0.1s}
+section:nth-of-type(2){animation-delay:0.2s}
+section:nth-of-type(3){animation-delay:0.3s}
+section:nth-of-type(4){animation-delay:0.4s}
+section:nth-of-type(5){animation-delay:0.5s}
+section:nth-of-type(6){animation-delay:0.6s}
+section:nth-of-type(7){animation-delay:0.7s}
 
 .section-title{
   font-family:"Noto Serif SC",serif;font-size:24px;
   color:#fff;margin-bottom:6px;padding-left:14px;
   border-left:4px solid var(--terracotta);
-  text-shadow:0 2px 8px rgba(0,0,0,0.4);
-  position:relative;
+  text-shadow:0 2px 8px rgba(0,0,0,0.4);position:relative;
 }
 .section-title::after{
   content:"";position:absolute;left:0;bottom:-4px;width:60px;height:2px;
   background:linear-gradient(90deg,var(--terracotta),transparent);
 }
 .section-sub{font-size:13px;color:var(--cream-dark);margin-bottom:20px;padding-left:18px;text-shadow:0 1px 4px rgba(0,0,0,0.3);}
+.sub-title{
+  font-family:"Noto Serif SC",serif;font-size:18px;color:var(--terracotta);
+  margin:24px 0 12px;padding-left:12px;border-left:3px solid var(--gold);
+}
 
 .card{
   background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
@@ -144,21 +134,11 @@ section:nth-child(8){animation-delay:0.7s}
   background:linear-gradient(90deg,var(--terracotta),var(--gold),var(--terracotta-light));
   background-size:200% 100%;animation:shimmer 3s linear infinite;
 }
-.card:hover{
-  transform:translateY(-4px) scale(1.01);
-  box-shadow:var(--shadow-card-hover);
-}
+.card:hover{transform:translateY(-4px) scale(1.01);box-shadow:var(--shadow-card-hover);}
 .card h3{font-family:"Noto Serif SC",serif;font-size:17px;color:var(--brown-dark);margin-bottom:10px;}
-.card h4{
-  font-size:15px;color:var(--terracotta);margin:12px 0 6px;
-  padding-left:10px;border-left:3px solid var(--gold);
-}
+.card h4{font-size:15px;color:var(--terracotta);margin:12px 0 6px;padding-left:10px;border-left:3px solid var(--gold);}
 .card p{font-size:14px;color:var(--brown-mid);margin-bottom:6px;}
-.card img{
-  border-radius:var(--radius-sm);
-  box-shadow:0 6px 20px rgba(62,39,35,0.25),0 2px 6px rgba(62,39,35,0.15);
-  transition:transform 0.4s ease;
-}
+.card img{border-radius:var(--radius-sm);box-shadow:0 6px 20px rgba(62,39,35,0.25),0 2px 6px rgba(62,39,35,0.15);transition:transform 0.4s ease;}
 .card img:hover{transform:scale(1.02);}
 
 .meta-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
@@ -168,22 +148,20 @@ section:nth-child(8){animation-delay:0.7s}
   color:var(--brown-dark);font-weight:500;
   box-shadow:0 2px 6px rgba(62,39,35,0.15),inset 0 1px 0 rgba(255,255,255,0.3);
 }
-.meta-tag.highlight{
-  background:linear-gradient(135deg,var(--terracotta),var(--terracotta-light));
-  color:#fff;box-shadow:0 2px 8px rgba(199,91,57,0.35);
-}
-.meta-tag.free{
-  background:linear-gradient(135deg,#6B8E4E,#8FBC6A);color:#fff;
-  box-shadow:0 2px 8px rgba(107,142,78,0.35);
-}
+.meta-tag.highlight{background:linear-gradient(135deg,var(--terracotta),var(--terracotta-light));color:#fff;box-shadow:0 2px 8px rgba(199,91,57,0.35);}
+.meta-tag.free{background:linear-gradient(135deg,#6B8E4E,#8FBC6A);color:#fff;box-shadow:0 2px 8px rgba(107,142,78,0.35);}
+
+.compare-table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0;}
+.compare-table th,.compare-table td{padding:8px 6px;text-align:left;border-bottom:1px solid rgba(212,165,116,0.3);}
+.compare-table th{background:linear-gradient(135deg,var(--ochre-3),var(--ochre-4));color:var(--gold-light);font-weight:600;font-size:11px;white-space:nowrap;}
+.compare-table tr:hover{background:rgba(212,165,116,0.1);}
+.compare-table .star{color:var(--terracotta);font-weight:700;white-space:nowrap;}
 
 .day-block{
   background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
-  border-radius:var(--radius);
-  padding:20px 20px 20px 24px;margin-bottom:20px;
+  border-radius:var(--radius);padding:20px 20px 20px 24px;margin-bottom:20px;
   box-shadow:var(--shadow-card);
-  border:1px solid rgba(212,165,116,0.3);
-  border-left:4px solid var(--gold);
+  border:1px solid rgba(212,165,116,0.3);border-left:4px solid var(--gold);
   position:relative;overflow:hidden;
   transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
 }
@@ -192,114 +170,73 @@ section:nth-child(8){animation-delay:0.7s}
   background:linear-gradient(90deg,var(--terracotta),var(--gold),var(--terracotta-light));
   background-size:200% 100%;animation:shimmer 3s linear infinite;
 }
-.day-block:hover{
-  transform:translateY(-3px);
-  box-shadow:var(--shadow-card-hover);
-}
-.day-block h3{
-  font-family:"Noto Serif SC",serif;font-size:18px;color:var(--terracotta);
-  margin-bottom:8px;text-shadow:0 1px 2px rgba(0,0,0,0.1);
-}
-.day-block .day-route{
-  font-size:13px;color:var(--brown-mid);
-  background:linear-gradient(135deg,rgba(232,201,160,0.4),rgba(212,165,116,0.3));
-  padding:8px 12px;border-radius:10px;margin-bottom:10px;
-  border:1px solid rgba(212,165,116,0.3);
-}
-.day-block h4{
-  font-size:15px;color:var(--terracotta);margin:12px 0 6px;
-  padding-left:10px;border-left:3px solid var(--gold);
-}
+.day-block:hover{transform:translateY(-3px);box-shadow:var(--shadow-card-hover);}
+.day-block h3{font-family:"Noto Serif SC",serif;font-size:18px;color:var(--terracotta);margin-bottom:8px;}
+.day-block .day-route{font-size:13px;color:var(--brown-mid);background:linear-gradient(135deg,rgba(232,201,160,0.4),rgba(212,165,116,0.3));padding:8px 12px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(212,165,116,0.3);}
+.day-block h4{font-size:15px;color:var(--terracotta);margin:12px 0 6px;padding-left:10px;border-left:3px solid var(--gold);}
 .day-block p{font-size:14px;color:var(--brown-mid);margin-bottom:6px;}
 
 .food-grid{display:grid;grid-template-columns:1fr;gap:14px;}
 .food-item{
   background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
   border-radius:var(--radius);padding:16px;
-  box-shadow:var(--shadow-card);
-  border-left:4px solid var(--terracotta);
+  box-shadow:var(--shadow-card);border-left:4px solid var(--terracotta);
   position:relative;overflow:hidden;
   transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
 }
-.food-item::before{
-  content:"";position:absolute;top:0;right:0;width:80px;height:80px;
-  background:radial-gradient(circle at top right,rgba(199,91,57,0.1),transparent 70%);
-  border-radius:0 var(--radius) 0 0;
-}
-.food-item:hover{
-  transform:translateY(-3px) scale(1.01);
-  box-shadow:var(--shadow-card-hover);
-  border-left-color:var(--gold);
-}
+.food-item:hover{transform:translateY(-3px) scale(1.01);box-shadow:var(--shadow-card-hover);border-left-color:var(--gold);}
 .food-item h4{font-size:16px;color:var(--brown-dark);margin-bottom:6px;}
 .food-item .food-meta{font-size:12px;color:var(--brown-light);margin-bottom:8px;}
 .food-item p{font-size:13px;color:var(--brown-mid);margin-bottom:4px;}
-.food-item img{
-  border-radius:var(--radius-sm);
-  box-shadow:0 6px 20px rgba(62,39,35,0.25);
-  transition:transform 0.4s ease;
-}
+.food-item img{border-radius:var(--radius-sm);box-shadow:0 6px 20px rgba(62,39,35,0.25);transition:transform 0.4s ease;margin:8px 0;}
 .food-item img:hover{transform:scale(1.03);}
 
 .hotel-tier{margin-bottom:20px;}
-.hotel-tier h4{
-  font-size:15px;color:var(--terracotta);margin-bottom:10px;
-  padding-bottom:6px;border-bottom:1px dashed var(--gold);
-}
+.hotel-tier h4{font-size:15px;color:var(--terracotta);margin-bottom:10px;padding-bottom:6px;border-bottom:1px dashed var(--gold);}
 .hotel-item{
   background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
   border-radius:14px;padding:14px;margin-bottom:10px;
   box-shadow:0 4px 16px rgba(62,39,35,0.15),inset 0 1px 0 rgba(255,255,255,0.3);
-  border:1px solid rgba(212,165,116,0.25);
-  transition:all 0.3s ease;
+  border:1px solid rgba(212,165,116,0.25);transition:all 0.3s ease;
 }
-.hotel-item:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 24px rgba(62,39,35,0.25);
-}
+.hotel-item:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(62,39,35,0.25);}
 .hotel-item h5{font-size:14px;color:var(--brown-dark);margin-bottom:4px;}
 .hotel-item p{font-size:12px;color:var(--brown-light);margin-bottom:2px;}
-.hotel-item img{
-  border-radius:10px;margin:8px 0;
-  box-shadow:0 4px 14px rgba(62,39,35,0.2);
-}
+.hotel-item img{border-radius:10px;margin:8px 0;box-shadow:0 4px 14px rgba(62,39,35,0.2);}
 
 .tips-list{list-style:none;}
-.tips-list li{
-  padding:10px 0;border-bottom:1px dashed rgba(212,165,116,0.4);
-  font-size:14px;color:var(--brown-mid);display:flex;gap:8px;
-  transition:padding-left 0.3s;
-}
+.tips-list li{padding:10px 0;border-bottom:1px dashed rgba(212,165,116,0.4);font-size:14px;color:var(--brown-mid);display:flex;gap:8px;transition:padding-left 0.3s;}
 .tips-list li:hover{padding-left:8px;}
-.tips-list li::before{
-  content:"◆";color:var(--terracotta);flex-shrink:0;font-size:10px;margin-top:5px;
-  text-shadow:0 0 8px rgba(199,91,57,0.5);
-}
+.tips-list li::before{content:"◆";color:var(--terracotta);flex-shrink:0;font-size:10px;margin-top:5px;text-shadow:0 0 8px rgba(199,91,57,0.5);}
 
 .budget-table{width:100%;border-collapse:collapse;font-size:13px;}
-.budget-table th,.budget-table td{
-  padding:10px 8px;text-align:left;
-  border-bottom:1px solid rgba(212,165,116,0.3);
+.budget-table th,.budget-table td{padding:10px 8px;text-align:left;border-bottom:1px solid rgba(212,165,116,0.3);}
+.budget-table th{background:linear-gradient(135deg,var(--ochre-3),var(--ochre-4));color:var(--gold-light);font-weight:600;}
+.budget-table tr:last-child td{font-weight:700;color:var(--terracotta);border-bottom:none;background:rgba(199,91,57,0.08);}
+
+.transport-compare{display:grid;grid-template-columns:1fr;gap:12px;margin:12px 0;}
+.transport-card{
+  background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
+  border-radius:14px;padding:16px;
+  box-shadow:0 4px 16px rgba(62,39,35,0.15);
+  border:1px solid rgba(212,165,116,0.3);
+  border-top:3px solid var(--terracotta);
 }
-.budget-table th{
-  background:linear-gradient(135deg,var(--ochre-3),var(--ochre-4));
-  color:var(--gold-light);font-weight:600;
-}
-.budget-table tr:last-child td{
-  font-weight:700;color:var(--terracotta);border-bottom:none;
-  background:rgba(199,91,57,0.08);
-}
+.transport-card h5{font-size:15px;color:var(--terracotta);margin-bottom:8px;}
+.transport-card p{font-size:13px;color:var(--brown-mid);margin-bottom:4px;}
+.transport-card .price{font-size:14px;color:var(--brown-dark);font-weight:700;margin:6px 0;}
+.transport-card .pros{color:#6B8E4E;font-size:12px;}
+.transport-card .cons{color:var(--terracotta);font-size:12px;}
 </style>
 </head>
 <body>
 
 <nav class="top-nav">
-  <a href="#overview">行程总览</a>
-  <a href="#daily">每日行程</a>
+  <a href="#prep">出行准备</a>
   <a href="#spots">景点大全</a>
-  <a href="#food">美食大全</a>
+  <a href="#itinerary">行程安排</a>
+  <a href="#food">美食推荐</a>
   <a href="#hotel">住宿推荐</a>
-  <a href="#prepare">出发准备</a>
   <a href="#budget">费用预算</a>
   <a href="#tips">避坑指南</a>
 </nav>
@@ -314,16 +251,341 @@ section:nth-child(8){animation-delay:0.7s}
 
 <div class="container">
 
-<!-- ==================== 一、行程总览 ==================== -->
-<section id="overview">
-  <h2 class="section-title">一、行程总览</h2>
-  <p class="section-sub">全程约1200公里，海拔跨度1200m-4100m，最佳出行时间5-10月</p>
+<!-- ==================== 一、出行准备 ==================== -->
+<section id="prep">
+  <h2 class="section-title">一、出行准备</h2>
+  <p class="section-sub">大交通怎么去 · 区域交通选什么 · 边防证怎么办</p>
+
+  <h3 class="sub-title">1.1 大交通：怎么到喀什</h3>
+
+  <div class="card">
+    <h3>✈️ 飞机（推荐）</h3>
+    <p>喀什徕宁国际机场是新疆第二大机场，距市区约10公里，打车到古城约20-30元。</p>
+    <h4>直飞城市</h4>
+    <p>北京、上海、广州、成都、西安、杭州（6小时直达）、济南等主要城市均有直飞或经停航班。</p>
+    <h4>乌鲁木齐中转（最常见）</h4>
+    <p>乌鲁木齐地窝堡机场 → 喀什徕宁机场，飞行约2小时，每天20+班次（早7点到晚10点）。</p>
+    <div class="meta-row">
+      <span class="meta-tag highlight">淡季 500-800元</span>
+      <span class="meta-tag">旺季 800-1500元</span>
+      <span class="meta-tag free">建议提前15天购票</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🚂 火车（性价比之选）</h3>
+    <p>喀什站距市中心约5公里，已开通直达乌鲁木齐、和田、西安、成都、重庆等地列车。</p>
+    <h4>乌鲁木齐 → 喀什</h4>
+    <p><strong>Z6516直达特快</strong>：约11小时，推荐坐过夜车，睡一觉天亮到喀什，省一晚住宿。硬卧约150-300元。</p>
+    <p><strong>动车</strong>：约6-8小时，白天车次，可沿途欣赏南疆风光。</p>
+    <div class="meta-row">
+      <span class="meta-tag">硬卧 150-300元</span>
+      <span class="meta-tag">软卧 400-500元</span>
+      <span class="meta-tag highlight">过夜车省住宿</span>
+    </div>
+  </div>
+
+  <h3 class="sub-title">1.2 区域交通：租车 vs 拼车 vs 包车</h3>
+
+  <div class="card">
+    <h3>三种方式对比</h3>
+    <table class="compare-table">
+      <tr><th>方式</th><th>适合人群</th><th>费用参考</th><th>自由度</th><th>推荐指数</th></tr>
+      <tr><td><strong>租车自驾</strong></td><td>2人以上、有驾驶经验</td><td>SUV 300-500元/天+油费</td><td>★★★★★</td><td class="star">★★★★☆</td></tr>
+      <tr><td><strong>拼车</strong></td><td>独行/1-2人、预算有限</td><td>人均150-300元/天</td><td>★★★☆☆</td><td class="star">★★★★☆</td></tr>
+      <tr><td><strong>包车带司机</strong></td><td>家庭/不想开车、追求省心</td><td>SUV 800-1500元/天</td><td>★★★★☆</td><td class="star">★★★★★</td></tr>
+    </table>
+  </div>
+
+  <div class="transport-compare">
+    <div class="transport-card">
+      <h5>🚗 租车自驾</h5>
+      <p class="price">SUV 300-500元/天（旺季上浮），油费约0.6-0.8元/km</p>
+      <p><strong>平台：</strong>一嗨、神州、携程租车，机场可取车还车。</p>
+      <p><strong>车型建议：</strong>帕米尔高原+盘龙古道路况较好，普通SUV（哈弗H6/CR-V/RAV4）足够，无需硬派越野。</p>
+      <p class="pros">✓ 时间完全自由，随停随拍 ✓ 人均成本低（2人以上）</p>
+      <p class="cons">✗ 需自行处理高原驾驶、检查站排队 ✗ 新手不建议</p>
+    </div>
+    <div class="transport-card">
+      <h5>🚐 拼车（散客拼团）</h5>
+      <p class="price">人均150-300元/天，4-6人一车</p>
+      <p><strong>渠道：</strong>喀什古城青旅前台、民宿老板、携程/马蜂窝拼车板块、古城青旅微信群。</p>
+      <p><strong>常见线路：</strong>喀什→白沙湖→喀拉库勒湖→塔县（2天1晚），人均约300-500元。</p>
+      <p class="pros">✓ 不用开车 ✓ 能认识旅伴 ✓ 成本最低</p>
+      <p class="cons">✗ 时间不自由，需配合团友 ✗ 旺季需提前1-2天预约</p>
+    </div>
+    <div class="transport-card">
+      <h5>🚙 包车带司机</h5>
+      <p class="price">5座SUV 800-1200元/天，7座商务 1100-1600元/天（含油费过路费司机服务费）</p>
+      <p><strong>渠道：</strong>正规旅行社、古城民宿推荐、携程包车。</p>
+      <p><strong>注意：</strong>司机食宿通常另计（住宿补贴约200元/天，餐费随团），签合同明确行程和费用。</p>
+      <p class="pros">✓ 最省心，司机熟悉路况和检查站 ✓ 可随时停车拍照 ✓ 适合家庭出行</p>
+      <p class="cons">✗ 费用最高 ✗ 需找正规营运车辆，避免黑车</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 边防证（必办！）</h3>
+    <p>前往塔什库尔干县（塔县）、白沙湖、喀拉库勒湖、盘龙古道、班迪尔蓝湖等帕米尔高原区域，<strong>必须办理边防证</strong>。</p>
+    <h4>办理方式</h4>
+    <p><strong>方式一（推荐）：</strong>出发前在户籍地派出所免费办理，填写"新疆喀什地区塔什库尔干县"，当天可取。</p>
+    <p><strong>方式二：</strong>到喀什后在喀什国际自驾车与房车营地办证大厅办理，需身份证，约30分钟，免费。</p>
+    <div class="meta-row">
+      <span class="meta-tag free">免费办理</span>
+      <span class="meta-tag highlight">必带身份证</span>
+      <span class="meta-tag">建议提前办</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 二、景点大全 ==================== -->
+<section id="spots">
+  <h2 class="section-title">二、景点大全</h2>
+  <p class="section-sub">景点对比 · 外部自然景观 · 喀什古城内部 · 莎车古城内部</p>
+
+  <h3 class="sub-title">2.1 全景点对比表</h3>
+  <div class="card">
+    <table class="compare-table">
+      <tr><th>景点</th><th>位置</th><th>门票</th><th>推荐</th><th>所属日</th></tr>
+      <tr><td>白沙湖</td><td>G314旁</td><td>免费</td><td class="star">★★★★★</td><td>D2</td></tr>
+      <tr><td>喀拉库勒湖</td><td>G314旁</td><td>45元</td><td class="star">★★★★★</td><td>D2</td></tr>
+      <tr><td>盘龙古道</td><td>塔县附近</td><td>免费</td><td class="star">★★★★★</td><td>D3</td></tr>
+      <tr><td>班迪尔蓝湖</td><td>塔县附近</td><td>免费</td><td class="star">★★★★☆</td><td>D3</td></tr>
+      <tr><td>石头城遗址</td><td>塔县</td><td>30元</td><td class="star">★★★★☆</td><td>D2/D3</td></tr>
+      <tr><td>达瓦昆沙漠</td><td>喀什周边</td><td>30元</td><td class="star">★★★★☆</td><td>D4</td></tr>
+      <tr><td>艾提尕尔清真寺</td><td>喀什古城</td><td>30-45元</td><td class="star">★★★★★</td><td>D1/D4</td></tr>
+      <tr><td>高台民居</td><td>喀什古城</td><td>免费</td><td class="star">★★★★☆</td><td>D1/D4</td></tr>
+      <tr><td>百年老茶馆</td><td>喀什古城</td><td>消费20元+</td><td class="star">★★★★★</td><td>D1/D4</td></tr>
+      <tr><td>吾斯塘博依路</td><td>喀什古城</td><td>免费</td><td class="star">★★★★☆</td><td>D1/D4</td></tr>
+      <tr><td>开城仪式</td><td>古城东门</td><td>免费</td><td class="star">★★★☆☆</td><td>D1/D4</td></tr>
+      <tr><td>汗巴扎夜市</td><td>喀什古城</td><td>免费</td><td class="star">★★★★★</td><td>D1/D4</td></tr>
+      <tr><td>叶尔羌王宫</td><td>莎车</td><td>约30元</td><td class="star">★★★★☆</td><td>D5</td></tr>
+      <tr><td>阿曼尼莎汗纪念陵</td><td>莎车</td><td>约20元</td><td class="star">★★★★☆</td><td>D5</td></tr>
+      <tr><td>莎车老城</td><td>莎车</td><td>免费</td><td class="star">★★★☆☆</td><td>D5</td></tr>
+    </table>
+  </div>
+
+  <h3 class="sub-title">2.2 外部自然景观</h3>
+
+  <div class="card">
+    <h3>🏔️ 白沙湖</h3>
+    <img src="https://aka.doubaocdn.com/s/oesxctOVs6" alt="白沙湖" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">海拔3300m</span>
+      <span class="meta-tag highlight">★★★★★ 必去</span>
+      <span class="meta-tag">D2上午</span>
+    </div>
+    <p><strong>亮点：</strong>湛蓝湖水被白色沙丘环绕，远处是公格尔峰雪山，色彩对比极强，是G314上第一个震撼景观。湖边有观景台，风大注意保暖。</p>
+    <p><strong>游览时间：</strong>30-45分钟。建议上午到达，光线好、人少。</p>
+  </div>
+
+  <div class="card">
+    <h3>🏔️ 喀拉库勒湖</h3>
+    <img src="https://aka.doubaocdn.com/s/2SqDMb1V9D" alt="喀拉库勒湖" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag highlight">门票45元</span>
+      <span class="meta-tag">海拔3600m</span>
+      <span class="meta-tag highlight">★★★★★ 必去</span>
+      <span class="meta-tag">D2中午</span>
+    </div>
+    <p><strong>亮点：</strong>"黑海"之意，慕士塔格峰（7546m）的倒影映在湖水中，是帕米尔高原的标志性画面。湖边可骑牦牛拍照（约50元）。</p>
+    <p><strong>游览时间：</strong>1-1.5小时。可在湖边餐厅简餐。</p>
+  </div>
+
+  <div class="card">
+    <h3>🛣️ 盘龙古道</h3>
+    <img src="https://aka.doubaocdn.com/s/108L5IwG7m" alt="盘龙古道" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">最高海拔4100m</span>
+      <span class="meta-tag highlight">★★★★★ 必去</span>
+      <span class="meta-tag">D3上午</span>
+    </div>
+    <p><strong>亮点：</strong>600多个S弯盘旋在山脊上，"今日走过了所有弯路，从此人生尽是坦途"的网红路牌就在这里。航拍效果最佳。</p>
+    <p><strong>游览时间：</strong>1-2小时（含开车通过+拍照）。弯道多，减速鸣笛，不占道超车。</p>
+  </div>
+
+  <div class="card">
+    <h3>💎 班迪尔蓝湖</h3>
+    <img src="https://aka.doubaocdn.com/s/TLBZrkSFqU" alt="班迪尔蓝湖" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">海拔约3200m</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D3中午</span>
+    </div>
+    <p><strong>亮点：</strong>水库形成的蒂芙尼蓝湖泊，颜色比白沙湖更浓烈。路边有停车点可下到湖边。人少景美，小众宝藏点。</p>
+    <p><strong>游览时间：</strong>30分钟。从盘龙古道下来顺路经过。</p>
+  </div>
+
+  <div class="card">
+    <h3>🏜️ 达瓦昆沙漠</h3>
+    <img src="https://aka.doubaocdn.com/s/8yAve17Z0E" alt="达瓦昆沙漠" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag highlight">门票30元</span>
+      <span class="meta-tag">距喀什120km</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D4下午</span>
+    </div>
+    <p><strong>亮点：</strong>沙漠中有湖，可骑骆驼、滑沙、沙漠越野。日落时分金色沙丘最美，是拍大片的好地方。</p>
+    <p><strong>游览时间：</strong>3-4小时（含日落）。建议下午4点后到达，避开正午高温。手机相机注意防沙。</p>
+  </div>
+
+  <div class="card">
+    <h3>🏰 塔县石头城遗址</h3>
+    <img src="https://aka.doubaocdn.com/s/byjmQrv1Q7" alt="石头城" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag highlight">门票30元</span>
+      <span class="meta-tag">塔县县城旁</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D2傍晚/D3</span>
+    </div>
+    <p><strong>亮点：</strong>唐代西域蒲犁国都城遗址，城墙残垣在雪山下格外苍凉。旁边是金草滩湿地，夏天开满野花。日落时分光线最佳。</p>
+    <p><strong>游览时间：</strong>1-1.5小时。可与金草滩一起游览。</p>
+  </div>
+
+  <h3 class="sub-title">2.3 喀什古城内部景点</h3>
+
+  <div class="card">
+    <h3>🕌 艾提尕尔清真寺</h3>
+    <img src="https://aka.doubaocdn.com/s/cFPhOyDX8U" alt="艾提尕尔清真寺" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag highlight">门票30-45元</span>
+      <span class="meta-tag">古城中心</span>
+      <span class="meta-tag highlight">★★★★★ 必去</span>
+      <span class="meta-tag">D1/D4</span>
+    </div>
+    <p><strong>亮点：</strong>新疆最大的清真寺，始建于明代，明黄穹顶与连环拱门气势恢宏。每天五次宣礼声响起，整座古城都安静下来。寺前广场有白鸽，适合拍照。</p>
+    <p><strong>注意：</strong>进入需衣着得体（长裤、不露肩），保持安静。对面冰淇淋店二楼露台是拍全景的隐藏机位。</p>
+    <p><strong>游览时间：</strong>40分钟-1小时。</p>
+  </div>
+
+  <div class="card">
+    <h3>🏘️ 高台民居</h3>
+    <img src="https://aka.doubaocdn.com/s/IpfbkJPMAq" alt="高台民居" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">古城东侧</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D1/D4</span>
+    </div>
+    <p><strong>亮点：</strong>建在40多米高黄土崖上的"立体迷宫"，600多年历史，土坯房层层叠叠，被称为"中国的黄色摩洛哥"。是《追风筝的人》取景地。维吾尔族模制法土陶烧制技艺的发源地。</p>
+    <p><strong>注意：</strong>部分区域在修缮中，可参观外部全貌。建议游览1.5-2小时，清晨或傍晚光线最佳。</p>
+  </div>
+
+  <div class="card">
+    <h3>🍵 百年老茶馆</h3>
+    <img src="https://aka.doubaocdn.com/s/U1klZMms19" alt="百年老茶馆" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag">人均20-50元</span>
+      <span class="meta-tag">吾斯塘博依路口</span>
+      <span class="meta-tag highlight">★★★★★ 必去</span>
+      <span class="meta-tag">D1/D4</span>
+    </div>
+    <p><strong>亮点：</strong>喀什最具代表性的文化地标，三代人守着一壶茯砖茶。土黄色二层生土小楼，内部铜制吊灯+艾德莱斯绸装饰。二楼露台可听热瓦普弹唱，看古城人来人往。</p>
+    <p><strong>体验：</strong>点一壶茯砖茶（约20元），配一块馕，坐一下午，是体验当地慢生活的绝佳方式。常有维吾尔族老人即兴弹唱。</p>
+  </div>
+
+  <div class="card">
+    <h3>🛤️ 吾斯塘博依路（千年古街）</h3>
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">古城西区</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D1/D4</span>
+    </div>
+    <p><strong>亮点：</strong>千年古街，两侧是手工艺品店、铁匠铺、花帽巴扎、药茶巴扎。可以看到维吾尔族工匠现场制作铜器、乐器、花帽。铁业公社的铁匠铺交响乐是独特体验。</p>
+    <p><strong>推荐：</strong>花帽巴扎看手工花帽制作，药茶巴扎买特色花草茶，铁业公社看打铁表演。</p>
+  </div>
+
+  <div class="card">
+    <h3>🎺 古城东门开城仪式</h3>
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">古城东门</span>
+      <span class="meta-tag">★★★☆☆</span>
+      <span class="meta-tag">D1 18:00/D4 10:00</span>
+    </div>
+    <p><strong>亮点：</strong>每天10:00和18:00在古城东门有维吾尔族歌舞表演+开城仪式，约20分钟。演员身着传统服饰，载歌载舞，游客可参与互动。</p>
+    <p><strong>注意：</strong>人多，提前15分钟占位。仪式结束后可从东门进入古城游览。</p>
+  </div>
+
+  <div class="card">
+    <h3>🌙 汗巴扎夜市</h3>
+    <div class="meta-row">
+      <span class="meta-tag free">免费（吃喝消费）</span>
+      <span class="meta-tag">古城东门旁</span>
+      <span class="meta-tag highlight">★★★★★ 必去</span>
+      <span class="meta-tag">D1/D4 晚上</span>
+    </div>
+    <p><strong>亮点：</strong>喀什最热闹的夜市，烤包子、缸子肉、手抓饭、烤蛋、石榴汁、酸奶粽子等美食集中地。烟火气十足，是体验喀什夜生活的最佳去处。</p>
+    <p><strong>推荐：</strong>烤包子（刚出炉最香）、缸子肉（炭火慢炖）、烤蛋（从鸡蛋到鸵鸟蛋）、鲜榨石榴汁。</p>
+  </div>
+
+  <div class="card">
+    <h3>🌈 彩虹巷 & 布袋巷</h3>
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">古城内</span>
+      <span class="meta-tag">★★★☆☆</span>
+      <span class="meta-tag">D1/D4</span>
+    </div>
+    <p><strong>亮点：</strong>网红打卡点。彩虹巷色彩斑斓的门窗和墙壁，对面布袋巷挂着绣花布袋，人少清静。适合拍人像。</p>
+    <p><strong>建议：</strong>早9点前或晚8点后去，光线好且人少。</p>
+  </div>
+
+  <h3 class="sub-title">2.4 莎车古城内部景点</h3>
+
+  <div class="card">
+    <h3>🏛️ 叶尔羌王宫（非遗博览园）</h3>
+    <img src="https://aka.doubaocdn.com/s/1QDV3R2lAh" alt="叶尔羌王宫" style="width:100%;height:180px;object-fit:cover;margin:10px 0;">
+    <div class="meta-row">
+      <span class="meta-tag highlight">门票约30元</span>
+      <span class="meta-tag">莎车县城</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D5</span>
+    </div>
+    <p><strong>亮点：</strong>在古王宫原址1:1复建，占地2.5万平米，耗资3亿元。伊斯兰风格建筑，展示西域非遗文化（十二木卡姆、手工技艺等）。建筑外观极具异域风情，拍照出片。</p>
+    <p><strong>注意：</strong>部分时段可能因修缮暂停开放，出发前确认。中午14:00-16:00可能休息。</p>
+    <p><strong>游览时间：</strong>1-1.5小时。</p>
+  </div>
+
+  <div class="card">
+    <h3>⚜️ 阿曼尼莎汗纪念陵 & 叶尔羌汗国王陵</h3>
+    <div class="meta-row">
+      <span class="meta-tag highlight">门票约20元</span>
+      <span class="meta-tag">王宫对面</span>
+      <span class="meta-tag">★★★★☆</span>
+      <span class="meta-tag">D5</span>
+    </div>
+    <p><strong>亮点：</strong>叶尔羌汗国王陵始建于1533年（明嘉靖年间），葬有汗国创始人等11代王室成员。阿曼尼莎汗是第二代汗王的王妃，维吾尔族杰出音乐家、诗人，整理了十二木卡姆。陵墓主体高22米，伊斯兰建筑风格，琉璃瓦和砖雕精美。</p>
+    <p><strong>游览时间：</strong>40分钟-1小时。与王宫隔路相望，可一并游览。</p>
+  </div>
+
+  <div class="card">
+    <h3>🏘️ 莎车老城</h3>
+    <div class="meta-row">
+      <span class="meta-tag free">免费</span>
+      <span class="meta-tag">莎车县城</span>
+      <span class="meta-tag">★★★☆☆</span>
+      <span class="meta-tag">D5</span>
+    </div>
+    <p><strong>亮点：</strong>比喀什古城更原生态，游客少，维吾尔族生活气息浓厚。老茶馆、巴扎、清真寺都保留着原汁原味。可以看到更真实的南疆市井生活。</p>
+    <p><strong>推荐：</strong>莎车烤鸽子是当地特色，老城附近的烤鸽子店一定要尝。</p>
+  </div>
+</section>
+
+<!-- ==================== 三、行程安排 ==================== -->
+<section id="itinerary">
+  <h2 class="section-title">三、行程安排</h2>
+  <p class="section-sub">全程约1200公里 · 海拔1200m-4100m · 最佳5-10月</p>
 
   <div class="card">
     <h3>路线设计逻辑</h3>
-    <p>本行程采用「先高后低、人文收尾」的节奏：Day2-3集中攻克帕米尔高原（海拔最高、车程最长），Day4-5回到低海拔地区游览古城、沙漠、莎车，Day6轻松返程。避免高原疲劳累积，也让旅行体验有张有弛。</p>
+    <p>「先高后低、人文收尾」：Day2-3集中攻克帕米尔高原（海拔最高、车程最长），Day4-5回到低海拔游览古城、沙漠、莎车，Day6轻松返程。避免高原疲劳累积。</p>
     <h4>全程路线</h4>
-    <p>喀什（海拔1289m）→ 白沙湖（3300m）→ 喀拉库勒湖（3600m）→ 塔县（3100m）→ 盘龙古道（最高4100m）→ 班迪尔蓝湖 → 喀什 → 达瓦昆沙漠 → 莎车 → 喀什</p>
+    <p>喀什（1289m）→ 白沙湖（3300m）→ 喀拉库勒湖（3600m）→ 塔县（3100m）→ 盘龙古道（最高4100m）→ 班迪尔蓝湖 → 喀什 → 达瓦昆沙漠 → 莎车 → 喀什</p>
   </div>
 
   <div class="card">
@@ -335,12 +597,8 @@ section:nth-child(8){animation-delay:0.7s}
     <p><strong>Day5</strong> 喀什 → 莎车古城/王宫/王陵 → 返回喀什（住喀什，车程约360km/5h）</p>
     <p><strong>Day6</strong> 喀什采购伴手礼 → 还车 → 返程</p>
   </div>
-</section>
 
-<!-- ==================== 二、每日详细行程 ==================== -->
-<section id="daily">
-  <h2 class="section-title">二、每日详细行程</h2>
-  <p class="section-sub">含路线、时间安排、景点、美食、住宿、注意事项</p>
+  <h3 class="sub-title">每日详细行程</h3>
 
   <div class="day-block">
     <h3>Day 1｜抵达喀什 · 古城休整</h3>
@@ -348,603 +606,371 @@ section:nth-child(8){animation-delay:0.7s}
     <h4>时间安排</h4>
     <p>14:00前 抵达喀什机场，取车（建议提前在携程/一嗨/神州预定，机场取车）</p>
     <p>15:00 入住酒店，休整适应时差（喀什比内地晚2小时，日落约22:00）</p>
-    <p>18:00 前往喀什古城，逛东门开城仪式（每天10:00和18:00有仪式）</p>
-    <p>19:30 古城内晚餐：烤包子、缸子肉、手抓饭</p>
-    <p>21:00 汗巴扎夜市，尝酸奶粽子、石榴汁、烤羊心</p>
-    <h4>今日景点</h4>
-    <p>喀什古城（免费，全天，建议3-5小时）— 详见景点大全</p>
-    <h4>今日美食</h4>
-    <p>古城周边：烤包子、缸子肉、手抓饭、酸奶粽子、石榴汁 — 详见美食大全</p>
-    <h4>今日住宿</h4>
-    <p>喀什市区酒店（古城附近）— 详见住宿推荐</p>
-    <h4>注意事项</h4>
-    <p>刚到不要熬夜，南疆日落晚，作息自然延后；气候干燥多喝水；确认边防证已带好。</p>
+    <p>18:00 前往古城东门，看开城仪式（每天10:00和18:00）</p>
+    <p>19:30 逛古城：艾提尕尔清真寺 → 吾斯塘博依路 → 百年老茶馆</p>
+    <p>21:30 汗巴扎夜市晚餐：烤包子、缸子肉、手抓饭、石榴汁</p>
+    <h4>住宿</h4>
+    <p>喀什市区（推荐古城附近，方便步行游览）</p>
+    <h4>注意</h4>
+    <p>第一天不要剧烈运动，给身体适应海拔的时间。古城内全靠步行，穿舒适鞋子。</p>
   </div>
 
   <div class="day-block">
     <h3>Day 2｜喀什 → 帕米尔高原 → 塔县</h3>
-    <div class="day-route">喀什 → G314中巴友谊公路 → 盖孜检查站 → 白沙湖 → 喀拉库勒湖 → 塔县（290km/6-7h）</div>
+    <div class="day-route">喀什 → G314 → 盖孜检查站 → 白沙湖 → 喀拉库勒湖 → 塔县（290km/约6h）</div>
     <h4>时间安排</h4>
-    <p>08:00 出发，早餐可带馕和水</p>
-    <p>10:30 盖孜检查站（查验边防证，排队约20-40分钟）</p>
-    <p>11:30 白沙湖观景（停留40分钟）</p>
-    <p>13:00 喀拉库勒湖（停留1小时，可在湖边简餐）</p>
-    <p>15:00 继续前往塔县，沿途欣赏慕士塔格峰</p>
-    <p>17:00 抵达塔县，入住酒店，可逛石头城遗址+金草滩（可选）</p>
-    <p>19:00 晚餐：牦牛肉火锅</p>
-    <h4>今日景点</h4>
-    <p>白沙湖（免费）、喀拉库勒湖（门票45元）、石头城遗址（可选，门票30元）、金草滩（免费）</p>
-    <h4>今日美食</h4>
-    <p>沿途简餐（馕+水+零食），塔县晚餐：牦牛肉火锅、高原拌面</p>
-    <h4>今日住宿</h4>
-    <p>塔县县城酒店（务必提前预定，优先选带供暖/供氧的）</p>
-    <h4>注意事项</h4>
-    <p>出发前加满油，沿途加油站少；检查站查验边防证务必随身携带；海拔3600m，不要剧烈跑跳；塔县夜晚气温低，带厚外套；第一晚不要洗澡，避免感冒引发高反。</p>
+    <p>08:00 出发，检查边防证、身份证、车辆状况</p>
+    <p>10:30 盖孜检查站（查验边防证，可能排队20-40分钟）</p>
+    <p>11:30 白沙湖游览（30-45分钟）</p>
+    <p>13:00 喀拉库勒湖游览+简餐（1-1.5小时）</p>
+    <p>16:00 继续前往塔县，沿途欣赏帕米尔高原风光</p>
+    <p>18:00 抵达塔县，入住酒店</p>
+    <p>19:00 石头城遗址看日落（可选）</p>
+    <h4>住宿</h4>
+    <p>塔什库尔干县城（海拔3100m，选择有暖气/供氧的酒店）</p>
+    <h4>注意</h4>
+    <p>全程限速多，区间测速多，不要超速。塔县第一晚不要洗澡洗头，预防高反。多喝水，注意保暖。</p>
   </div>
 
   <div class="day-block">
     <h3>Day 3｜塔县 → 盘龙古道 → 班迪尔蓝湖 → 喀什</h3>
-    <div class="day-route">塔县 → 盘龙古道 → 班迪尔蓝湖 → 塔县 → G314返回喀什（400km/8-9h）</div>
+    <div class="day-route">塔县 → 盘龙古道 → 班迪尔蓝湖 → 塔县 → G314返回喀什（400km/约8h）</div>
     <h4>时间安排</h4>
-    <p>08:00 出发前往盘龙古道（注意：盘龙古道通常上午开放，下午可能封闭）</p>
-    <p>09:00 盘龙古道行驶+打卡（约1小时，600多个S弯）</p>
-    <p>10:30 班迪尔蓝湖观景（停留40分钟）</p>
-    <p>11:30 返回塔县方向，可在塔县午餐</p>
-    <p>13:00 沿G314返回喀什</p>
-    <p>19:00-20:00 抵达喀什，入住酒店，晚餐犒劳自己</p>
-    <h4>今日景点</h4>
-    <p>盘龙古道（免费，注意通行时间）、班迪尔蓝湖（免费）</p>
-    <h4>今日美食</h4>
-    <p>塔县午餐简餐，返回喀什后吃丰盛正餐（手抓饭/烤肉）</p>
-    <h4>今日住宿</h4>
-    <p>喀什市区酒店</p>
-    <h4>注意事项</h4>
-    <p>盘龙古道弯道多且急，减速鸣笛，不要占道；注意通行时段（通常8:00-14:00开放，以当地通知为准）；预留充足返程时间，避免夜间高原赶路；下山后检查刹车温度。</p>
+    <p>08:30 出发前往盘龙古道（距塔县约30km）</p>
+    <p>09:30 盘龙古道游览拍照（1-2小时，600+S弯）</p>
+    <p>12:00 班迪尔蓝湖（30分钟，顺路经过）</p>
+    <p>13:00 返回塔县午餐</p>
+    <p>14:30 沿G314返回喀什，可在喀拉库勒湖/白沙湖再停留</p>
+    <p>20:30 抵达喀什，入住酒店，晚餐</p>
+    <h4>住宿</h4>
+    <p>喀什市区</p>
+    <h4>注意</h4>
+    <p>今天车程最长，建议早出发。盘龙古道弯多坡陡，减速鸣笛，不占道超车。返程可在阿克陶或英吉沙短暂休息。</p>
   </div>
 
   <div class="day-block">
     <h3>Day 4｜古城深度游 · 达瓦昆沙漠日落</h3>
-    <div class="day-route">酒店 → 喀什古城深度游 → 午餐 → 达瓦昆沙漠（60km/1.5h）→ 日落 → 返回喀什</div>
+    <div class="day-route">酒店 → 喀什古城深度游 → 午餐 → 达瓦昆沙漠 → 日落 → 返回喀什（120km）</div>
     <h4>时间安排</h4>
-    <p>09:30 古城深度游：避开主街，钻小巷（彩虹巷、花盆大巴扎、百年老茶馆）</p>
-    <p>13:00 古城午餐：艾力扎提抓饭馆</p>
-    <p>15:00 回酒店休息（避开正午暴晒）</p>
-    <p>17:00 出发达瓦昆沙漠</p>
-    <p>18:30 沙漠游玩：骑骆驼、沙丘漫步</p>
-    <p>20:30-21:30 沙漠日落（最佳拍摄时间）</p>
-    <p>22:00 返回喀什市区</p>
-    <h4>今日景点</h4>
-    <p>喀什古城（深度）、达瓦昆沙漠（门票30元含区间车）</p>
-    <h4>今日美食</h4>
-    <p>古城：手抓饭、薄皮包子；沙漠周边简餐；回城可吃烤肉</p>
-    <h4>今日住宿</h4>
-    <p>喀什市区酒店</p>
-    <h4>注意事项</h4>
-    <p>沙漠沙子容易进鞋，建议穿高帮鞋或带鞋套；傍晚风大降温快，带外套；日落约21:00-21:30，合理安排时间；沙漠紫外线强，做好防晒。</p>
+    <p>09:00 古城深度游：高台民居 → 吾斯塘博依路手工艺品街 → 花帽巴扎</p>
+    <p>11:00 百年老茶馆喝茶听曲（1小时）</p>
+    <p>12:30 古城内午餐：拉条子、薄皮包子</p>
+    <p>14:00 出发前往达瓦昆沙漠（约1.5小时）</p>
+    <p>16:00 沙漠活动：骑骆驼、滑沙、沙漠越野（可选）</p>
+    <p>19:30 沙漠日落拍照（最佳时间）</p>
+    <p>21:00 返回喀什，晚餐</p>
+    <h4>住宿</h4>
+    <p>喀什市区</p>
+    <h4>注意</h4>
+    <p>沙漠紫外线强，做好防晒。手机相机注意防沙，不用时装进密封袋。骑骆驼前谈好价格和时长。</p>
   </div>
 
   <div class="day-block">
     <h3>Day 5｜莎车人文一日往返</h3>
-    <div class="day-route">喀什 → 莎车（180km/2.5h）→ 叶尔羌王宫 → 阿曼尼莎汗纪念陵 → 莎车古城 → 午餐 → 返回喀什（180km/2.5h）</div>
+    <div class="day-route">喀什 → 莎车（180km/2.5h）→ 叶尔羌王宫 → 阿曼尼莎汗纪念陵 → 莎车老城 → 午餐 → 返回喀什</div>
     <h4>时间安排</h4>
-    <p>08:30 出发前往莎车</p>
-    <p>11:00 抵达莎车，游览叶尔羌王宫（门票30元，约1小时）</p>
-    <p>12:00 阿曼尼莎汗纪念陵（门票35元，约40分钟）</p>
-    <p>13:00 莎车古城闲逛，感受老城市井</p>
-    <p>14:00 午餐：木卡姆故乡餐厅（烤鸽子+鸽子面）</p>
-    <p>15:30 莎车巴扎采购糕点/切糕</p>
-    <p>16:30 返回喀什</p>
-    <p>19:00 抵达喀什</p>
-    <h4>今日景点</h4>
-    <p>莎车古城（免费）、叶尔羌王宫（30元）、阿曼尼莎汗纪念陵（35元）</p>
-    <h4>今日美食</h4>
-    <p>莎车：烤鸽子、鸽子面、莎车烤包子、特色糕点 — 详见美食大全</p>
-    <h4>今日住宿</h4>
-    <p>喀什市区酒店</p>
-    <h4>注意事项</h4>
-    <p>往返路程较长，合理分配各景点时间；王宫和王陵开放时间10:00-19:00，建议上午到达；莎车比喀什更原生态，注意尊重当地生活习惯。</p>
+    <p>08:30 出发前往莎车（高速约2.5小时）</p>
+    <p>11:00 叶尔羌王宫（非遗博览园）游览（1-1.5小时）</p>
+    <p>12:30 对面阿曼尼莎汗纪念陵+王陵（40分钟）</p>
+    <p>13:30 莎车老城闲逛，午餐：莎车烤鸽子（必吃！）</p>
+    <p>15:30 莎车巴扎采购（巴旦木、核桃等干果比喀什便宜）</p>
+    <p>16:30 返回喀什（约2.5小时）</p>
+    <p>19:00 抵达喀什，古城晚餐</p>
+    <h4>住宿</h4>
+    <p>喀什市区</p>
+    <h4>注意</h4>
+    <p>王宫和王陵中午可能休息（14:00-16:00），安排好时间。莎车烤鸽子是当地特色，一定要尝。</p>
   </div>
 
   <div class="day-block">
     <h3>Day 6｜喀什收尾 · 返程</h3>
-    <div class="day-route">酒店 → 古城补拍/采购 → 大巴扎伴手礼 → 还车 → 机场</div>
+    <div class="day-route">酒店 → 大巴扎采购伴手礼 → 还车 → 机场/火车站</div>
     <h4>时间安排</h4>
-    <p>09:00 古城清晨补拍（人少光线好）</p>
-    <p>11:00 大巴扎采购伴手礼：巴旦木、葡萄干、核桃、玫瑰花酱、莎车糕点</p>
-    <p>13:00 最后一顿南疆大餐</p>
-    <p>15:00 还车（提前加满油）</p>
-    <p>16:00 前往机场（喀什机场安检较慢，建议提前2.5小时到达）</p>
-    <h4>注意事项</h4>
-    <p>液体类伴手礼（玫瑰花酱、蜂蜜）需托运；干果注意重量和行李额度；还车前检查车辆有无剐蹭。</p>
+    <p>09:00 喀什大巴扎（中西亚国际贸易市场）采购伴手礼：巴旦木、核桃、葡萄干、藏红花、薰衣草精油、艾德莱斯绸</p>
+    <p>11:00 古城最后闲逛，买手信</p>
+    <p>12:00 午餐：最后一顿喀什美食</p>
+    <p>14:00 还车（机场还车点），前往机场/火车站</p>
+    <p>16:00后 返程航班/火车</p>
+    <h4>注意</h4>
+    <p>大巴扎买干果可以先尝后买，多比价。藏红花注意辨别真伪。还车前加满油，检查车辆。</p>
   </div>
 </section>
 
-<!-- ==================== 三、景点大全 ==================== -->
-<section id="spots">
-  <h2 class="section-title">三、景点大全</h2>
-  <p class="section-sub">含所属行程日、门票、开放时间、游玩时长、看点、拍照建议、注意事项</p>
-
-  <div class="card">
-    <h3>1. 喀什古城 <span class="meta-tag highlight">Day1/4/6</span> <span class="meta-tag free">免费</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">开放时间：全天</span>
-      <span class="meta-tag">建议游玩：3-5小时</span>
-      <span class="meta-tag">海拔：1289m</span>
-      <span class="meta-tag">推荐指数：★★★★★</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/OEVubZxtMG" alt="喀什古城" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>国内唯一保存完整的迷宫式伊斯兰古城，2000多年历史，丝绸之路上的重镇。古城面积约4.25平方公里，居民约12万人，是国内目前唯一保存下来的具有典型古西域特色的传统历史街区。</p>
-    <h4>核心看点</h4>
-    <p>东门开城仪式（每天10:00/18:00，维吾尔族歌舞欢迎）、艾提尕尔清真寺（全国最大清真寺之一，门票45元）、百年老茶馆（维吾尔族音乐+下午茶）、彩虹巷（彩色房子打卡点）、花盆大巴扎（手工艺品一条街）、吾斯塘博依路（手工艺街）、古城夜景（灯火阑珊）。</p>
-    <h4>拍照建议</h4>
-    <p>穿浅色/亮色衣服（白色、红色、黄色），与土黄色城墙形成对比；傍晚18:00-20:00光线最柔和；彩虹巷、花盆大巴扎、百年老茶馆露台是出片率最高的位置；夜景建议带三脚架。</p>
-    <h4>注意事项</h4>
-    <p>古城内是居民区，注意尊重当地习俗，不要随意拍摄当地人（尤其是女性），拍摄前最好征得同意；古城内巷道复杂，建议用地图导航或跟随人流；部分民居门口有"请勿打扰"标识，不要闯入。</p>
-  </div>
-
-  <div class="card">
-    <h3>2. 白沙湖 <span class="meta-tag highlight">Day2</span> <span class="meta-tag free">免费</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">开放时间：全天</span>
-      <span class="meta-tag">建议游玩：30-60分钟</span>
-      <span class="meta-tag">海拔：3300m</span>
-      <span class="meta-tag">推荐指数：★★★★★</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/oesxctOVs6" alt="白沙湖" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>帕米尔高原上的梦幻湖泊，因湖边白色沙丘而得名。湖水呈现蓝绿色，与白色沙丘、远处雪山构成绝美的高原画卷。据说《西游记》中的流沙河就是这里。</p>
-    <h4>核心看点</h4>
-    <p>白沙山（风吹沙粒堆积而成，银白色沙丘连绵）、蓝绿色湖水（颜色随光线变化）、雪山背景（公格尔峰）、湖边牦牛/马（可拍照）。</p>
-    <h4>拍照建议</h4>
-    <p>上午光线好，湖水颜色最蓝；风大时白沙飞舞如仙境，是拍摄的绝佳时机；建议穿红色/白色衣服，与蓝白背景形成对比；湖边有观景台，不要翻越护栏。</p>
-    <h4>注意事项</h4>
-    <p>海拔3300m，不要剧烈运动；风大温度低，带防风外套；路边停车注意安全，不要停在弯道处；湖边没有厕所和商店，提前准备。</p>
-  </div>
-
-  <div class="card">
-    <h3>3. 喀拉库勒湖 <span class="meta-tag highlight">Day2</span> <span class="meta-tag">门票45元</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">开放时间：全天</span>
-      <span class="meta-tag">建议游玩：1-1.5小时</span>
-      <span class="meta-tag">海拔：3600m</span>
-      <span class="meta-tag">推荐指数：★★★★★</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/2SqDMb1V9D" alt="喀拉库勒湖" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>"喀拉库勒"意为"黑海"，位于慕士塔格峰脚下，是帕米尔高原上最著名的高山湖泊。湖水深邃湛蓝，湖面平静时慕士塔格峰完整倒映湖中，真实与虚幻难辨。</p>
-    <h4>核心看点</h4>
-    <p>慕士塔格峰倒影（"冰山之父"，海拔7546m）、湖边柯尔克孜族毡房（可体验骑马，约50元/圈）、高原草甸、湖水颜色变化（晴天深蓝，阴天墨绿）。</p>
-    <h4>拍照建议</h4>
-    <p>无风时湖面如镜，雪山倒影绝美，建议上午风小的时候来；湖边毡房和牦牛是很好的前景；可以拍"人在画中游"的感觉。</p>
-    <h4>注意事项</h4>
-    <p>海拔3600m，走路放慢节奏；湖边风大，注意保暖；景区内有卫生间但条件简陋；骑马前谈好价格和时长。</p>
-  </div>
-
-  <div class="card">
-    <h3>4. 盘龙古道 <span class="meta-tag highlight">Day3</span> <span class="meta-tag free">免费</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">开放时间：通常上午8:00-14:00（以当地通知为准）</span>
-      <span class="meta-tag">建议游玩：行驶约1小时</span>
-      <span class="meta-tag">最高海拔：4100m</span>
-      <span class="meta-tag">推荐指数：★★★★☆</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/108L5IwG7m" alt="盘龙古道" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>塔县到瓦恰乡的盘山公路，全长约36公里，有600多个S弯，海拔从3000米急剧攀升至4100米。因入口处"今日走过所有弯路，从此人生尽是坦途"的标语而成为网红打卡地。</p>
-    <h4>核心看点</h4>
-    <p>"今日走过所有弯路，从此人生尽是坦途"石碑打卡、盘山弯道全景（观景台俯瞰）、高原荒漠地貌、沿途塔吉克族村落。</p>
-    <h4>拍照建议</h4>
-    <p>入口石碑必打卡；观景台可拍弯道全景，建议用全景模式或无人机；公路照注意安全，不要在弯道中间停留。</p>
-    <h4>注意事项</h4>
-    <p>弯道多且急，减速鸣笛，不要占道超车；注意通行时段，下午可能因天气或交通管制封闭；海拔最高4100m，可能有轻微高反；下山时用低档控制车速，避免长时间踩刹车导致过热。</p>
-  </div>
-
-  <div class="card">
-    <h3>5. 班迪尔蓝湖 <span class="meta-tag highlight">Day3</span> <span class="meta-tag free">免费</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">开放时间：全天</span>
-      <span class="meta-tag">建议游玩：30-45分钟</span>
-      <span class="meta-tag">海拔：约3200m</span>
-      <span class="meta-tag">推荐指数：★★★★☆</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/TLBZrkSFqU" alt="班迪尔蓝湖" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>藏在帕米尔高原深处的小众秘境，湖水呈现宝石般的深蓝色，比白沙湖更安静、更纯粹。因位置较偏，游客较少，是摄影爱好者的私藏地。</p>
-    <h4>核心看点</h4>
-    <p>宝石蓝色湖水（颜色随光线变化，正午最蓝）、峡谷地貌、雪山背景、无人静谧氛围。</p>
-    <h4>拍照建议</h4>
-    <p>正午阳光直射时湖水最蓝，是最佳拍摄时间；湖边风大，注意保护相机；可以拍"一人一湖一雪山"的极简构图。</p>
-    <h4>注意事项</h4>
-    <p>湖边没有任何设施，提前准备水和食物；风大温度低，注意保暖；路面可能有落石，注意观察；不要太靠近水边，岸边土质松软。</p>
-  </div>
-
-  <div class="card">
-    <h3>6. 达瓦昆沙漠 <span class="meta-tag highlight">Day4</span> <span class="meta-tag">门票30元（含区间车）</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">开放时间：10:00-20:00</span>
-      <span class="meta-tag">建议游玩：2-3小时</span>
-      <span class="meta-tag">推荐指数：★★★★☆</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/8yAve17Z0E" alt="达瓦昆沙漠" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>距离喀什最近的沙漠景区（约60公里），位于塔克拉玛干沙漠边缘。景区内有连绵的金色沙丘、沙漠湖泊，可骑骆驼、坐沙漠越野车，是体验沙漠风光和日落的绝佳地点。</p>
-    <h4>核心看点</h4>
-    <p>金色沙丘连绵、沙漠日落（约21:00-21:30，光影绝美）、骑骆驼体验（约80元/人）、沙漠越野车（约150元/人）、沙漠湖泊（沙漠中的绿洲）。</p>
-    <h4>拍照建议</h4>
-    <p>日落时分是黄金拍摄时间，沙丘呈现金色光影；穿红色/白色长裙在沙漠中出片率极高；驼队是很好的拍摄元素，可以和牵驼人商量拍照；建议带丝巾/帽子作为道具。</p>
-    <h4>注意事项</h4>
-    <p>沙子容易进鞋，建议穿高帮鞋或带鞋套/防沙套；傍晚风大降温快，带厚外套；沙漠紫外线强，即使傍晚也要防晒；手机相机注意防沙，不用时密封保存。</p>
-  </div>
-
-  <div class="card">
-    <h3>7. 莎车古城·叶尔羌王宫·阿曼尼莎汗纪念陵 <span class="meta-tag highlight">Day5</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">王宫门票30元</span>
-      <span class="meta-tag">王陵门票35元</span>
-      <span class="meta-tag">开放时间：10:00-19:00</span>
-      <span class="meta-tag">建议游玩：2.5-3.5小时</span>
-      <span class="meta-tag">推荐指数：★★★★☆</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/1QDV3R2lAh" alt="莎车叶尔羌王宫" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>莎车是古叶尔羌汗国的都城，有着深厚的历史文化底蕴。叶尔羌王宫是复原的西域王宫建筑，金碧辉煌；阿曼尼莎汗纪念陵是为纪念十二木卡姆艺术的集大成者阿曼尼莎汗而建，是维吾尔族文化的重要象征。</p>
-    <h4>核心看点</h4>
-    <p>叶尔羌王宫（西域建筑风格，蓝色穹顶+雕花立柱，内部展示汗国历史）、阿曼尼莎汗纪念陵（白色建筑，木卡姆文化展示）、莎车老城（原生态市井生活，比喀什更原汁原味）、莎车巴扎（当地最大的巴扎，美食和干果丰富）。</p>
-    <h4>拍照建议</h4>
-    <p>王宫建筑色彩丰富，适合拍异域风人像；老城内的巷弄和巴扎是人文摄影的好地方；建议穿民族风服饰，与建筑风格呼应。</p>
-    <h4>注意事项</h4>
-    <p>王宫和王陵开放时间有限，建议上午到达；莎车比喀什更原生态，注意尊重当地习俗；巴扎内人多，注意保管财物。</p>
-  </div>
-
-  <div class="card">
-    <h3>8. 石头城遗址 + 金草滩（可选）<span class="meta-tag highlight">Day2/3</span></h3>
-    <div class="meta-row">
-      <span class="meta-tag">石头城门票30元</span>
-      <span class="meta-tag">金草滩免费</span>
-      <span class="meta-tag">建议游玩：1-1.5小时</span>
-      <span class="meta-tag">推荐指数：★★★☆☆</span>
-    </div>
-    <img src="https://aka.doubaocdn.com/s/byjmQrv1Q7" alt="塔什库尔干石头城" style="width:100%;height:200px;object-fit:cover;border-radius:12px;margin:10px 0;">
-    <h4>详细介绍</h4>
-    <p>塔什库尔干石头城是唐代西域三十六国之一的蒲犁国都城遗址，也是古丝绸之路的重要驿站。金草滩是石头城下的湿地草滩，与石头城、雪山构成绝美的高原画卷。</p>
-    <h4>注意事项</h4>
-    <p>遗址区域注意安全，不要攀爬残墙；金草滩水边蚊虫较多，可带驱蚊液。</p>
-  </div>
-</section>
-
-<!-- ==================== 四、美食大全 ==================== -->
+<!-- ==================== 四、美食推荐 ==================== -->
 <section id="food">
-  <h2 class="section-title">四、美食大全</h2>
-  <p class="section-sub">按区域分类，含店名、地址、交通、价格、特色、对应行程日</p>
+  <h2 class="section-title">四、美食推荐</h2>
+  <p class="section-sub">按区域分类 · 含店名/位置/特色/价格</p>
 
-  <h3 style="font-family:'Noto Serif SC',serif;font-size:18px;color:var(--peach-deep);margin:20px 0 12px;padding-left:10px;border-left:3px solid var(--peach);">喀什古城区域（Day1/4/6）</h3>
+  <h3 class="sub-title">4.1 喀什古城及周边</h3>
+
   <div class="food-grid">
-
     <div class="food-item">
-      <h4>1. 烤包子（沙木萨）</h4>
-      <img src="https://aka.doubaocdn.com/s/NXVZ2MXpZD" alt="烤包子" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 古城老艾烤包子店（古城西街老店）/ 爱乐热木肉馕烤包子店（彩虹巷附近）/ 纺织厂古城烤包子</div>
-      <div class="food-meta">🚶 古城内步行可达 | 💰 2.5-3.5元/个 | ⭐ 推荐指数★★★★★</div>
-      <p><strong>特色：</strong>方形面皮包裹羊腿肉+洋葱（皮牙子），馕坑高温烘烤，外皮酥脆咬开爆汁。是喀什美食的代名词。</p>
-      <p><strong>吃法建议：</strong>一定要趁热吃，凉后面皮发硬；搭配一碗砖茶解腻。</p>
-      <p><strong>避坑：</strong>区分方形烤包子（馕坑烤，经典）和薄皮包子（蒸笼蒸，汤汁更足），不要买错。</p>
+      <h4>1. 烤包子</h4>
+      <img src="https://aka.doubaocdn.com/s/NXVZ2MXpZD" alt="烤包子" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 汗巴扎夜市/古城各巴扎 | 💰 3-5元/个 | ⭐ ★★★★★</div>
+      <p><strong>特色：</strong>馕坑烤制，外皮酥脆，内馅是羊肉+洋葱+孜然，刚出炉最香。一口咬下肉汁四溢。</p>
+      <p><strong>推荐店：</strong>汗巴扎入口处的烤包子摊，永远在排队。</p>
     </div>
 
     <div class="food-item">
-      <h4>2. 羊肉手抓饭</h4>
-      <img src="https://aka.doubaocdn.com/s/bULiPuzyLU" alt="羊肉手抓饭" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 艾力扎提抓饭馆（塔吾古孜路17号，近古城东门）</div>
-      <div class="food-meta">🚶 古城东门步行5分钟 | 💰 25-40元/份（羊腿抓饭40元，可免费续饭）| ⭐ ★★★★★</div>
-      <p><strong>特色：</strong>羊油焖米饭+黄萝卜（新疆独有品种，颜色金黄甜度高）+羊肉，部分加葡萄干，油润香甜。本地人的早餐食堂。</p>
-      <p><strong>吃法建议：</strong>配一碗手工酸奶解腻；加薄皮包子是绝配。</p>
-      <p><strong>注意：</strong>下午2点后可能售罄，想吃要赶早；米饭可以免费续。</p>
+      <h4>2. 手抓饭</h4>
+      <img src="https://aka.doubaocdn.com/s/bULiPuzyLU" alt="手抓饭" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城周边各餐厅 | 💰 20-35元/份 | ⭐ ★★★★★</div>
+      <p><strong>特色：</strong>羊肉+胡萝卜+洋葱+黄萝卜焖制，油亮诱人，配一块羊腿肉。喀什的抓饭比乌鲁木齐更油润更香。</p>
+      <p><strong>推荐店：</strong>艾力扎提抓饭馆、库尔干抓饭。</p>
     </div>
 
     <div class="food-item">
       <h4>3. 缸子肉</h4>
-      <img src="https://aka.doubaocdn.com/s/I9EzmV70fR" alt="缸子肉" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 汗巴扎夜市中间摊位 / 古城各早餐店</div>
-      <div class="food-meta">🚶 古城内步行 | 💰 20-25元/缸 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>用复古搪瓷缸清炖六月龄羔羊肋排四小时，加黄萝卜（恰玛古），汤汁呈琥珀色，肉质嫩到脱骨。俗语称"缸子肉就馕，神仙也不当"。</p>
-      <p><strong>吃法建议：</strong>标配窝窝馕掰碎泡汤里，是最地道的吃法。</p>
+      <img src="https://aka.doubaocdn.com/s/I9EzmV70fR" alt="缸子肉" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城百年老茶馆附近/汗巴扎 | 💰 25-35元/缸 | ⭐ ★★★★★</div>
+      <p><strong>特色：</strong>搪瓷缸装羊肉+胡萝卜+鹰嘴豆，炭火慢炖数小时，汤鲜肉烂，配馕吃是经典吃法。</p>
     </div>
 
     <div class="food-item">
-      <h4>4. 红柳烤肉 / 烤羊肉串</h4>
-      <img src="https://aka.doubaocdn.com/s/0OBZYjAu7m" alt="红柳烤肉" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 汗巴扎夜市各摊位 / 兰品小馆（疆徕购物公园店）</div>
-      <div class="food-meta">🚶 古城内步行 | 💰 5-8元/串 | ⭐ ★★★★★</div>
-      <p><strong>特色：</strong>红柳枝自带清香，串大块羊羔肉，炭火烤制，肉香混合红柳香，是夜市王牌。比内地的羊肉串大2-3倍。</p>
-      <p><strong>推荐：</strong>夜市烤羊心（5元/串），汁水丰盈，比羊肉串还香，是隐藏神物。</p>
+      <h4>4. 红柳烤肉</h4>
+      <img src="https://aka.doubaocdn.com/s/0OBZYjAu7m" alt="红柳烤肉" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 汗巴扎夜市 | 💰 8-15元/串 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>用红柳枝串羊肉烤制，红柳的清香渗入肉中，肉块大，外焦里嫩。</p>
     </div>
 
     <div class="food-item">
       <h4>5. 薄皮包子</h4>
-      <img src="https://aka.doubaocdn.com/s/94HUuyHO8S" alt="薄皮包子" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 艾力扎提抓饭馆（和抓饭一起卖）/ 古城各早餐店</div>
-      <div class="food-meta">💰 10元/份（约5个）| ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>皮薄透光，肉馅饱满，搭配胡椒粉食用，汤汁丰富。常和抓饭搭配，是南疆早餐标配。</p>
+      <img src="https://aka.doubaocdn.com/s/94HUuyHO8S" alt="薄皮包子" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城餐厅/早餐摊 | 💰 2-3元/个 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>皮薄如纸，透过皮能看到里面的羊肉馅，撒上胡椒粉和醋，一口一个。</p>
     </div>
 
     <div class="food-item">
-      <h4>6. 米肠子 + 面肺子</h4>
-      <img src="https://aka.doubaocdn.com/s/UqCs6tcl2u" alt="米肠子面肺子" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 汗巴扎夜市</div>
-      <div class="food-meta">💰 小份10-15元 | ⭐ ★★★☆☆（猎奇推荐）</div>
-      <p><strong>特色：</strong>南疆特色小吃，米肠灌米+羊杂，面肺用羊肺灌面浆蒸制，浇上醋、辣椒、蒜泥，酸辣开胃。</p>
-      <p><strong>建议：</strong>初次尝试两人分一份即可，口味较重，不是所有人都能接受。</p>
+      <h4>6. 米肠子面肺子</h4>
+      <img src="https://aka.doubaocdn.com/s/UqCs6tcl2u" alt="米肠子面肺子" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 汗巴扎夜市 | 💰 15-25元/份 | ⭐ ★★★☆☆</div>
+      <p><strong>特色：</strong>维吾尔族传统小吃，羊肺灌面浆、羊肠灌米，切块后拌调料，口感独特，胆大的可以尝试。</p>
     </div>
 
     <div class="food-item">
       <h4>7. 酸奶粽子</h4>
-      <img src="https://aka.doubaocdn.com/s/tSvJ2o6jgI" alt="酸奶粽子" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 古城夜市各摊位 / 诺尔贝希路</div>
-      <div class="food-meta">💰 5-8元/份 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>糯粽子压扁，厚厚铺一层手工老酸奶，再淋上蜂蜜或无花果/杏子果酱，南疆独有甜品。酸奶的酸凉绵密+果酱的甜润浓郁，口感层次丰富。</p>
+      <img src="https://aka.doubaocdn.com/s/tSvJ2o6jgI" alt="酸奶粽子" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城夜市/吾斯塘博依路 | 💰 8-12元/份 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>糯米粽子浇上酸奶+蜂蜜+果酱，酸甜冰凉，是喀什独特的甜品。</p>
     </div>
 
     <div class="food-item">
       <h4>8. 鲜榨石榴汁</h4>
-      <img src="https://aka.doubaocdn.com/s/R0u4LDyVmP" alt="鲜榨石榴汁" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 古城街边（很多推车现榨）</div>
-      <div class="food-meta">💰 10-15元/杯 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>喀什石榴皮薄籽软，现榨现卖，酸甜清爽，富含维生素。是古城街边最常见的饮品，拍照也好看。</p>
+      <img src="https://aka.doubaocdn.com/s/R0u4LDyVmP" alt="石榴汁" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城各巴扎 | 💰 10-15元/杯 | ⭐ ★★★★★</div>
+      <p><strong>特色：</strong>喀什石榴全国闻名，现榨石榴汁酸甜浓郁，无添加，一杯要用到5-6个石榴。</p>
     </div>
 
     <div class="food-item">
-      <h4>9. 老冰山奶油冰淇淋</h4>
-      <img src="https://aka.doubaocdn.com/s/inRQd37zxl" alt="老冰山奶油冰淇淋" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 诺尔贝希路（彩虹巷步行3分钟）</div>
-      <div class="food-meta">💰 原味5元，无花果酱款8元 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>手工现捶，只用牛奶和白糖，无工业奶油，奶味非常浓郁，本地人常年回购。是南疆独有的冰淇淋味道。</p>
+      <h4>9. 肚包肉</h4>
+      <img src="https://aka.doubaocdn.com/s/xlJo6AxOlo" alt="肚包肉" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 汗巴扎夜市 | 💰 35-50元/个 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>羊肚包羊肉，清水煮熟，蘸调料吃，肉烂汤鲜，分量扎实。</p>
     </div>
 
     <div class="food-item">
-      <h4>10. 肚包肉</h4>
-      <img src="https://aka.doubaocdn.com/s/xlJo6AxOlo" alt="肚包肉" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 汗巴扎夜市</div>
-      <div class="food-meta">💰 15元/个 | ⭐ ★★★☆☆</div>
-      <p><strong>特色：</strong>羊肚包裹羊肉馅，炖煮后蘸辣椒食用，肉质紧实有嚼劲。</p>
+      <h4>10. 椒麻鸡</h4>
+      <img src="https://aka.doubaocdn.com/s/sPWV2HGt7z" alt="椒麻鸡" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城周边餐厅 | 💰 45-68元/份 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>新疆名菜，鸡肉手撕，浇上花椒+辣椒+洋葱的料汁，麻香开胃，配皮带面绝了。</p>
     </div>
 
     <div class="food-item">
-      <h4>11. 椒麻鸡</h4>
-      <img src="https://aka.doubaocdn.com/s/sPWV2HGt7z" alt="椒麻鸡" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 古城周边餐厅</div>
-      <div class="food-meta">💰 30-50元/份 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>鸡肉手撕，配椒麻汁和皮牙子（洋葱）、青椒，酸辣适中清香爽口，回味悠长。夏天吃特别开胃。</p>
+      <h4>11. 拉条子拌面</h4>
+      <img src="https://aka.doubaocdn.com/s/U2UXVR2f6q" alt="拉条子" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 古城各餐厅 | 💰 20-30元/份 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>手工拉制的面条筋道，浇上羊肉/牛肉炒菜，可免费加面。过油肉拌面是经典。</p>
     </div>
 
     <div class="food-item">
-      <h4>12. 酸奶刨冰（沙朗刀克）</h4>
-      <img src="https://aka.doubaocdn.com/s/lQJ3RsVAEC" alt="酸奶刨冰" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 古城夜市（夏季限定）</div>
-      <div class="food-meta">💰 8-12元/碗 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>传统消暑美味，手工刨冰+酸奶+蜂蜜，冰爽酸甜，是喀什夏天的清凉名片。</p>
+      <h4>12. 切糕（玛仁糖）</h4>
+      <img src="https://aka.doubaocdn.com/s/edDMua7OUR" alt="切糕" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 大巴扎/古城特产店 | 💰 80-150元/公斤 | ⭐ ★★★☆☆</div>
+      <p><strong>特色：</strong>核桃+葡萄汁+各种坚果熬制压制，能量密度高，甜而不腻。买时注意价格是按公斤还是斤。</p>
     </div>
-
   </div>
 
-  <h3 style="font-family:'Noto Serif SC',serif;font-size:18px;color:var(--peach-deep);margin:24px 0 12px;padding-left:10px;border-left:3px solid var(--peach);">塔县区域（Day2/3）</h3>
-  <div class="food-grid">
+  <h3 class="sub-title">4.2 塔县及帕米尔沿线</h3>
 
+  <div class="food-grid">
     <div class="food-item">
       <h4>13. 牦牛肉火锅</h4>
-      <img src="https://aka.doubaocdn.com/s/jhIHwduEfJ" alt="牦牛肉火锅" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 塔县县城各火锅店（如塔县牦牛火锅店）</div>
-      <div class="food-meta">🚗 县城内步行/打车 | 💰 人均80-120元 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>帕米尔高原牦牛肉质醇厚，铜锅炖煮，汤鲜味美。高原夜晚气温低，吃一锅热火锅非常舒服。部分店用传统铜锅，氛围感十足。</p>
-      <p><strong>建议：</strong>搭配高原蔬菜，营养均衡；牦牛肉比普通牛肉紧实，多煮一会儿更烂。</p>
+      <img src="https://aka.doubaocdn.com/s/jhIHwduEfJ" alt="牦牛肉火锅" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 塔县县城 | 💰 80-120元/人 | ⭐ ★★★★☆</div>
+      <p><strong>特色：</strong>高原牦牛肉肉质紧实，铜锅炖煮，配当地野菜，高原晚上吃一锅暖身。</p>
     </div>
 
     <div class="food-item">
-      <h4>14. 高原拌面 / 拉面</h4>
-      <img src="https://aka.doubaocdn.com/s/U2UXVR2f6q" alt="高原拌面" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 塔县县城各面馆</div>
-      <div class="food-meta">💰 20-30元/份 | ⭐ ★★★☆☆</div>
-      <p><strong>特色：</strong>手工拉制的面条劲道爽滑，配过油肉和各种蔬菜炒制的浇头，拌匀后每根面条都裹满汤汁。高原上一碗热面暖胃又饱腹。</p>
+      <h4>14. 塔吉克族奶茶+馕</h4>
+      <div class="food-meta">📍 塔县民宿/餐厅 | 💰 15-25元 | ⭐ ★★★☆☆</div>
+      <p><strong>特色：</strong>咸奶茶配馕，是塔吉克族日常饮食，简单但有特色。</p>
     </div>
-
   </div>
 
-  <h3 style="font-family:'Noto Serif SC',serif;font-size:18px;color:var(--peach-deep);margin:24px 0 12px;padding-left:10px;border-left:3px solid var(--peach);">莎车区域（Day5）</h3>
+  <h3 class="sub-title">4.3 莎车特色</h3>
+
   <div class="food-grid">
-
     <div class="food-item">
-      <h4>15. 烤鸽子 + 鸽子汤 + 鸽子面</h4>
-      <img src="https://aka.doubaocdn.com/s/dpsNVmMs2u" alt="莎车烤鸽子" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 木卡姆故乡餐厅（齐乃巴格路50号，电话0998-8512849）/ 塔尼西帕拉格鸽子汤（工业路）/ 山林鸽子汤面店</div>
-      <div class="food-meta">🚗 莎车县城内，近火车站 | 💰 烤鸽子约30-50元，鸽子面15-25元，人均50+ | ⭐ ★★★★★</div>
-      <p><strong>特色：</strong>莎车烤鸽子全疆有名，最出名的店一天卖五六百只。外皮焦香酥脆，肉质紧实多汁，配特制蘸料绝了。鸽子面汤底浓郁，鸽子肉软烂。</p>
-      <p><strong>必点三件套：</strong>烤鸽子 + 鸽子汤 + 鸽子拌面，人均50吃到扶墙出。</p>
-      <p><strong>木卡姆故乡餐厅：</strong>园林式风格，装修有气氛，10:00-23:00营业，是莎车最知名的鸽子餐厅。</p>
+      <h4>15. 莎车烤鸽子</h4>
+      <img src="https://aka.doubaocdn.com/s/dpsNVmMs2u" alt="莎车烤鸽子" style="width:100%;height:160px;object-fit:cover;">
+      <div class="food-meta">📍 莎车老城/烤鸽子一条街 | 💰 25-40元/只 | ⭐ ★★★★★</div>
+      <p><strong>特色：</strong>莎车招牌美食，整只鸽子腌制后炭火烤制，皮脆肉嫩，比鸡肉更鲜香。莎车的烤鸽子比喀什更正宗。</p>
+      <p><strong>推荐：</strong>莎车老城附近的烤鸽子店，一条街上全是。</p>
     </div>
 
     <div class="food-item">
-      <h4>16. 莎车烤包子</h4>
-      <img src="https://aka.doubaocdn.com/s/z1eRoWI1DS" alt="莎车烤包子" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 嘉客烤包子店 / 莎车巴扎内各摊位</div>
-      <div class="food-meta">💰 2-3元/个 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>莎车本地烤包子，馅料和做法与喀什略有不同，个头更大，肉馅更足。巴扎里刚出炉的最香。</p>
+      <h4>16. 莎车拌面</h4>
+      <div class="food-meta">📍 莎车县城餐厅 | 💰 20-28元/份 | ⭐ ★★★☆☆</div>
+      <p><strong>特色：</strong>莎车的拌面以过油肉和辣子肉闻名，面条更筋道。</p>
     </div>
-
-    <div class="food-item">
-      <h4>17. 莎车特色糕点 / 切糕（玛仁糖）</h4>
-      <img src="https://aka.doubaocdn.com/s/edDMua7OUR" alt="切糕玛仁糖" style="width:100%;height:160px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <div class="food-meta">📍 莎车巴扎 / 古城周边糕点铺</div>
-      <div class="food-meta">💰 按斤称，约50-80元/斤 | ⭐ ★★★★☆</div>
-      <p><strong>特色：</strong>蜂蜜、果仁（巴旦木、核桃、葡萄干）制作，口感扎实甜而不腻。莎车是切糕的发源地，本地的最正宗。可以作为伴手礼带回家。</p>
-      <p><strong>注意：</strong>切糕密度大很重，买的时候先问清价格，按需购买。</p>
-    </div>
-
   </div>
 </section>
 
 <!-- ==================== 五、住宿推荐 ==================== -->
 <section id="hotel">
   <h2 class="section-title">五、住宿推荐</h2>
-  <p class="section-sub">喀什/塔县各高中低三档，含价格、电话、特色、交通、停车</p>
+  <p class="section-sub">喀什住4晚 · 塔县住1晚 · 高中低三档可选</p>
 
-  <h3 style="font-family:'Noto Serif SC',serif;font-size:18px;color:var(--peach-deep);margin:20px 0 12px;">喀什市区（Day1/3/4/5/6住这里，共4晚）</h3>
-  <p style="font-size:13px;color:var(--brown-light);margin-bottom:14px;padding-left:4px;">选址原则：优先古城附近，步行可达古城和夜市，带免费停车场。</p>
-
-  <div class="hotel-tier">
-    <h4>高档档（500-800元/晚）</h4>
-    <div class="hotel-item">
-      <h5>其尼瓦克国际酒店（古城店）</h5>
-      <img src="https://aka.doubaocdn.com/s/NCcMLVJbUi" alt="其尼瓦克国际酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 淡季400+，旺季600+，含双早</p>
-      <p>📞 建议携程/美团查询最新电话</p>
-      <p>✨ 特色：老牌高档酒店，步行到古城东门仅8分钟，24小时前台随时叫车；亲子房+浴缸+免费停车，房间超大；地理位置绝佳，看完夜景溜达回去超方便。</p>
-      <p>🚗 交通：古城东门步行8分钟，打车5元；🅿️ 免费停车</p>
-    </div>
-    <div class="hotel-item">
-      <h5>金美伦昆仑塔店 / 古城景观酒店</h5>
-      <img src="https://aka.doubaocdn.com/s/OEVubZxtMG" alt="古城景观酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 300-500元/晚</p>
-      <p>✨ 特色：高层房型可俯瞰整片古城屋顶，傍晚日落视野绝佳，是拍照爱好者的首选。</p>
-      <p>🚗 古城附近，打车5分钟；🅿️ 有停车场</p>
-    </div>
+  <div class="card">
+    <h3>住宿策略</h3>
+    <p><strong>喀什（4晚）：</strong>推荐住古城附近，步行可达古城和夜市，交通餐饮便利。</p>
+    <p><strong>塔县（1晚）：</strong>选择有暖气/供氧的酒店，海拔3100m，保暖很重要。</p>
+    <p><strong>不换酒店原则：</strong>喀什4晚住同一家，省去搬行李的麻烦。</p>
   </div>
 
+  <h3 class="sub-title">5.1 喀什住宿（4晚）</h3>
+
   <div class="hotel-tier">
-    <h4>中档档（300-500元/晚）</h4>
+    <h4>💰 高档（400-600元/晚）</h4>
+    <div class="hotel-item">
+      <h5>其尼瓦克国际酒店</h5>
+      <img src="https://aka.doubaocdn.com/s/NCcMLVJbUi" alt="其尼瓦克国际酒店" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 喀什市色满路，距古城步行10分钟</p>
+      <p>💰 约400-600元/晚 | 📞 0998-2988888</p>
+      <p>✨ 喀什老牌涉外酒店，庭院式建筑，有中亚风格，早餐丰富。前身是英国驻喀什领事馆旧址。</p>
+    </div>
     <div class="hotel-item">
       <h5>柏曼国际酒店（古城景区店）</h5>
-      <img src="https://aka.doubaocdn.com/s/PgWeUUtwWG" alt="柏曼国际酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 300-450元/晚</p>
-      <p>✨ 特色：地暖+加湿器（喀什干燥必备），前台提供手绘地图，机器人送物服务；早餐现做新疆特色抓饭，超贴心。</p>
-      <p>🚗 古城附近步行可达；🅿️ 有停车场</p>
-    </div>
-    <div class="hotel-item">
-      <h5>柏丽雅酒店（喀什古城香妃园店）</h5>
-      <img src="https://aka.doubaocdn.com/s/7zt1VULieg" alt="柏丽雅酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 280-400元/晚</p>
-      <p>📍 塔吾古孜路77号</p>
-      <p>✨ 特色：近古城和香妃园、喀什国际大巴扎、地毯街，大型水果市场；火车站/机场驾车15分钟到达。</p>
-      <p>🚗 打车到古城5分钟；🅿️ 有停车场</p>
+      <img src="https://aka.doubaocdn.com/s/PgWeUUtwWG" alt="柏曼国际酒店" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 喀什市吾斯塘博依路，古城核心区</p>
+      <p>💰 约350-500元/晚 | 📞 0998-2618888</p>
+      <p>✨ 位置极佳，下楼就是古城，房间新，有停车场。</p>
     </div>
   </div>
 
   <div class="hotel-tier">
-    <h4>经济档（150-300元/晚）</h4>
+    <h4>💰 中档（200-350元/晚）</h4>
     <div class="hotel-item">
-      <h5>格林豪泰酒店（喀什古城景区店）</h5>
-      <img src="https://aka.doubaocdn.com/s/Pxp371X9PV" alt="格林豪泰酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 150-220元/晚</p>
-      <p>📞 0998-5865555</p>
-      <p>📍 喀什市解放北路92号</p>
-      <p>✨ 特色：2024年新开业，93间客房，坐落古城正中心，步行3分钟到古城西门；干净标准化，家庭出行友好。</p>
-      <p>🚗 古城西门步行3分钟；🅿️ 有停车场</p>
+      <h5>格林豪泰（古城景区店）</h5>
+      <img src="https://aka.doubaocdn.com/s/Pxp371X9PV" alt="格林豪泰" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 喀什市人民西路，距古城步行5分钟</p>
+      <p>💰 约200-300元/晚 | 📞 0998-2833999</p>
+      <p>✨ 连锁品牌，干净可靠，性价比高，周边餐饮便利。</p>
     </div>
     <div class="hotel-item">
-      <h5>古城巴扎风情民宿</h5>
-      <img src="https://aka.doubaocdn.com/s/VaeJjnxTmJ" alt="古城巴扎风情民宿" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 200-350元/晚</p>
-      <p>✨ 特色：藏在古城巷子里的宝藏民宿，传统维吾尔庭院改造，晚上坐在葡萄架下看星星灯特别治愈。性价比之王。</p>
-      <p>🚗 古城内步行；🅿️ 需停古城外公共停车场</p>
-    </div>
-    <div class="hotel-item">
-      <h5>古丽娜尔艺术客栈</h5>
-      <img src="https://aka.doubaocdn.com/s/IEeQSkX4bT" alt="古丽娜尔艺术客栈" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 160元/标准间</p>
-      <p>✨ 特色：维吾尔风格装修，屋顶露台可看古城全景，老板热情，适合背包客和年轻人。</p>
-      <p>🚗 古城内步行；🅿️ 需停古城外</p>
-    </div>
-  </div>
-
-  <h3 style="font-family:'Noto Serif SC',serif;font-size:18px;color:var(--peach-deep);margin:30px 0 12px;">塔县县城（Day2住这里，共1晚）</h3>
-  <p style="font-size:13px;color:var(--brown-light);margin-bottom:14px;padding-left:4px;">选址原则：优先带供暖/供氧的酒店，塔县夜晚寒冷，旺季务必提前1-2周预定。</p>
-
-  <div class="hotel-tier">
-    <h4>高档档（400-600元/晚）</h4>
-    <div class="hotel-item">
-      <h5>塔县维也纳国际酒店</h5>
-      <img src="https://aka.doubaocdn.com/s/OZS7fsVyLf" alt="塔县维也纳国际酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 人均300+，旺季500+</p>
-      <p>📍 塔县慕士塔格路139号</p>
-      <p>✨ 特色：2025年新开业，全县最好的酒店之一。欧式大堂，零压床垫，24小时地暖，秒出热水，付费氧气房（高反救星），智能马桶，加湿器，健身房+洗衣房，早餐现做抓饭和奶茶。推窗可见雪山。</p>
-      <p>🚗 县城中心，步行到石头城10-15分钟；🅿️ 有停车场</p>
-      <p>💡 建议：第一次来高原建议直接选氧气房，睡得安稳。</p>
+      <h5>柏丽雅酒店</h5>
+      <img src="https://aka.doubaocdn.com/s/7zt1VULieg" alt="柏丽雅酒店" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 喀什市解放南路，近古城</p>
+      <p>💰 约220-320元/晚 | 📞 0998-2588888</p>
+      <p>✨ 房间较大，设施较新，有早餐，停车方便。</p>
     </div>
   </div>
 
   <div class="hotel-tier">
-    <h4>中档档（300-400元/晚）</h4>
+    <h4>💰 经济档（100-200元/晚）</h4>
+    <div class="hotel-item">
+      <h5>巴格其巷民宿（古城内）</h5>
+      <img src="https://aka.doubaocdn.com/s/VaeJjnxTmJ" alt="古城民宿" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 喀什古城内巴格其巷</p>
+      <p>💰 约120-200元/晚 | 📞 携程/美团预订</p>
+      <p>✨ 维吾尔族庭院式民宿，体验当地生活，老板可帮忙拼车和规划行程。</p>
+    </div>
+    <div class="hotel-item">
+      <h5>古丽娜尔民宿</h5>
+      <img src="https://aka.doubaocdn.com/s/IEeQSkX4bT" alt="古丽娜尔民宿" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 喀什古城内</p>
+      <p>💰 约100-180元/晚 | 📞 携程/美团预订</p>
+      <p>✨ 古城内传统民居改造，有庭院，性价比高，适合预算有限的旅行者。</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title">5.2 塔县住宿（1晚）</h3>
+
+  <div class="hotel-tier">
+    <h4>💰 高档（300-500元/晚）</h4>
     <div class="hotel-item">
       <h5>凯途国际温泉酒店</h5>
-      <img src="https://aka.doubaocdn.com/s/BPm0ZN5VwP" alt="凯途国际温泉酒店" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 300-500元/晚</p>
-      <p>📍 G314国道边，距石头城遗址2公里</p>
-      <p>✨ 特色：海拔3700米唯一带供氧房的酒店，房间弥散式供氧（免费），浴室地暖；硫磺真温泉，泡完缓解高原疲劳超有效。</p>
-      <p>🚗 G314国道边，自驾方便；🅿️ 有停车场</p>
+      <img src="https://aka.doubaocdn.com/s/BPm0ZN5VwP" alt="凯途国际温泉酒店" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 塔什库尔干县城</p>
+      <p>💰 约350-500元/晚 | 📞 0998-3428888</p>
+      <p>✨ 塔县最好的酒店之一，有供氧、暖气、温泉，高原住宿首选，缓解高反。</p>
     </div>
   </div>
 
   <div class="hotel-tier">
-    <h4>经济档（150-300元/晚）</h4>
+    <h4>💰 中档（200-350元/晚）</h4>
     <div class="hotel-item">
-      <h5>帕米尔宾馆</h5>
-      <img src="https://aka.doubaocdn.com/s/byjmQrv1Q7" alt="帕米尔宾馆" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 150-250元/晚</p>
-      <p>✨ 特色：当地老牌酒店，位置在县城中心，周边餐厅、超市林立，对于高原旅行非常便利。有供暖。</p>
-      <p>🚗 县城中心步行可达；🅿️ 有停车场</p>
-    </div>
-    <div class="hotel-item">
-      <h5>牧弋·见山民宿（塔什库尔干店）</h5>
-      <img src="https://aka.doubaocdn.com/s/asuk4NaQVB" alt="牧弋见山民宿" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin:8px 0;">
-      <p>💰 150-250元/晚</p>
-      <p>📍 塔什库尔干乡塔吉克新村051号</p>
-      <p>✨ 特色：塔吉克族风情民宿，早餐18元/人，体验当地民族风情。</p>
-      <p>🚗 县城附近，自驾方便；🅿️ 可停车</p>
+      <h5>维也纳国际酒店（塔县店）</h5>
+      <img src="https://aka.doubaocdn.com/s/OZS7fsVyLf" alt="维也纳国际酒店" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 塔什库尔干县城中心</p>
+      <p>💰 约250-350元/晚 | 📞 0998-3426666</p>
+      <p>✨ 连锁品牌，有暖气，房间干净，位置便利，周边餐饮多。</p>
     </div>
   </div>
 
-  <div class="card" style="margin-top:20px;">
-    <h3>住宿小贴士</h3>
+  <div class="hotel-tier">
+    <h4>💰 经济档（100-200元/晚）</h4>
+    <div class="hotel-item">
+      <h5>牧弋民宿（塔吉克族风情）</h5>
+      <img src="https://aka.doubaocdn.com/s/asuk4NaQVB" alt="塔县民宿" style="width:100%;height:140px;object-fit:cover;">
+      <p>📍 塔什库尔干县城</p>
+      <p>💰 约120-200元/晚 | 📞 携程/美团预订</p>
+      <p>✨ 塔吉克族家庭民宿，体验高原民族风情，有电热毯，老板热情。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 六、费用预算 ==================== -->
+<section id="budget">
+  <h2 class="section-title">六、费用预算</h2>
+  <p class="section-sub">按2人出行、租车自驾、中档住宿估算</p>
+
+  <div class="card">
+    <table class="budget-table">
+      <tr><th>项目</th><th>费用（2人）</th><th>说明</th></tr>
+      <tr><td>大交通（往返机票）</td><td>约2000-4000元</td><td>淡旺季差异大，乌鲁木齐中转</td></tr>
+      <tr><td>租车（5天SUV）</td><td>约1500-2500元</td><td>含基础保险，油费另计</td></tr>
+      <tr><td>油费+过路费</td><td>约800-1000元</td><td>全程约1200km</td></tr>
+      <tr><td>住宿（5晚）</td><td>约1200-2000元</td><td>喀什4晚中档+塔县1晚</td></tr>
+      <tr><td>餐饮</td><td>约1000-1500元</td><td>人均100-150元/天</td></tr>
+      <tr><td>门票</td><td>约300-400元</td><td>喀拉库勒湖45+沙漠30+清真寺45等</td></tr>
+      <tr><td>其他（伴手礼等）</td><td>约500-1000元</td><td>干果、特产</td></tr>
+      <tr><td><strong>合计</strong></td><td><strong>约7300-12400元</strong></td><td>人均约3650-6200元</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>省钱Tips</h3>
     <ul class="tips-list">
-      <li>全程只换一次酒店（喀什→塔县→喀什），不用天天收拾行李</li>
-      <li>塔县海拔3100m，第一晚不要洗澡，避免感冒引发高反</li>
-      <li>喀什酒店选带停车场的，自驾取车方便</li>
-      <li>旺季（7-9月、国庆）塔县住宿涨价且紧张，越早订越好，可能翻倍</li>
-      <li>部分酒店不接待港澳台及外籍客人，预定前确认</li>
-      <li>塔县酒店条件普遍比喀什艰苦，做好心理准备，重点看供暖和供氧</li>
-      <li>古城内民宿虽然有风情，但行李箱拖进去不方便，自驾建议住古城外的酒店</li>
+      <li>机票提前15-30天预订，关注南航/国航大促</li>
+      <li>租车选择周租套餐更划算，用携程/一嗨优惠券</li>
+      <li>住宿选含早餐的酒店，省一顿饭钱</li>
+      <li>大巴扎买干果比古城特产店便宜20-30%</li>
+      <li>拼车比租车人均便宜，适合1-2人出行</li>
     </ul>
   </div>
 </section>
 
-<!-- ==================== 六、出发前准备 ==================== -->
-<section id="prepare">
-  <h2 class="section-title">六、出发前准备与注意事项</h2>
-  <p class="section-sub">边防证、租车、高原、自驾、装备清单</p>
+<!-- ==================== 七、避坑指南 ==================== -->
+<section id="tips">
+  <h2 class="section-title">七、避坑指南</h2>
+  <p class="section-sub">高原反应 · 自驾安全 · 消费防坑 · 装备清单</p>
 
   <div class="card">
-    <h3>1. 边防证（最重要！必办）</h3>
-    <p><strong>为什么要办：</strong>前往帕米尔高原（塔县、白沙湖、盘龙古道等）必须查验边防证，没有无法通过检查站。</p>
-    <p><strong>办理地点：</strong>户籍地派出所/政务中心，或抵达喀什后在喀什办理（喀什国际自驾车与房车营地服务中心，当天可取）。</p>
-    <p><strong>填写地区：</strong>务必填写"喀什地区 塔什库尔干塔吉克自治县"（或写"帕米尔高原地区"），只写"新疆"不够。</p>
-    <p><strong>费用：</strong>免费</p>
-    <p><strong>有效期：</strong>通常3个月-1年</p>
-    <p><strong>建议：</strong>出发前在户籍地办好最省心，避免到喀什排队。</p>
-  </div>
-
-  <div class="card">
-    <h3>2. 租车建议</h3>
-    <p><strong>车型：</strong>必须燃油SUV（推荐哈弗H6、丰田RAV4、本田CR-V等），不建议轿车（盘龙古道和部分路段路况一般），不建议电车（高原充电不便）。</p>
-    <p><strong>租车平台：</strong>携程租车、一嗨租车、神州租车，提前1-2周预定价格更优。</p>
-    <p><strong>取车地点：</strong>喀什机场取车最方便，下飞机直接取车出发。</p>
-    <p><strong>保险：</strong>务必购买全额保险（车损险+第三者责任险+不计免赔），高原山路风险高。</p>
-    <p><strong>费用：</strong>SUV约200-400元/天，4天约800-1600元；油费约600-900元（全程约1200km）。</p>
-    <p><strong>注意：</strong>取车时仔细检查车辆外观、轮胎、刹车、备胎、千斤顶，拍照留证；确认车辆可以前往塔县（部分租车公司限制车辆行驶区域）。</p>
-  </div>
-
-  <div class="card">
-    <h3>3. 高原反应注意</h3>
+    <h3>1. 高原反应注意</h3>
     <p><strong>海拔跨度：</strong>喀什1289m → 白沙湖3300m → 喀拉库勒湖3600m → 塔县3100m → 盘龙古道最高4100m。</p>
     <p><strong>常见症状：</strong>头痛、头晕、气短、失眠、食欲下降。多数人轻微高反1-2天可适应。</p>
-    <p><strong>预防措施：</strong></p>
     <ul class="tips-list">
       <li>出发前一周可服用红景天（效果因人而异）</li>
       <li>上高原后不要剧烈运动，走路放慢节奏</li>
@@ -956,72 +982,38 @@ section:nth-child(8){animation-delay:0.7s}
   </div>
 
   <div class="card">
-    <h3>4. 自驾安全</h3>
+    <h3>2. 自驾安全</h3>
     <ul class="tips-list">
       <li>G314国道部分路段限速，注意观察限速标志，区间测速多</li>
       <li>盘龙古道弯道多，减速鸣笛，不要占道超车</li>
-      <li>高原山路可能有落石，注意观察，雨天谨慎</li>
-      <li>沿途加油站少，见加油站就加满（喀什→塔县途中约2-3个加油站）</li>
-      <li>不要夜间在高原赶路，路况复杂且气温低</li>
-      <li>部分路段手机无信号，提前下载离线地图（高德/百度地图）</li>
-      <li>检查站可能排队，预留充足时间</li>
+      <li>高原驾驶容易疲劳，每2小时休息一次</li>
+      <li>出发前检查轮胎、刹车、防冻液，备胎必备</li>
+      <li>沿途加油站间距大，保持油量半箱以上</li>
+      <li>检查站需身份证+边防证，提前准备好</li>
     </ul>
   </div>
 
   <div class="card">
-    <h3>5. 装备清单</h3>
+    <h3>3. 消费防坑</h3>
+    <ul class="tips-list">
+      <li><strong>包车：</strong>找正规营运车辆，签合同明确行程、费用、司机食宿，避免中途加价</li>
+      <li><strong>购物：</strong>大巴扎买干果可以先尝后买，多比价；切糕问清楚是按公斤还是斤</li>
+      <li><strong>沙漠：</strong>骑骆驼、沙漠越野前谈好价格和时长，避免临时加价</li>
+      <li><strong>拍照：</strong>拍当地人前先征得同意，部分景点拍照可能收费</li>
+      <li><strong>餐饮：</strong>夜市点餐先问价格，烤鸽子/烤包子按个卖还是按份卖</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>4. 装备清单</h3>
     <h4>衣物类</h4>
     <p>厚外套/冲锋衣（高原必备，塔县夜晚可能0-5度）、薄羽绒服（盘龙古道用）、长袖T恤、长裤、舒适运动鞋/徒步鞋、高帮鞋（沙漠用）、帽子、墨镜、围巾/丝巾（拍照+防风沙）。</p>
     <h4>护肤防护</h4>
     <p>高倍防晒霜（SPF50+，高原紫外线极强）、润唇膏、保湿霜、护手霜、面膜（喀什极干燥）。</p>
     <h4>药品类</h4>
-    <p>感冒药、肠胃药、布洛芬（高反头痛）、红景天、氧气瓶、创可贴、晕车药。</p>
-    <h4>电子设备</h4>
-    <p>充电宝（高原耗电快）、相机/手机、充电器、车载手机支架、离线地图。</p>
+    <p>红景天（提前一周）、布洛芬（高反头痛）、葡萄糖口服液、感冒药、肠胃药、创可贴、氧气瓶（可到塔县买）。</p>
     <h4>其他</h4>
-    <p>保温杯（高原喝热水）、少量现金（部分地方信号不好）、身份证+边防证（必带）、零食和水（长途车程用）。</p>
-  </div>
-</section>
-
-<!-- ==================== 七、费用预算 ==================== -->
-<section id="budget">
-  <h2 class="section-title">七、费用预算</h2>
-  <p class="section-sub">按人均计算，2人同行分摊租车油费</p>
-  <div class="card">
-    <table class="budget-table">
-      <tr><th>项目</th><th>经济型</th><th>舒适型</th><th>说明</th></tr>
-      <tr><td>机票（往返）</td><td>1800-2500元</td><td>3000-4500元</td><td>淡旺季差异大，提前订更便宜</td></tr>
-      <tr><td>租车+油费（4天分摊）</td><td>500-700元</td><td>700-1000元</td><td>SUV约200-400元/天，油费约600-900元</td></tr>
-      <tr><td>住宿（5晚）</td><td>600-1000元</td><td>1500-2500元</td><td>经济档150-250/晚，舒适档300-500/晚</td></tr>
-      <tr><td>餐饮</td><td>400-600元</td><td>700-1000元</td><td>南疆美食便宜，人均50-80元/天</td></tr>
-      <tr><td>门票</td><td>200-300元</td><td>300-400元</td><td>喀拉库勒湖45+达瓦昆30+王宫30+王陵35+可选景点</td></tr>
-      <tr><td>其他（伴手礼等）</td><td>200-500元</td><td>500-1000元</td><td>干果、糕点、玫瑰花酱等</td></tr>
-      <tr><td>合计（人均）</td><td>约3700-5600元</td><td>约6700-10400元</td><td>不含购物，丰俭由人</td></tr>
-    </table>
-  </div>
-</section>
-
-<!-- ==================== 八、避坑指南 ==================== -->
-<section id="tips">
-  <h2 class="section-title">八、避坑指南</h2>
-  <p class="section-sub">过来人血泪经验，帮你少走弯路</p>
-  <div class="card">
-    <ul class="tips-list">
-      <li><strong>边防证：</strong>务必出发前办好，填写"塔什库尔干县"，只写新疆没用。到喀什办可能排队1-2小时。</li>
-      <li><strong>租车：</strong>不要租电车，高原充电难；不要租轿车，盘龙古道伤底盘；取车时拍照留证，还车时避免扯皮。</li>
-      <li><strong>加油：</strong>见加油站就加满，G314沿途加油站少且可能关闭；塔县加油站有时排队。</li>
-      <li><strong>盘龙古道：</strong>注意通行时间，通常上午开放，下午可能因天气封闭；不要下午才去，白跑一趟。</li>
-      <li><strong>塔县住宿：</strong>旺季一定要提前订，临时订可能没房或价格翻倍；优先选带供暖/供氧的。</li>
-      <li><strong>高原反应：</strong>不要硬撑，严重不适立即下撤；不要在高原喝酒、剧烈运动。</li>
-      <li><strong>美食：</strong>古城夜市价格透明，不用担心被宰；但切糕先问价再买，密度大很重。</li>
-      <li><strong>拍照：</strong>拍摄当地人前先征得同意，尤其是女性和小孩；清真寺内不要拍照。</li>
-      <li><strong>时差：</strong>喀什比内地晚2小时，日落约22:00，作息自然延后，不用按内地时间吃饭。</li>
-      <li><strong>气候：</strong>喀什非常干燥，带足保湿用品；高原昼夜温差大，一天可能经历四季。</li>
-      <li><strong>信号：</strong>高原部分路段无手机信号，提前下载离线地图和音乐。</li>
-      <li><strong>购物：</strong>大巴扎买干果可以先尝后买，多比价；玫瑰花酱注意密封，漏了弄脏行李。</li>
-      <li><strong>沙漠：</strong>手机相机注意防沙，不用时装进密封袋；骑骆驼前谈好价格和时长。</li>
-      <li><strong>莎车：</strong>王宫和王陵中午可能休息（14:00-16:00），安排好时间。</li>
-    </ul>
+    <p>身份证（必带！检查站多次查验）、边防证、驾驶证、充电宝（高原手机耗电快）、保温杯、密封袋（沙漠防沙）。</p>
   </div>
 </section>
 
@@ -1031,6 +1023,7 @@ section:nth-child(8){animation-delay:0.7s}
 </div>
 
 </div>
+
 <script>
 (function(){
   var count = 25;
@@ -1057,7 +1050,7 @@ section:nth-child(8){animation-delay:0.7s}
       }
     });
   },{threshold:0.1});
-  document.querySelectorAll('.card,.food-item,.hotel-item').forEach(function(el){
+  document.querySelectorAll('.card,.food-item,.hotel-item,.day-block,.transport-card').forEach(function(el){
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
