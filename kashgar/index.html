@@ -53,17 +53,18 @@ body::after{
 
 .top-nav{
   position:sticky;top:0;z-index:100;
-  background:linear-gradient(180deg,rgba(62,39,35,0.92),rgba(93,64,55,0.88));
+  background:linear-gradient(180deg,rgba(62,39,35,0.95),rgba(93,64,55,0.92));
   backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(212,165,116,0.3);
   padding:10px 16px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;
   box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  text-align:center;
 }
 .top-nav a{
   display:inline-block;padding:6px 14px;margin-right:6px;border-radius:99px;
-  font-size:13px;color:var(--gold-light);text-decoration:none;
-  background:rgba(212,165,116,0.15);
-  border:1px solid rgba(212,165,116,0.2);
+  font-size:13px;color:#fff;text-decoration:none;
+  background:rgba(255,255,255,0.12);
+  border:1px solid rgba(255,255,255,0.2);
   transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
 }
 .top-nav a:hover{
@@ -76,8 +77,8 @@ body::after{
 .hero{
   text-align:center;padding:50px 16px 40px;
   background:
-    linear-gradient(180deg,rgba(62,39,35,0.3),rgba(107,68,35,0.5)),
-    url('https://aka.doubaocdn.com/s/OEVubZxtMG');
+    linear-gradient(180deg,rgba(62,39,35,0.55),rgba(107,68,35,0.7)),
+    url('https://aka.doubaocdn.com/s/8yAve17Z0E');
   background-size:cover;background-position:center;
   border-radius:0 0 30px 30px;margin-bottom:30px;
   position:relative;overflow:hidden;
@@ -98,14 +99,15 @@ body::after{
 .hero-tags{margin-top:14px;position:relative;z-index:1;}
 .hero-tags span{
   display:inline-block;padding:5px 14px;margin:3px;border-radius:99px;
-  font-size:12px;background:rgba(255,255,255,0.15);
-  color:var(--gold-light);
-  border:1px solid rgba(212,165,116,0.4);
+  font-size:12px;background:rgba(255,255,255,0.2);
+  color:#fff;font-weight:500;
+  border:1px solid rgba(255,255,255,0.35);
   backdrop-filter:blur(4px);
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  box-shadow:0 2px 8px rgba(0,0,0,0.25);
   transition:all 0.3s;
+  text-shadow:0 1px 3px rgba(0,0,0,0.4);
 }
-.hero-tags span:hover{background:rgba(212,165,116,0.3);transform:translateY(-2px);}
+.hero-tags span:hover{background:rgba(212,165,116,0.4);transform:translateY(-2px);}
 
 section{margin-bottom:40px;animation:floatUp 0.8s ease-out both;}
 section:nth-child(2){animation-delay:0.1s}
@@ -176,17 +178,27 @@ section:nth-child(8){animation-delay:0.7s}
 }
 
 .day-block{
-  border-left:3px solid var(--gold);padding-left:16px;margin-bottom:24px;
-  position:relative;
+  background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
+  border-radius:var(--radius);
+  padding:20px 20px 20px 24px;margin-bottom:20px;
+  box-shadow:var(--shadow-card);
+  border:1px solid rgba(212,165,116,0.3);
+  border-left:4px solid var(--gold);
+  position:relative;overflow:hidden;
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 .day-block::before{
-  content:"";position:absolute;left:-7px;top:0;width:11px;height:11px;
-  border-radius:50%;background:var(--terracotta);
-  box-shadow:0 0 0 3px rgba(199,91,57,0.3),0 0 12px rgba(199,91,57,0.5);
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--terracotta),var(--gold),var(--terracotta-light));
+  background-size:200% 100%;animation:shimmer 3s linear infinite;
+}
+.day-block:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-card-hover);
 }
 .day-block h3{
   font-family:"Noto Serif SC",serif;font-size:18px;color:var(--terracotta);
-  margin-bottom:8px;text-shadow:0 1px 4px rgba(0,0,0,0.2);
+  margin-bottom:8px;text-shadow:0 1px 2px rgba(0,0,0,0.1);
 }
 .day-block .day-route{
   font-size:13px;color:var(--brown-mid);
@@ -194,6 +206,11 @@ section:nth-child(8){animation-delay:0.7s}
   padding:8px 12px;border-radius:10px;margin-bottom:10px;
   border:1px solid rgba(212,165,116,0.3);
 }
+.day-block h4{
+  font-size:15px;color:var(--terracotta);margin:12px 0 6px;
+  padding-left:10px;border-left:3px solid var(--gold);
+}
+.day-block p{font-size:14px;color:var(--brown-mid);margin-bottom:6px;}
 
 .food-grid{display:grid;grid-template-columns:1fr;gap:14px;}
 .food-item{
@@ -287,7 +304,7 @@ section:nth-child(8){animation-delay:0.7s}
   <a href="#tips">避坑指南</a>
 </nav>
 
-<div class="hero" style="background-image:linear-gradient(180deg,rgba(255,232,223,0.85),rgba(255,245,240,0.95)),url('https://aka.doubaocdn.com/s/OEVubZxtMG');background-size:cover;background-position:center;">
+<div class="hero">
   <h1>喀什6天5晚自驾全攻略</h1>
   <p>帕米尔高原 · 古城沙漠 · 莎车人文</p>
   <div class="hero-tags">
