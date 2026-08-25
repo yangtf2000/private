@@ -195,6 +195,24 @@ section:nth-of-type(7){animation-delay:0.7s}
 .food-item img{border-radius:var(--radius-sm);box-shadow:0 6px 20px rgba(62,39,35,0.25);transition:transform 0.4s ease;margin:8px 0;}
 .food-item img:hover{transform:scale(1.03);}
 
+.about-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+.about-card{
+  background:linear-gradient(145deg,#FFF8F2,#F5E6D3);
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-card);
+  transition:all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.about-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-card-hover);}
+.about-card img{width:100%;height:200px;object-fit:cover;display:block;}
+.about-content{padding:18px;}
+.about-content h3{font-size:18px;color:var(--brown-dark);margin-bottom:8px;}
+.about-content p{font-size:14px;color:var(--brown-mid);line-height:1.7;margin:0;}
+
+@media(min-width:768px){
+  .about-grid{grid-template-columns:1fr 1fr;}
+  .about-card img{height:220px;}
+}
+
 .hotel-tier{margin-bottom:20px;}
 .hotel-tier h4{font-size:15px;color:var(--terracotta);margin-bottom:10px;padding-bottom:6px;border-bottom:1px dashed var(--gold);}
 .hotel-item{
@@ -259,44 +277,44 @@ section:nth-of-type(7){animation-delay:0.7s}
 <!-- ==================== 为什么去喀什 ==================== -->
 <section id="about">
   <h2 class="section-title">为什么去喀什</h2>
-  <p class="section-sub">2100年丝路古城 · 中国唯一伊斯兰迷宫式街区 · 活着的西域</p>
+  <p class="section-sub">5个理由，告诉你为什么"不到喀什不算到过新疆"</p>
 
-  <div class="card">
-    <h3>🏛️ 2100年建城史，丝路十字路口</h3>
-    <p>喀什古称"疏勒"，意为"水草丰美的地方"。早在西汉时期，这里就是西域三十六国之一的疏勒国都城。公元前138年和前119年，张骞两次出使西域都经过此地；公元前60年，汉朝设西域都护府，喀什正式纳入中国版图。</p>
-    <p>东汉名将班超以疏勒为根据地，苦心经营西域31年，荡平匈奴、收复西域大部。唐代玄奘西天取经在此停留，在《大唐西域记》中写下对疏勒城的描述。元代马可·波罗路过此地，明代这里是喀什噶尔汗国的核心。</p>
-    <p>古丝绸之路南北两道在喀什交汇，翻越帕米尔高原的商贾、旅行者在此停留、休整、交易，使这里成为中国西部最早的国际贸易商埠。张骞、班超、玄奘、法显、马可·波罗……中外历史名人都在这里留下了足迹。</p>
+  <div class="about-grid">
+    <div class="about-card">
+      <img src="https://aka.doubaocdn.com/s/OEVubZxtMG" alt="喀什古城">
+      <div class="about-content">
+        <h3>① 2100年丝路古城</h3>
+        <p>古称"疏勒"，西域三十六国之一。张骞出使、班超经营31年、玄奘停留、马可·波罗路过——丝路南北两道在此交汇，中国西部最早的国际贸易商埠。</p>
+      </div>
+    </div>
+
+    <div class="about-card">
+      <img src="https://aka.doubaocdn.com/s/cFPhOyDX8U" alt="艾提尕尔清真寺">
+      <div class="about-content">
+        <h3>② 活着的伊斯兰迷宫</h3>
+        <p>中国唯一保存完整的伊斯兰文化迷宫式街区，世界最大生土建筑群。12.68万居民真实生活其中，红铜作坊、百年茶馆、花帽巴扎、十二木卡姆——不是景区，是活着的西域。</p>
+      </div>
+    </div>
+
+    <div class="about-card">
+      <img src="https://aka.doubaocdn.com/s/oesxctOVs6" alt="帕米尔白沙湖">
+      <div class="about-content">
+        <h3>③ 古城+高原+沙漠</h3>
+        <p>上午逛千年古城，3小时到帕米尔看慕士塔格峰雪山倒影，走盘龙古道600弯、班迪尔蓝湖，1小时到达瓦昆沙漠看日落——景观密度全国唯一。</p>
+      </div>
+    </div>
+
+    <div class="about-card">
+      <img src="https://aka.doubaocdn.com/s/NXVZ2MXpZD" alt="喀什美食">
+      <div class="about-content">
+        <h3>④ 美食天堂·日落最晚</h3>
+        <p>中国日落最晚的城市，晚10点才天黑。烤包子2元、缸子肉25元、手抓饭油亮、莎车烤鸽子一绝——汗巴扎夜市100元吃到撑。</p>
+      </div>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>🕌 中国唯一的伊斯兰迷宫式古城</h3>
-    <p>喀什古城是<strong>国内唯一保存完整的以伊斯兰文化为特色的迷宫式城市街区</strong>，也是世界上现存规模最大的生土建筑群之一。古城面积4.25平方公里，居住着约12.68万居民，是一座"活着的千年古城"——你走进去的不是景区，而是一座仍在运转的古老社区。</p>
-    <p>街巷随地势自然排布，蜿蜒曲折、纵横交错，宛如迷宫。土木结构的民居层叠错落，精美的砖雕、木雕、石膏雕花随处可见。艾提尕尔清真寺始建于1442年，是新疆最大的清真寺，古城的精神核心。</p>
-    <p>这里不是人造仿古街，而是有数万人真实生活其中的社区：手工艺作坊的敲打声、百年茶馆的热瓦普弹唱、巴扎里的叫卖声，构成了最真实的西域烟火气。</p>
-  </div>
-
-  <div class="card">
-    <h3>🎭 浓郁的维吾尔族人文风情</h3>
-    <p>喀什是维吾尔族文化最浓郁的地方，保留了最原生态的民族生活方式。古城里的红铜作坊，一家三代人围着铜锅敲敲打打；花帽巴扎里，老人手工缝制每一顶帽子；土陶作坊里，转轮上的泥巴在匠人手中成型。</p>
-    <p>十二木卡姆是维吾尔族古典音乐瑰宝，被联合国教科文组织列入非物质文化遗产。莎车是十二木卡姆的发源地，阿曼尼莎汗王妃整理编纂了这部伟大的音乐史诗。在百年老茶馆里，听一段热瓦普弹唱，看维吾尔族老人随着节奏点头，时间仿佛慢了下来。</p>
-    <p>巴扎文化是喀什的灵魂：布匹巴扎、牲畜巴扎、地毯巴扎、帽子巴扎、粮食巴扎、皮革巴扎……巴扎无处不在，无所不包，整个喀什就是巴扎的王国。</p>
-  </div>
-
-  <div class="card">
-    <h3>🏔️ 古城+高原+沙漠，景观独一无二</h3>
-    <p>喀什的独特之处在于，你可以在一天之内体验完全不同的世界：上午在千年古城的迷宫巷子里闲逛，下午驱车3小时就到了帕米尔高原，看慕士塔格峰的雪山倒影在喀拉库勒湖；再开一小时，就是白沙湖的蓝湖白沙；第二天走盘龙古道600弯，看班迪尔蓝湖的蒂芙尼蓝。</p>
-    <p>往南180公里是莎车，叶尔羌汗国的古都，十二木卡姆的故乡；往东北1小时是达瓦昆沙漠，可以看沙漠日落、骑骆驼。古城、雪山、湖泊、古道、沙漠——这种景观密度在全国都找不到第二个。</p>
-  </div>
-
-  <div class="card">
-    <h3>🍢 美食天堂，中国日落最晚的城市</h3>
-    <p>喀什是中国日落最晚的城市之一，比内地晚2小时，夏天晚上10点才天黑。这意味着你有更多时间逛吃——晚上9点的汗巴扎夜市正是最热闹的时候，烤包子、缸子肉、手抓饭、红柳烤肉、烤鸽子、米肠子面肺子、酸奶粽子、鲜榨石榴汁……100块钱能吃到撑。</p>
-    <p>这里的美食和乌鲁木齐不一样，更原生态、更维吾尔族。抓饭用新疆独有的黄萝卜，甜度更高；缸子肉用搪瓷缸炭火慢炖，汤鲜肉烂；烤包子2元一个，刚出炉时肉汁四溢。</p>
-  </div>
-
-  <div class="card highlight-card">
-    <h3>💡 一句话总结</h3>
-    <p style="font-size:1.1em;line-height:1.8;">"不到喀什，不算到过新疆。"这里有2100年的丝路历史，有中国唯一的伊斯兰迷宫古城，有最浓郁的维吾尔族烟火气，有帕米尔高原的雪山湖泊，有吃不完的美食。国内找不出第二个地方，能把人文、历史、自然、美食融合得如此极致。</p>
+  <div class="card highlight-card" style="text-align:center;margin-top:20px;">
+    <p style="font-size:1.15em;line-height:1.8;margin:0;">"不到喀什，不算到过新疆。"<br>人文、历史、自然、美食，融合得最极致的地方。</p>
   </div>
 </section>
 
